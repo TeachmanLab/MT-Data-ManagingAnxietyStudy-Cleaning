@@ -77,7 +77,7 @@ import the data from specific versions (projects should reference the version
 they use).
 
 - `private-v1.0.0.zip` and `public-v1.0.0.zip` were uploaded by Jeremy Eberle on 
-9/18/2025 after running the redaction scripts below (as of commit TODO; setting
+9/18/2025 after running the redaction scripts below (as of commit `ce73142`; setting
 `first_run` in `2_redact_data.R` to `TRUE`) on that date.
 
 ## Redaction Scripts: Setup and File Relations
