@@ -15,15 +15,9 @@
 # files to "./data/redacted/set_a/" and "./data/redacted/set_b/".
 
 # For raw data files that contain potential identifiers, this script redacts the
-# relevant columns so that subsequent cleaning can be run on a dataset that can be 
+# relevant columns so that subsequent cleaning can be run on datasets that can be 
 # shared and made public. Rather than changing the structure of the raw data, this 
 # script replaces values of the relevant columns with "REDACTED_BY_CLEANING_SCRIPT".
-
-# Scope: This script is based on these two raw datasets (which differ in some ways):
-# - (a) A larger set of 26 CSV files as of 2/2/2019 obtained from Sonia Baee on 
-# 9/3/2020 (who stated on that date that they represent the latest version of the 
-# database on the R34 server and that she obtained them from Claudia Calicho-Mamani)
-# - (b) A partial set of 20 CSV files as of 2/2/2019 obtained from Sonia on 1/18/2023
 
 # This script may need updating when applied to other data sources, as there may have
 # been changes to the database or newly collected data not accounted for by this script
@@ -32,9 +26,10 @@
 # Store working directory, install correct R version, load packages ----
 # ---------------------------------------------------------------------------- #
 
-# Load custom functions
+# Load custom functions and lists of files to import
 
-source("./Redact Raw Data/1_define_functions.R")
+source("./Obtain and Redact Raw Data/1a_define_functions.R")
+source("./Obtain and Redact Raw Data/1b_define_files_to_import.R")
 
 # Check correct R version, load groundhog package, and specify groundhog_day
 
@@ -45,11 +40,6 @@ groundhog_day <- version_control()
 # ---------------------------------------------------------------------------- #
 # Import raw data Sets A and B ----
 # ---------------------------------------------------------------------------- #
-
-# Obtain names of raw data files
-
-filenames_a <- readLines("./data/raw_full/filenames_set_a.txt")
-filenames_b <- readLines("./data/raw_full/filenames_set_b.txt")
 
 # Import data files into named lists
 
