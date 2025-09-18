@@ -18,41 +18,41 @@ database on the R34 server and that she obtained them from Claudia Calicho-Maman
 **Set B** is a partial set of 20 CSV files with data up to 2/2/2019 obtained from Sonia 
 Baee on 1/18/2023
 
-The two datasets differ in some ways. ***TODO: Describe the differences.***
-
-
-
-
+**Sets A and B differ in some key ways**, and Jeremy Eberle is currently working to compare 
+them with the clean data used for the main outcomes paper. For more information, see his
+[jwe4ec/ma-networks](https://github.com/jwe4ec/ma-networks) repo (for differences he has
+found as of 9/18/2025, see his [develop](https://github.com/jwe4ec/ma-networks/tree/develop) branch).
 
 ### Private Component
 
-The [Private Component](https://osf.io/5sn2x/) has a ZIP file with the raw 
-data for Sets A and B. The folder structure of the ZIP file is below.
+The [Private Component](https://osf.io/5sn2x/) has a file `private-v1.0.0.zip` with the
+full set of raw data files (with one exception) for Sets A and B. The ZIP's structure is below.
+
+The exception is that for Set A only the redacted version of the `GiftLog` table 
+is included (which was redacted on the first run of the scripts below).
 
 ```
 .
 └── data/
-    ├── raw_full/    # All raw files
-    |   ├── set_a/   #   26 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019.csv")
-    |   └── set_b/   #   20 CSV files (e.g., "ImageryPrime_02_02_2019.csv")
-    └── redacted/    # Redacted files
-        ├── set_a/   #   2 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019_redacted.csv")
-        └── set_b/   #   1 CSV files (e.g., "ImageryPrime_02_02_2019_redacted.csv")
+    └── raw_full/    # All raw files (but see exception for Set A above)
+        ├── set_a/   #   26 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019.csv")
+        └── set_b/   #   20 CSV files (e.g., "ImageryPrime_02_02_2019.csv")
 ```
 
 To request access to files on this component, contact Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@bvirginia.edu)).
 
 ### Public Component
 
-The [Public Component](https://osf.io/2x3jq/) contains a partial set of raw data 
-files (i.e., those that did not need redaction) for Sets A and B and redacted files 
-(from `2_redact_data.R`) for Sets A and B. The structure of the ZIP file is below.
+The [Public Component](https://osf.io/2x3jq/) has a file `public-v1.0.0.zip` with
+a partial set of raw data files (i.e., those that did not need redaction) for Sets 
+A and B and redacted files for Sets A and B. The ZIP's structure is below.
 
-Note: The `GiftLog` table (in Set A) and `ImageryPrime` table (in Sets A and B) in 
-the `raw_full` folder of the [Private Component](#private-component) that are not 
-in the `raw_partial` folder of this [Public Component](https://osf.io/2x3jq/) have
-columns that may have identifiers. In the [Public Component](https://osf.io/2x3jq/), 
-redacted versions of these tables are in `redacted`.
+Note: The `ImageryPrime` table (in Sets A and B) in the `raw_full` folder of the 
+[Private Component](#private-component) that is not in the `raw_partial` folder of 
+this [Public Component](https://osf.io/2x3jq/) has a column that may have identifiers,
+whereas the `GiftLog` table (in Set A) in the `raw_full` folder that is not in the
+`raw_partial` folder has already been redacted. In the [Public Component](https://osf.io/2x3jq/), 
+redacted versions of these two tables are in the `redacted` folder.
 
 ```
 .
@@ -68,6 +68,18 @@ redacted versions of these tables are in `redacted`.
     └── codebooks/     # Codebooks
 ```
 
+### Version Control
+
+If a newer version of the ZIP for the Private Component or the ZIP for the Public
+Component is released, upload the new ZIP with a new version number and document 
+the changes below but **do not delete any old versions**. Analysis projects will
+import the data from specific versions (projects should reference the version
+they use).
+
+- `private-v1.0.0.zip` and `public-v1.0.0.zip` were uploaded by Jeremy Eberle on 
+9/18/2025 after running the redaction scripts below (as of commit TODO; setting
+`first_run` in `2_redact_data.R` to `TRUE`) on that date.
+
 ## Redaction Scripts: Setup and File Relations
 
 The scripts in the `Obtain and Redact Raw Data` folder of this repository import 
@@ -81,6 +93,12 @@ directory must be set to the parent folder to import/export data via relative fi
 Put the raw data files in subfolders of `data` called `raw_full/set_a/` and `raw_full/set_b/`.
 When `2_redact_data.R` is run, it will create the `redacted` folder and files therein.
 
+Note: On the first run of the redaction scripts, `first_run` in `2_redact_data.R` was 
+set to `TRUE` (which redacted both the `GiftLog` and `ImageryPrime` tables). When
+reproducing the redaction starting from the raw data already on the Private Component,
+`first_run` should be set to `FALSE` (which will redact only `ImageryPrime`, because
+the `GiftLog` on the Private Component is already redacted).
+
 ```
 .                                 # Parent folder (i.e., working directory)
 ├── data/                         #   Data subfolder
@@ -88,15 +106,9 @@ When `2_redact_data.R` is run, it will create the `redacted` folder and files th
 |   |   ├── set_a/                #       26 CSV files
 |   |   └── set_b/                #       20 CSV files
 |   └── (redacted/)               #     Folder with files will be created by "2_redact_data.R"
-|       ├── set_a/                #       2 CSV files
+|       ├── set_a/                #       1 CSV file (2 on first run of redaction scripts)
 |       └── set_b/                #       1 CSV file
 └── Obtain and Redact Raw Data/   #   Code subfolder
     ├── 1_define_functions.R      #     Define functions for use by subsequent R scripts
     └── 2_redact_data.R           #     Redact certain CSV files from "raw_full" and output to "redacted"
 ```
-
-***TODO: Move manifest TXT files' content to "1_define_functions.R"***
-
-
-
-

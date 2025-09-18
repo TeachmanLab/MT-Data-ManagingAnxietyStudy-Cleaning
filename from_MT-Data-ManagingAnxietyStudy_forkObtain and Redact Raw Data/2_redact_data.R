@@ -26,10 +26,9 @@
 # Store working directory, install correct R version, load packages ----
 # ---------------------------------------------------------------------------- #
 
-# Load custom functions and lists of files to import
+# Load custom functions
 
-source("./Obtain and Redact Raw Data/1a_define_functions.R")
-source("./Obtain and Redact Raw Data/1b_define_files_to_import.R")
+source("./Obtain and Redact Raw Data/1_define_functions.R")
 
 # Check correct R version, load groundhog package, and specify groundhog_day
 
@@ -38,8 +37,26 @@ groundhog_day <- version_control()
 # No packages loaded
 
 # ---------------------------------------------------------------------------- #
+# Specify whether this is the first run of this script ----
+# ---------------------------------------------------------------------------- #
+
+# In the first run of this script, "GiftLogDAO_recovered_Feb_02_2019.csv" (i.e., 
+# the raw, unredacted file) was imported, and the script replaced its "orderId"
+# column's values with "REDACTED_BY_CLEANING_SCRIPT" and outputted the redacted file
+# "GiftLogDAO_recovered_Feb_02_2019_redacted.csv" that is on the Private Component.
+# The script did so by setting "first_run" to TRUE below. When running this script 
+# on files already on the Private Component, "first_run" should be set to FALSE.
+
+first_run <- FALSE
+
+# ---------------------------------------------------------------------------- #
 # Import raw data Sets A and B ----
 # ---------------------------------------------------------------------------- #
+
+# Get filenames to import for Sets A and B
+
+filenames_a <- get_filenames_a(first_run = first_run)
+filenames_b <- get_filenames_b()
 
 # Import data files into named lists
 
@@ -94,14 +111,16 @@ ignore_cols_b <- c("date", "datetime", "session", "corrected_session", "sessionN
 
 # Manually checked all nonignorable character columns identified in following tables
 
-  # In Set A, only "GiftLogDAO_recovered$orderId" and "ImageryPrime_recovered$situation" 
-  # contain potential identifiable info
+  # In Set A, only "GiftLogDAO_recovered$orderId" (on first run of this script) and 
+  # "ImageryPrime_recovered$situation" contain potential identifiable info
 
 checked_tbls_a <- names(char_cols_to_check_a)
 
+gift_log_tbl <- ifelse(first_run == TRUE, "GiftLogDAO_recovered", "GiftLogDAO_recovered_redacted")
+
 all(checked_tbls_a == c("AnxietyTriggers_recovered", "CIHS_FIXED", "CIHS_recovered", 
                         "DD_FU_recovered", "Demographic_recovered", "EmailLogDAO_recovered", 
-                        "GiftLogDAO_recovered", "ImageryPrime_recovered", 
+                        gift_log_tbl, "ImageryPrime_recovered", 
                         "MentalHealthHxTx_recovered", "MultiUserExperience_recovered", 
                         "ParticipantExportDAO_recovered", "ReturnIntention_recovered", 
                         "TaskLog_final_FIXED", "TrialDAO_recovered", "VisitDAO_recovered"))
@@ -120,9 +139,13 @@ all(checked_tbls_b == c("AnxietyTriggers", "CIHS", "DD_FU", "Demographics",
 
 redaction_text <- "REDACTED_BY_CLEANING_SCRIPT"
 
-# In Set A, redact gift card order ID for security reasons
+# In Set A, redact gift card order ID for security reasons (on first run of this script)
 
-dat_a$GiftLogDAO_recovered$orderId <- redaction_text
+if (first_run == TRUE) {
+  dat_a$GiftLogDAO_recovered$orderId <- redaction_text
+} else {
+  all(dat_a$GiftLogDAO_recovered_redacted$orderId == redaction_text)
+}
 
 # In Sets A and B, redact descriptions of anxious situation for imagery prime
 
@@ -136,7 +159,12 @@ dat_b$ImageryPrime$situation           <- redaction_text
 # List all tables that have been redacted by this script so that the redacted
 # files can be named appropriately when outputted
 
-redacted_tbls_a <- c("GiftLogDAO_recovered", "ImageryPrime_recovered")
+if (first_run == TRUE) {
+  redacted_tbls_a <- c("GiftLogDAO_recovered", "ImageryPrime_recovered")
+} else {
+  redacted_tbls_a <- "ImageryPrime_recovered"
+}
+
 redacted_tbls_b <- "ImageryPrime"
 
 # ---------------------------------------------------------------------------- #
