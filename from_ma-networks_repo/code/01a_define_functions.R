@@ -1,0 +1,110 @@
+# ---------------------------------------------------------------------------- #
+# Define Functions
+# Author: Jeremy W. Eberle
+# ---------------------------------------------------------------------------- #
+
+# ---------------------------------------------------------------------------- #
+# Define version_control() ----
+# ---------------------------------------------------------------------------- #
+
+# Define function to check R version, load groundhog package, and return groundhog_day
+
+version_control <- function() {
+  # Ensure you are using the same version of R used at the time the script was 
+  # written. To install a previous version, go to 
+  # https://cran.r-project.org/bin/windows/base/old/
+  
+  script_R_version <- "R version 4.4.0 (2024-04-24 ucrt)"
+  current_R_version <- R.Version()$version.string
+  
+  if(current_R_version != script_R_version) {
+    warning(paste0("This script is based on ", script_R_version,
+                   ". You are running ", current_R_version, "."))
+  }
+  
+  # Load packages using "groundhog", which installs and loads the most recent
+  # versions of packages available on the specified date ("groundhog_day"). This 
+  # is important for reproducibility so that everyone running the script is using
+  # the same versions of packages used at the time the script was written.
+  
+  # Note that packages may take longer to load the first time you load them with
+  # "groundhog.library". This is because you may not have the correct versions of 
+  # the packages installed based on the "groundhog_day". After "groundhog.library"
+  # automatically installs the correct versions alongside other versions you may 
+  # have installed, it will load the packages more quickly.
+  
+  # If in the process of loading packages with "groundhog.library" for the first 
+  # time the console states that you first need to install "Rtools", follow steps 
+  # here (https://cran.r-project.org/bin/windows/Rtools/) for installing "Rtools" 
+  # and putting "Rtools" on the PATH. Then try loading the packages again.
+  
+  library(groundhog)
+  meta.groundhog("2024-06-01")
+  groundhog_day <- "2024-06-01"
+  
+  return(groundhog_day)
+}
+
+# ---------------------------------------------------------------------------- #
+# Define identify_cols() ----
+# ---------------------------------------------------------------------------- #
+
+# Define function to identify columns matching a grep pattern in a data frame
+# (ignoring case), with option to exclude certain columns. Use lapply to apply 
+# the function to all data frames in a list.
+
+identify_cols <- function(df, grep_pattern, exclude_cols = NULL) {
+  df_colnames <- colnames(df)
+  
+  select_idx <- grep(grep_pattern, df_colnames, ignore.case = TRUE)
+  
+  if (!is.null(exclude_cols)) {
+    exclude_idx <- which(df_colnames %in% exclude_cols)
+    
+    select_idx <- setdiff(select_idx, exclude_idx)
+  }
+  
+  if (length(select_idx) != 0) {
+    df_colnames[select_idx]
+  }
+}
+
+# ---------------------------------------------------------------------------- #
+# Define sort_by_part_then_session() ----
+# ---------------------------------------------------------------------------- #
+
+# Define function to sort a data frame (or each data frame in a list) by participant 
+# and then (if present) by a session column
+
+sort_by_part_then_session <- function(dat, part_col, session_col) {
+  sort_df <- function(df) {
+    if (session_col %in% names(df)) {
+      df <- df[order(df[[part_col]], df[[session_col]]), ]
+    } else {
+      df <- df[order(df[[part_col]]), ]
+    }
+    return(df)
+  }
+  
+  if (is.list(dat) & !is.data.frame(dat)) {
+    dat <- lapply(dat, sort_df)
+  } else {
+    dat <- sort_df(dat)
+  }
+  
+  return(dat)
+}
+
+# ---------------------------------------------------------------------------- #
+# Define get_diff_df1_not_in_df2() ----
+# ---------------------------------------------------------------------------- #
+
+# Define function to identify rows in one data frame that are not in another
+# data frame based on specified key columns
+
+diff_df1_not_in_df2 <- function(df1, df2, key_cols) {
+  df1_interaction_key_cols <- interaction(df1[key_cols])
+  df2_interaction_key_cols <- interaction(df2[key_cols])
+  
+  df1_not_in_df2 <- df1[!df1_interaction_key_cols %in% df2_interaction_key_cols, ]
+}
