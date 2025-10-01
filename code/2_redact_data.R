@@ -11,8 +11,9 @@
 # directory to the parent folder, and ensure that the raw CSV files for Sets A and B 
 # obtained from the Private Component of the Managing Anxiety OSF project 
 # (https://osf.io/pvd67/) are in "./data/raw_full/set_a/" and "./data/raw_full/set_b/".
-# This script will import raw data from those folders and output certain redacted data 
-# files to "./data/redacted/set_a/" and "./data/redacted/set_b/".
+# This script will import raw data from those folders, output certain redacted data 
+# files to "./data/redacted/set_a/" and "./data/redacted/set_b/", and copy unredacted
+# files to "./data/raw_partial/set_a/" and "./data/raw_partial/set_b/".
 
 # For raw data files that contain potential identifiers, this script redacts the
 # relevant columns so that subsequent cleaning can be run on datasets that can be 
@@ -28,7 +29,7 @@
 
 # Load custom functions
 
-source("./Obtain and Redact Raw Data/1_define_functions.R")
+source("./code/1_define_functions.R")
 
 # Check correct R version, load groundhog package, and specify groundhog_day
 
@@ -60,8 +61,11 @@ filenames_b <- get_filenames_b()
 
 # Import data files into named lists
 
-dat_a <- lapply(paste0("./data/raw_full/set_a/", filenames_a), read.csv)
-dat_b <- lapply(paste0("./data/raw_full/set_b/", filenames_b), read.csv)
+raw_full_dat_dir_a <- "./data/raw_full/set_a/"
+raw_full_dat_dir_b <- "./data/raw_full/set_b/"
+
+dat_a <- lapply(paste0(raw_full_dat_dir_a, filenames_a), read.csv)
+dat_b <- lapply(paste0(raw_full_dat_dir_b, filenames_b), read.csv)
 
 names(dat_a) <- tools::file_path_sans_ext(filenames_a)
 names(dat_b) <- tools::file_path_sans_ext(filenames_b)
@@ -156,33 +160,49 @@ dat_b$ImageryPrime$situation           <- redaction_text
 # List tables in Sets A and B that have been redacted ----
 # ---------------------------------------------------------------------------- #
 
-# List all tables that have been redacted by this script so that the redacted
-# files can be named appropriately when outputted
+# List all tables that have been redacted by this script to date so that the 
+# redacted files can be named appropriately when outputted and that the other, 
+# unredacted raw files can be written to the "raw_partial" folder below
 
 if (first_run == TRUE) {
   redacted_tbls_a <- c("GiftLogDAO_recovered", "ImageryPrime_recovered")
 } else {
-  redacted_tbls_a <- "ImageryPrime_recovered"
+  redacted_tbls_a <- c("GiftLogDAO_recovered_redacted", "ImageryPrime_recovered")
 }
 
 redacted_tbls_b <- "ImageryPrime"
 
 # ---------------------------------------------------------------------------- #
-# Export redacted data for Sets A and B ----
+# Export redacted data to "redacted/" for Sets A and B ----
 # ---------------------------------------------------------------------------- #
 
 # Define function to prepare redacted filenames and run for Sets A and B
 
-prep_redacted_filenames <- function(filenames, dat, redacted_tbls) {
-  filenames_sans_ext <- tools::file_path_sans_ext(filenames)
-  
+prep_redacted_filenames <- function(filenames, dat, redacted_tbls, first_run) {
   redacted_tbls_idx <- which(names(dat) %in% redacted_tbls)
   
-  redacted_filenames <- paste0(filenames_sans_ext[redacted_tbls_idx], "_redacted.csv")
+  # Only append "_redacted" to gift log filename on first run
+  
+  if (first_run == FALSE) {
+    gift_log_idx <- which(names(dat) == "GiftLogDAO_recovered_redacted")
+    
+    redacted_tbls_idx_to_append <- setdiff(redacted_tbls_idx, gift_log_idx)
+  } else {
+    redacted_tbls_idx_to_append <- redacted_tbls_idx
+  }
+  
+  filenames_sans_ext <- tools::file_path_sans_ext(filenames)
+  
+  filenames_sans_ext[redacted_tbls_idx_to_append] <- 
+    paste0(filenames_sans_ext[redacted_tbls_idx_to_append], "_redacted")
+  
+  filenames_sans_ext <- paste0(filenames_sans_ext, ".csv")
+  
+  redacted_filenames <- filenames_sans_ext[redacted_tbls_idx]
 }
 
-redacted_filenames_a <- prep_redacted_filenames(filenames_a, dat_a, redacted_tbls_a)
-redacted_filenames_b <- prep_redacted_filenames(filenames_b, dat_b, redacted_tbls_b)
+redacted_filenames_a <- prep_redacted_filenames(filenames_a, dat_a, redacted_tbls_a, first_run)
+redacted_filenames_b <- prep_redacted_filenames(filenames_b, dat_b, redacted_tbls_b, first_run)
 
 # Define function to write redacted CSV files
 
@@ -206,3 +226,31 @@ dir.create(redacted_dat_dir_b)
 
 write_redacted_data(dat_a, redacted_tbls_a, redacted_filenames_a, redacted_dat_dir_a)
 write_redacted_data(dat_b, redacted_tbls_b, redacted_filenames_b, redacted_dat_dir_b)
+
+# ---------------------------------------------------------------------------- #
+# Copy unredacted data to "raw_partial/" for Sets A and B ----
+# ---------------------------------------------------------------------------- #
+
+# Define function to copy unredacted CSV files from "raw_full/" to "raw_partial/"
+
+copy_unredacted_data <- function(dat, filenames, redacted_tbls, raw_full_path, raw_partial_path) {
+  unredacted_tbls_idx <- which(!(names(dat) %in% redacted_tbls))
+  
+  unredacted_filenames <- filenames[unredacted_tbls_idx]
+  
+  source_paths      <- file.path(raw_full_path,    unredacted_filenames)
+  destination_paths <- file.path(raw_partial_path, unredacted_filenames)
+  
+  file.copy(source_paths, destination_paths, copy.date = TRUE)
+}
+
+# Copy unredacted files to "raw_partial/"
+
+raw_partial_dat_dir_a <- "./data/raw_partial/set_a/"
+raw_partial_dat_dir_b <- "./data/raw_partial/set_b/"
+
+dir.create(raw_partial_dat_dir_a, recursive = TRUE)
+dir.create(raw_partial_dat_dir_b)
+
+copy_unredacted_data(dat_a, filenames_a, redacted_tbls_a, raw_full_dat_dir_a, raw_partial_dat_dir_a)
+copy_unredacted_data(dat_b, filenames_b, redacted_tbls_b, raw_full_dat_dir_b, raw_partial_dat_dir_b)

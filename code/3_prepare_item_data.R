@@ -53,7 +53,7 @@ wd_dir <- getwd()
 
 # Load custom functions
 
-source("./code/01a_define_functions.R")
+source("./code/1_define_functions.R")
 
 # Check correct R version, load groundhog package, and specify groundhog_day
 

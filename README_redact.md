@@ -82,22 +82,24 @@ they use).
 
 ## Redaction Scripts: Setup and File Relations
 
-The scripts in the `Obtain and Redact Raw Data` folder of this repository import 
-the full raw data files for Sets A and B and redact certain files.
+The `2_redact_data.R` script imports the full raw data files for Sets A and B, redacts 
+certain files and exports them to `redacted/`, and copies unredacted files to `raw_partial/`.
 
 If you have access to the full raw data (from the [Private Component](#private-component)), 
 you can reproduce the redaction. Create a parent folder (with any desired name, indicated 
-by `.` below) with two subfolders: `data` and `Obtain and Redact Raw Data`. The working 
-directory must be set to the parent folder to import/export data via relative file paths.
+by `.` below) with two subfolders: `data` and `code`. The working directory must be set to 
+the parent folder to import/export data via relative file paths.
 
 Put the raw data files in subfolders of `data` called `raw_full/set_a/` and `raw_full/set_b/`.
-When `2_redact_data.R` is run, it will create the `redacted` folder and files therein.
+When `2_redact_data.R` is run, it will create the `redacted` and `raw_partial` folders and 
+files therein.
 
 Note: On the first run of the redaction scripts, `first_run` in `2_redact_data.R` was 
 set to `TRUE` (which redacted both the `GiftLog` and `ImageryPrime` tables). When
 reproducing the redaction starting from the raw data already on the Private Component,
 `first_run` should be set to `FALSE` (which will redact only `ImageryPrime`, because
-the `GiftLog` on the Private Component is already redacted).
+the `GiftLog` on the Private Component is already redacted, but both redacted files
+will still be exported to `redacted/`).
 
 ```
 .                                 # Parent folder (i.e., working directory)
@@ -105,10 +107,13 @@ the `GiftLog` on the Private Component is already redacted).
 |   ├── raw_full/                 #     Folder with files from Private Component
 |   |   ├── set_a/                #       26 CSV files
 |   |   └── set_b/                #       20 CSV files
-|   └── (redacted/)               #     Folder with files will be created by "2_redact_data.R"
-|       ├── set_a/                #       1 CSV file (2 on first run of redaction scripts)
-|       └── set_b/                #       1 CSV file
-└── Obtain and Redact Raw Data/   #   Code subfolder
+|   ├── (redacted/)               #     Folder with files will be created by "2_redact_data.R"
+|   |   ├── set_a/                #       2 CSV files
+|   |   └── set_b/                #       1 CSV file
+|   └── (raw_partial/)            #     Folder with files will be created by "2_redact_data.R"
+|       ├── set_a/                #       24 CSV files
+|       └── set_b/                #       19 CSV files
+└── code/                         #   Code subfolder
     ├── 1_define_functions.R      #     Define functions for use by subsequent R scripts
-    └── 2_redact_data.R           #     Redact certain CSV files from "raw_full" and output to "redacted"
+    └── 2_redact_data.R           #     Redact certain CSV files from "raw_full"
 ```

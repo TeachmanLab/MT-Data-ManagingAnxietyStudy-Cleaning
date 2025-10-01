@@ -14,7 +14,7 @@ version_control <- function() {
   # written. To install a previous version, go to 
   # https://cran.r-project.org/bin/windows/base/old/
   
-  script_R_version <- "R version 4.4.0 (2024-04-24 ucrt)"
+  script_R_version <- "R version 4.4.3 (2025-02-28 ucrt)"
   current_R_version <- R.Version()$version.string
   
   if(current_R_version != script_R_version) {
@@ -39,10 +39,85 @@ version_control <- function() {
   # and putting "Rtools" on the PATH. Then try loading the packages again.
   
   library(groundhog)
-  meta.groundhog("2024-06-01")
-  groundhog_day <- "2024-06-01"
+  meta.groundhog("2025-04-01")
+  groundhog_day <- "2025-04-01"
   
   return(groundhog_day)
+}
+
+# ---------------------------------------------------------------------------- #
+# Define get_filenames_a() ----
+# ---------------------------------------------------------------------------- #
+
+# Define function to get names of Set A data files to import
+
+get_filenames_a <- function(first_run = FALSE) {
+  # From "./data/raw_full/set_a/" in "private-v1.0.0.zip" on Private Component
+  
+  filenames_a <- c("AnxietyTriggers_recovered_Feb_02_2019.csv",
+                   "BBSIQ_recovered_Feb_02_2019.csv",
+                   "CC_recovered_Feb_02_2019.csv",
+                   "CIHS_Feb_02_2019_FIXED.csv",
+                   "CIHS_recovered_Feb_02_2019.csv",
+                   "Credibility_recovered_Feb_02_2019.csv",
+                   "DASS21_AS_recovered_Feb_02_2019.csv",
+                   "DASS21_DS_recovered_Feb_02_2019_FIXED.csv",
+                   "DD_FU_recovered_Feb_02_2019.csv",
+                   "DD_recovered_Feb_02_2019.csv",
+                   "Demographic_recovered_Feb_02_2019.csv",
+                   "EmailLogDAO_recovered_Feb_02_2019.csv",
+                   "GiftLogDAO_recovered_Feb_02_2019_redacted.csv",
+                   "ImageryPrime_recovered_Feb_02_2019.csv",
+                   "ImpactAnxiousImagery_recovered_Feb_02_2019.csv",
+                   "MentalHealthHxTx_recovered_Feb_02_2019.csv",
+                   "MultiUserExperience_recovered_Feb_02_2019.csv",
+                   "OA_recovered_Feb_02_2019.csv",
+                   "ParticipantExportDAO_recovered_Feb_02_2019.csv",
+                   "QOL_recovered_Feb_02_2019.csv",
+                   "ReturnIntention_recovered_Feb_02_2019.csv",
+                   "RR_recovered_Feb_02_2019.csv",
+                   "SUDS_recovered_Feb_02_2019.csv",
+                   "TaskLog_final_FIXED.csv",
+                   "TrialDAO_recovered_Feb_02_2019.csv",
+                   "VisitDAO_recovered_Feb_02_2019.csv")
+  
+  if (first_run == TRUE) {
+    filenames_a[filenames_a == "GiftLogDAO_recovered_Feb_02_2019_redacted.csv"] <-
+      "GiftLogDAO_recovered_Feb_02_2019.csv"
+  }
+  
+  return(filenames_a)
+}
+
+# ---------------------------------------------------------------------------- #
+# Define get_filenames_b() ----
+# ---------------------------------------------------------------------------- #
+
+# Define function to get names of Set B data files to import
+
+get_filenames_b <- function() {
+  # From "./data/raw_full/set_b/" in "private-v1.0.0.zip" on Private Component
+  
+  filenames_b <- c("AnxietyTriggers_02_02_2019.csv",
+                   "BBSIQ_02_02_2019.csv",
+                   "CC_02_02_2019.csv",
+                   "CIHS_02_02_2019.csv",
+                   "Credibility_02_02_2019.csv",
+                   "DASS21_AS_02_02_2019.csv",
+                   "DASS21_DS_02_02_2019.csv",
+                   "DD_02_02_2019.csv",
+                   "DD_FU_02_02_2019.csv",
+                   "Demographics_02_02_2019.csv",
+                   "ImageryPrime_02_02_2019.csv",
+                   "ImpactAnxiousImagery_02_02_2019.csv",
+                   "MentalHealthHxTx_02_02_2019.csv",
+                   "MultiUserExperience_02_02_2019.csv",
+                   "OA_02_02_2019.csv",
+                   "QOL_02_02_2019.csv",
+                   "ReturnIntention_02_02_2019.csv",
+                   "RR_02_02_2019.csv",
+                   "SUDS_02_02_2019.csv",
+                   "TrialDAO_02_02_2019.csv")
 }
 
 # ---------------------------------------------------------------------------- #
