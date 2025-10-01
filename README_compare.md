@@ -1,6 +1,3 @@
-# ma-networks
-This repository contains analysis code for this project on the Open Science Framework: https://osf.io/w63br.
-
 ***TODO: Finish updating README***
 
 
@@ -169,7 +166,3 @@ This repository contains analysis code for this project on the Open Science Fram
   - **TODO**
 - **Credibility table**
   - **TODO**
-
-# Code
-
-TODO
