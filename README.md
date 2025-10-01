@@ -8,6 +8,20 @@ For questions, please contact [Jeremy W. Eberle](https://github.com/jwe4ec) or f
 
 ## TODO: Table of Contents
 
+- [Citation](#citation)
+- [Data on Open Science Framework](#data-on-open-science-framework)
+  - [Private Component](#private-component)
+  - [Public Component](#public-component)
+- [Cleaning Scripts: Setup and File Relations](#cleaning-scripts-setup-and-file-relations)
+- [Cleaning Scripts: Functionality](#cleaning-scripts-functionality)
+  - [1_define_functions.R](#1_define_functionsR)
+  - [2_redact_data.R](#2_redact_dataR)
+  - [3_clean_data.R](#3_clean_dataR)
+- [Further Cleaning and Analysis Considerations](#further-cleaning-and-analysis-considerations)
+- [Resources](#resources)
+  - [Appendices and Codebooks](#appendices-and-codebooks)
+  - [MindTrails Wiki](#mindtrails-wiki)
+
 ## TODO: Citation
 
 ## Data on Open Science Framework
