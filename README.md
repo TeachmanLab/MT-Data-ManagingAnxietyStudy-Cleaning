@@ -4,9 +4,17 @@ README Author: [Jeremy W. Eberle](https://github.com/jwe4ec)
 
 **TODO (Intro)**
 
+
+
+
+
 For questions, please contact [Jeremy W. Eberle](https://github.com/jwe4ec) or file an [issue](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues).
 
 ## TODO: Table of Contents
+
+
+
+
 
 - [Citation](#citation)
 - [Data on Open Science Framework](#data-on-open-science-framework)
@@ -24,7 +32,18 @@ For questions, please contact [Jeremy W. Eberle](https://github.com/jwe4ec) or f
 
 ## TODO: Citation
 
+
+
+
+
 ## Data on Open Science Framework
+
+
+**TODO: Add `notes.csv` and `data/other/` files to OSF**
+
+
+
+
 
 Two sets of raw data ([Sets A and B](#sets-a-and-b)) from the Managing Anxiety (R34) SQL database 
 are stored in the [MindTrails Managing Anxiety Study](https://osf.io/pvd67/) project 
@@ -41,6 +60,10 @@ database on the R34 server and that she obtained them from Claudia Calicho-Maman
 Baee on 1/18/2023
 
 **TODO (Sets A and B differ in some key ways)**
+
+
+
+
 
 ### Private Component
 
@@ -101,6 +124,10 @@ later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on t
 
 ## TODO: Cleaning Scripts: Setup and File Relations
 
+
+
+
+
 The `2_redact_data.R` script imports the full raw data files for Sets A and B, redacts 
 certain files and exports them to `redacted/`, and copies unredacted files to `raw_partial/`.
 
@@ -139,7 +166,17 @@ will still be exported to `redacted/`).
 
 ## TODO: Cleaning Scripts: Functionality
 
+
+
+
+
 ## TODO: Further Cleaning and Analysis Considerations
+
+**TODO: Mention item-level baseline data Julie analyzed for flexibility paper**
+
+
+
+
 
 ## Resources
 
@@ -152,3 +189,11 @@ Appendices and codebooks for the Managing Anxiety study are on the [Public Compo
 This is a wiki with MindTrails Project-wide and study-specific information that is privately stored by the study team.
 
 Researchers can request access to relevant information from the wiki by contacting Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@virginia.edu)).
+
+### Other MindTrails Repositories
+
+**TODO: Mention repos for the MA study website itself**
+
+
+
+
