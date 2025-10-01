@@ -1,7 +1,13 @@
 # ---------------------------------------------------------------------------- #
-# Prepare Item-Level Data
+# Clean Data
 # Author: Jeremy W. Eberle
 # ---------------------------------------------------------------------------- #
+
+# TODO: Rerun given new R version (previously 4.4.0)
+
+
+
+
 
 # ---------------------------------------------------------------------------- #
 # Notes ----
@@ -68,8 +74,8 @@ groundhog_day <- version_control()
 # Import baseline items and longitudinal scales from OSF project for Managing Anxiety 
 # main outcomes paper (see Source 1 above for more info)
 
-cln_dat_bl  <- read.csv("./data/source/clean_from_main_paper/R34_Cronbach.csv")
-cln_dat     <- read.csv("./data/source/clean_from_main_paper/R34_FinalData_New_v02.csv")
+cln_dat_bl  <- read.csv("./data/other/clean_from_main_paper/R34_Cronbach.csv")
+cln_dat     <- read.csv("./data/other/clean_from_main_paper/R34_FinalData_New_v02.csv")
 
 # ---------------------------------------------------------------------------- #
 # Import raw data files from Sonia ----
@@ -78,27 +84,43 @@ cln_dat     <- read.csv("./data/source/clean_from_main_paper/R34_FinalData_New_v
 # Obtain file names of Sets A and B of raw CSV data files from Sonia (see Sources
 # 2 and 3 above for more info)
 
-raw_data_dir   <- paste0(wd_dir, "/data/source/raw_from_sonia_a/")
-raw_data_dir_b <- paste0(wd_dir, "/data/source/raw_from_sonia_b/")
+raw_partial_dat_dir   <- paste0(wd_dir, "/data/raw_partial/set_a/")
+raw_partial_dat_dir_b <- paste0(wd_dir, "/data/raw_partial/set_b/")
 
-raw_filenames   <- list.files(raw_data_dir,   pattern = "\\.csv$")
-raw_filenames_b <- list.files(raw_data_dir_b, pattern = "\\.csv$")
+redacted_dat_dir      <- paste0(wd_dir, "/data/redacted/set_a/")
+redacted_dat_dir_b    <- paste0(wd_dir, "/data/redacted/set_b/")
+
+raw_partial_filenames   <- list.files(raw_partial_dat_dir,   pattern = "\\.csv$")
+raw_partial_filenames_b <- list.files(raw_partial_dat_dir_b, pattern = "\\.csv$")
+
+redacted_filenames      <- list.files(redacted_dat_dir,      pattern = "\\.csv$")
+redacted_filenames_b    <- list.files(redacted_dat_dir_b,    pattern = "\\.csv$")
 
 # Import raw data files and store them in list
 
-raw_dat   <- lapply(paste0(raw_data_dir,   raw_filenames),   read.csv)
-raw_dat_b <- lapply(paste0(raw_data_dir_b, raw_filenames_b), read.csv)
+raw_files   <- c(paste0(raw_partial_dat_dir,   raw_partial_filenames),
+                 paste0(redacted_dat_dir,      redacted_filenames))
+raw_files_b <- c(paste0(raw_partial_dat_dir_b, raw_partial_filenames_b),
+                 paste0(redacted_dat_dir_b,    redacted_filenames_b))
+
+raw_dat   <- lapply(raw_files,   read.csv)
+raw_dat_b <- lapply(raw_files_b, read.csv)
 
 # Name each raw data file in list
 
-names(raw_dat)   <- tools::file_path_sans_ext(raw_filenames)
-names(raw_dat_b) <- tools::file_path_sans_ext(raw_filenames_b)
+names(raw_dat)   <- tools::file_path_sans_ext(c(raw_partial_filenames,   redacted_filenames))
+names(raw_dat_b) <- tools::file_path_sans_ext(c(raw_partial_filenames_b, redacted_filenames_b))
+
+# Order files alphabetically in list
+
+raw_dat   <- raw_dat[sort(names(raw_dat))]
+raw_dat_b <- raw_dat_b[sort(names(raw_dat_b))]
 
 # ---------------------------------------------------------------------------- #
 # Import "notes.csv" from Sonia ----
 # ---------------------------------------------------------------------------- #
 
-notes <- read.csv("./data/source/notes_from_sonia/notes.csv")
+notes <- read.csv("./data/other/notes_from_sonia/notes.csv")
 
 # ---------------------------------------------------------------------------- #
 # Clean "notes.csv" ----
