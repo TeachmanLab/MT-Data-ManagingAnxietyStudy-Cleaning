@@ -137,4 +137,4 @@ Appendices and codebooks for the Managing Anxiety study are on the [Public Compo
 
 This is a wiki with MindTrails Project-wide and study-specific information that is privately stored by the study team.
 
-Researchers can request access to relevant information from the wiki by contacting Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@bvirginia.edu)).
+Researchers can request access to relevant information from the wiki by contacting Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@virginia.edu)).
