@@ -67,6 +67,12 @@ Baee on 1/18/2023
 
 ### Private Component
 
+**TODO: Update version number and upload new ZIP file to OSF**
+
+
+
+
+
 The [Private Component](https://osf.io/5sn2x/) has a file `private-v1.0.0.zip` with the
 full set of raw data files (with one exception) for Sets A and B. The ZIP's structure is below.
 
@@ -87,7 +93,8 @@ To request access to files on this component, contact Bethany Teachman ([bteachm
 
 The [Public Component](https://osf.io/2x3jq/) has a file `public-v1.0.0.zip` with
 a partial set of raw data files (i.e., those that did not need redaction) for Sets 
-A and B and redacted files for Sets A and B. The ZIP's structure is below.
+A and B, redacted files for Sets A and B, and **TODO** intermediately clean files. 
+The ZIP's structure is below.
 
 Note: The `ImageryPrime` table (in Sets A and B) in the `raw_full` folder of the 
 [Private Component](#private-component) that is not in the `raw_partial` folder of 
@@ -99,15 +106,16 @@ redacted versions of these two tables are in the `redacted` folder.
 ```
 .
 ├── data/                    
-|   ├── raw_partial/   # Raw files that did not need redaction
-|   |   ├── set_a/     #   24 CSV files (e.g., "DASS21_AS_recovered_Feb_02_2019.csv")
-|   |   └── set_b/     #   19 CSV files (e.g., "DASS21_AS_02_02_2019.csv")
-|   └── redacted/      # Redacted files
-|       ├── set_a/     #   2 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019_redacted.csv")
-|       └── set_b/     #   1 CSV file (e.g., "ImageryPrime_02_02_2019_redacted.csv")
+|   ├── raw_partial/        # Raw files that did not need redaction
+|   |   ├── set_a/          #   24 CSV files (e.g., "DASS21_AS_recovered_Feb_02_2019.csv")
+|   |   └── set_b/          #   19 CSV files (e.g., "DASS21_AS_02_02_2019.csv")
+|   ├── redacted/           # Redacted files
+|   |   ├── set_a/          #   2 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019_redacted.csv")
+|   |   └── set_b/          #   1 CSV file (e.g., "ImageryPrime_02_02_2019_redacted.csv")
+|   └── intermediate_clean/ # TODO CSV files
 └── materials/
-    ├── appendices/    # Appendices
-    └── codebooks/     # Codebooks
+    ├── appendices/         # Appendices
+    └── codebooks/          # Codebooks
 ```
 
 ### Version Control
@@ -128,8 +136,10 @@ later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on t
 
 
 
-The `2_redact_data.R` script imports the full raw data files for Sets A and B, redacts 
-certain files and exports them to `redacted/`, and copies unredacted files to `raw_partial/`.
+The scripts in `code/` import the full raw data files for Sets A and B, redact certain 
+files for Sets A and B, and clean the redacted and remaining raw files to yield intermediately 
+clean files. The resulting files are considered only intermediately cleaned because further 
+analysis-specific cleaning will be required for any given analysis.
 
 If you have access to the full raw data (from the [Private Component](#private-component)), 
 you can reproduce the redaction. Create a parent folder (with any desired name, indicated 
@@ -137,15 +147,14 @@ by `.` below) with two subfolders: `data` and `code`. The working directory must
 the parent folder to import/export data via relative file paths.
 
 Put the raw data files in subfolders of `data` called `raw_full/set_a/` and `raw_full/set_b/`.
-When `2_redact_data.R` is run, it will create the `redacted` and `raw_partial` folders and 
-files therein.
+`2_redact_data.R` will create the `redacted` and `raw_partial` folders and files therein, and 
+the `3_clean_data.R` will create the `intermediate_clean` folder and files therein.
 
-Note: On the first run of the redaction scripts, `first_run` in `2_redact_data.R` was 
-set to `TRUE` (which redacted both the `GiftLog` and `ImageryPrime` tables). When
-reproducing the redaction starting from the raw data already on the Private Component,
-`first_run` should be set to `FALSE` (which will redact only `ImageryPrime`, because
-the `GiftLog` on the Private Component is already redacted, but both redacted files
-will still be exported to `redacted/`).
+Note: On the first run of `2_redact_data.R`, `first_run` in that script was set to `TRUE` (which 
+redacted both the `GiftLog` and `ImageryPrime` tables). When reproducing the redaction starting 
+from the raw data already on the Private Component, `first_run` should be set to `FALSE` (which 
+will redact only `ImageryPrime`, because the `GiftLog` on the Private Component is already redacted,
+but both redacted files will still be exported to `redacted/`).
 
 ```
 .                                 # Parent folder (i.e., working directory)
@@ -163,6 +172,10 @@ will still be exported to `redacted/`).
     ├── 1_define_functions.R      #     Define functions for use by subsequent R scripts
     └── 2_redact_data.R           #     Redact certain CSV files from "raw_full"
 ```
+
+On a Windows 11 Enterprise laptop (32 GB of RAM; Intel Core Ultra 7 165U, 1700 Mhz, 12 cores, 
+14 logical Processors), each script runs in < 1 min. As noted in `1_define_functions.R`, 
+packages may take longer to load the first time you load them with `groundhog.library()`.
 
 ## TODO: Cleaning Scripts: Functionality
 
