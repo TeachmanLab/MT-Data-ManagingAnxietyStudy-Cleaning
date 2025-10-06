@@ -2,20 +2,49 @@
 
 README Author: [Jeremy W. Eberle](https://github.com/jwe4ec)
 
-**TODO (Intro)**
+This README describes centralized data cleaning for the MindTrails Project Managing
+Anxiety Study, an NIMH-funded
+([R34MH106770](https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584))
+randomized controlled trial of web-based interpretation bias training for anxious 
+adults (ClinicalTrials.gov [NCT02382003](https://clinicaltrials.gov/study/NCT02382003)).
 
+Initial data cleaning was conducted by [Sonia Baee](https://github.com/soniabaee)
+and [Claudia Calicho-Mamani](https://github.com/cpc4tz) for the main outcomes paper 
+([Ji et al., 2021](https://doi.org/10.1016/j.brat.2021.103864)). However, the clean
+datasets on that paper's [OSF project](https://osf.io/3b67v) contain only (a) scale-level
+data for certain measures over time and (b) item-level data for certain measures
+only at baseline. Further, the final cleaning script used for that paper was lost, 
+and the exact version of the raw dataset that was cleaned for that paper also seems 
+to have been lost.
 
+The present repo seeks to obtain clean item-level data on key measures over time 
+for the 807 participants in the main outcomes paper's intent-to-treat (ITT) sample. 
+The repo does so by redacting two raw datasets and then comparing them to the clean 
+datasets used in that paper. Although neither raw dataset seems to be the exact 
+version cleaned for that paper, the present code is able to reproduce most of the 
+scale-level data used in that paper from a combination of data drawn from these two 
+raw datasets (and from the baseline item-level data used in that paper).
 
+After reproducing most of the scale-level data used in the main outcomes paper,
+the present code deviates from that paper in the cleaning of the demographics data 
+(i.e., cleaning additional values for birth year and education, handling of blank 
+values) and the OASIS data (i.e., recoding session values to be consecutive). The 
+present code also outputs clean data for more measures (i.e., credibility) than are 
+in the datasets used in that paper, and given that the present cleaning pipeline is 
+reproducible, additional measures in the raw datasets could be added to the pipeline.
 
+For more on the initial cleaning and how it compares to the present repo, see 
+[Initial Versus Present Cleaning](#initial-versus-present-cleaning) below.
 
-For questions, please contact [Jeremy W. Eberle](https://github.com/jwe4ec) or file an [issue](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues).
+For questions, please contact [Jeremy W. Eberle](https://github.com/jwe4ec) or file 
+an [issue](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues).
 
 ## TODO: Table of Contents
 
 
 
 
-
+- [Initial Versus Present Cleaning](#initial-versus-present-cleaning)
 - [Citation](#citation)
 - [Data on Open Science Framework](#data-on-open-science-framework)
   - [Private Component](#private-component)
@@ -29,6 +58,29 @@ For questions, please contact [Jeremy W. Eberle](https://github.com/jwe4ec) or f
 - [Resources](#resources)
   - [Appendices and Codebooks](#appendices-and-codebooks)
   - [MindTrails Wiki](#mindtrails-wiki)
+
+## Initial Versus Present Cleaning
+
+### Initial
+
+The initial data cleaning done by [Sonia Baee](https://github.com/soniabaee) and 
+[Claudia Calicho-Mamani](https://github.com/cpc4tz) for the main outcomes paper 
+([Ji et al., 2021](https://doi.org/10.1016/j.brat.2021.103864)) consists of two 
+scripts (`R34_cleaning_script.R` and `R34.ipynb`) in `Data Cleaning` folder of the
+[MT-Data-ManagingAnxietyStudy](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy)
+repo, and one script (`Script1_DataPrep.R`) on that paper's [OSF project](https://osf.io/3b67v).
+
+**TODO**
+
+
+
+
+### Present
+
+**TODO**
+
+
+
 
 ## TODO: Citation
 
@@ -87,7 +139,8 @@ is included (which was redacted on the first run of the scripts below).
         └── set_b/   #   20 CSV files (e.g., "ImageryPrime_02_02_2019.csv")
 ```
 
-To request access to files on this component, contact Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@bvirginia.edu)).
+To request access to files on this component, contact Bethany Teachman 
+([bteachman@bvirginia.edu](mailto:bteachman@bvirginia.edu)).
 
 ### Public Component
 
@@ -199,9 +252,11 @@ Appendices and codebooks for the Managing Anxiety study are on the [Public Compo
 
 ### MindTrails Wiki
 
-This is a wiki with MindTrails Project-wide and study-specific information that is privately stored by the study team.
+This is a wiki with MindTrails Project-wide and study-specific information that is 
+privately stored by the study team.
 
-Researchers can request access to relevant information from the wiki by contacting Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@virginia.edu)).
+Researchers can request access to relevant information from the wiki by contacting 
+Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@virginia.edu)).
 
 ### Other MindTrails Repositories
 
