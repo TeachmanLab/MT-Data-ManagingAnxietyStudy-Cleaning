@@ -1,7 +1,7 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
 **README Author:** [Jeremy W. Eberle][jeremy]  
-**View Live:** https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
+**View Live:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages]
 
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
@@ -35,7 +35,7 @@ For more on the initial cleaning and how it compares to the present repo, see
 [Initial Versus Present Cleaning](#initial-versus-present-cleaning) below.
 
 For questions, please contact [Jeremy Eberle][jeremy] or file an 
-[issue][ma-cleaning-issues].
+[issue][ma-cleaning-repo-issues].
 
 ## TODO: Table of Contents
 
@@ -64,19 +64,19 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 The initial data cleaning done by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
 for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two scripts 
 (`R34_cleaning_script.R` and `R34.ipynb`) in the `Data Cleaning` folder of the
-[MT-Data-ManagingAnxietyStudy][ma-github-repo] repo, and one script (`Script1_DataPrep.R`) 
+[MT-Data-ManagingAnxietyStudy][ma-repo] repo, and one script (`Script1_DataPrep.R`) 
 on that paper's [OSF project][ji-et-al-2021-osf].
 
 - `R34_cleaning_script.R` (author: maybe Claudia Calicho-Mamani, but uploaded by Sonia Baee)
   - Imports raw data files that are unavailable. Although the files are labeled
   with 2/2/2019, some filenames differ from those in Sets A and B below, and some 
-  tables in Sets A and B are not imported (see [comparison][comparison]).
+  tables in Sets A and B are not imported (see [comparison][ma-cleaning-repo-pages-raw_filenames_list]).
   - Exports files that are unavailable and some of whose names differ from those
   in Sets A and B.
 - `R34.ipynb` (author: Sonia Baee)
   - Imports raw data files that are unavailable. Although the files are labeled
   with 2/2/2019, some filenames differ from those in Sets A and B, and some tables 
-  in Sets A and B are not imported (see [comparison][comparison]).
+  in Sets A and B are not imported (see [comparison][ma-cleaning-repo-pages-raw_filenames_list]).
   - Exports `FinalData-28Feb20.csv`, but this file is unavailable and not the file
   imported by the first script (`Script1_DataPrep.R` below) on the OSF project for 
   the paper. Thus, `R34.ipynb` is not the final cleaning script used in the paper.
@@ -290,15 +290,16 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 [bethany-email]: mailto:bteachman@virginia.edu
 [claudia]: https://github.com/cpc4tz
-[comparison]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/raw_filenames_list.html
 [jeremy]: https://github.com/jwe4ec
 [ji-et-al-2021]: https://doi.org/10.1016/j.brat.2021.103864
 [ji-et-al-2021-osf]: https://osf.io/3b67v
 [ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
-[ma-cleaning-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
+[ma-cleaning-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
+[ma-cleaning-repo-pages]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
+[ma-cleaning-repo-pages-raw_filenames_list]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/raw_filenames_list.html
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
-[ma-github-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
+[ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
 [ma-osf]: https://osf.io/pvd67/
 [ma-osf-private]: https://osf.io/5sn2x/
