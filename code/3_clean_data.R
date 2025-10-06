@@ -133,7 +133,9 @@ raw_filenames_list <- read.csv(paste0(docs_path, "raw_filenames_list.csv"))
 raw_filenames_list[is.na(raw_filenames_list)] <- '*NA*'
 
 sink("./docs/raw_filenames_list.md")
+cat('<div style="font-size: 0.8em;">\n')
 kable(raw_filenames_list, format = "markdown")
+cat('\n</div>')
 sink()
 
 # ---------------------------------------------------------------------------- #

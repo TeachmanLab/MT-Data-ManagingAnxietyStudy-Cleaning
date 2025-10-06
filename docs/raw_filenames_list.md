@@ -1,3 +1,4 @@
+<div style="font-size: 0.8em;">
 
 
 |table                  |imported_by_R34.ipynb                       |imported_by_R34_cleaning_script.R              |set_a                                          |set_b                               |
@@ -29,3 +30,5 @@
 |trial                  |*NA*                                        |TrialDAO_recovered_Feb_02_2019.csv             |TrialDAO_recovered_Feb_02_2019.csv             |TrialDAO_02_02_2019.csv             |
 |visit                  |*NA*                                        |*NA*                                           |VisitDAO_recovered_Feb_02_2019.csv             |*NA*                                |
 |*NA*                   |notes.csv                                   |*NA*                                           |*NA*                                           |*NA*                                |
+
+</div>
