@@ -1,4 +1,4 @@
-<div style="font-size: 8px">
+<small>
 
 
 
@@ -33,4 +33,4 @@
 |NA                     |notes.csv                                   |NA                                             |NA                                             |NA                                  |
 
 
-</div>
+</small>
