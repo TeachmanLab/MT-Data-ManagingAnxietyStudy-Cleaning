@@ -2,6 +2,8 @@
 
 README Author: [Jeremy W. Eberle][jeremy]
 
+**View on GitHub Pages**: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
+
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
 trial of web-based interpretation bias training for anxious adults (ClinicalTrials.gov 
@@ -69,13 +71,13 @@ on that paper's [OSF project][ji-et-al-2021-osf].
 - `R34_cleaning_script.R` (author: maybe Claudia Calicho-Mamani, but uploaded by Sonia Baee)
   - Imports raw data files that are unavailable. Although the files are labeled
   with 2/2/2019, some filenames differ from those in Sets A and B below, and some 
-  tables in Sets A and B are not imported (see [comparison][comparison])
+  tables in Sets A and B are not imported (see [comparison][comparison]).
   - Exports files that are unavailable and some of whose names differ from those
   in Sets A and B.
 - `R34.ipynb` (author: Sonia Baee)
   - Imports raw data files that are unavailable. Although the files are labeled
   with 2/2/2019, some filenames differ from those in Sets A and B, and some tables 
-  in Sets A and B are not imported.
+  in Sets A and B are not imported (see [comparison][comparison]).
   - Exports `FinalData-28Feb20.csv`, but this file is unavailable and not the file
   imported by the first script (`Script1_DataPrep.R` below) on the OSF project for 
   the paper. Thus, `R34.ipynb` is not the final cleaning script used in the paper.
@@ -293,6 +295,7 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 [ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
 [ma-cleaning-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
+[ma-cleaning-pages]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-github-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
