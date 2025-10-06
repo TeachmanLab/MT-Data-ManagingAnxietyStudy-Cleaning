@@ -61,7 +61,7 @@ groundhog_day <- version_control()
 
 # Load packages
 
-groundhog.library("knitr", groundhog_day)
+groundhog.library(c("knitr", "kableExtra"), groundhog_day)
 
 # ---------------------------------------------------------------------------- #
 # Import clean data files from main outcomes paper ----
@@ -130,10 +130,11 @@ dir.create(docs_path)
 
 raw_filenames_list <- read.csv(paste0(docs_path, "raw_filenames_list.csv"))
 
-sink("./docs/raw_filenames_list.md")
-cat("<small>\n\n")
-kable(raw_filenames_list)
-cat("\n\n</small>\n")
+raw_filenames_list[is.na(raw_filenames_list)] <- '<span style="color:grey; font-style:italic;">NA</span>'
+
+sink("./docs/raw_filenames_list.html")
+kable(raw_filenames_list, format = "html", escape = FALSE,
+      table.attr = 'style="font-family: monospace;"')
 sink()
 
 # ---------------------------------------------------------------------------- #
