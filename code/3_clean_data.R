@@ -61,7 +61,7 @@ groundhog_day <- version_control()
 
 # Load packages
 
-groundhog.library(c("knitr", "kableExtra"), groundhog_day)
+groundhog.library("knitr", groundhog_day)
 
 # ---------------------------------------------------------------------------- #
 # Import clean data files from main outcomes paper ----
@@ -122,13 +122,17 @@ notes <- read.csv("./data/other/notes_from_sonia/notes.csv")
 # Compare raw filenames in HTML table ----
 # ---------------------------------------------------------------------------- #
 
-# Create table to compare names of raw files imported by "R34_cleaning_script.R"
-# and "R34.ipynb" versus those in Sets A and B
+# Create HTML table for documentation to compare names of raw files imported by 
+# "R34_cleaning_script.R" and "R34.ipynb" versus those in Sets A and B
 
 docs_path <- "./docs/"
 dir.create(docs_path)
 
+  # Import CSV file manually created by Jeremy Eberle on 10/6/2025
+
 raw_filenames_list <- read.csv(paste0(docs_path, "raw_filenames_list.csv"))
+
+  # Create HTML table
 
 raw_filenames_list[is.na(raw_filenames_list)] <- '<span style="color:grey; font-style:italic;">NA</span>'
 
