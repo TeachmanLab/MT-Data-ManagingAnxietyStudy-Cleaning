@@ -1,21 +1,18 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
-README Author: [Jeremy W. Eberle](https://github.com/jwe4ec)
+README Author: [Jeremy W. Eberle][jeremy]
 
 This README describes centralized data cleaning for the MindTrails Project Managing
-Anxiety Study, an NIMH-funded
-([R34MH106770](https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584))
-randomized controlled trial of web-based interpretation bias training for anxious 
-adults (ClinicalTrials.gov [NCT02382003](https://clinicaltrials.gov/study/NCT02382003)).
+Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
+trial of web-based interpretation bias training for anxious adults (ClinicalTrials.gov 
+[NCT02382003][ma-clinical-trials]).
 
-Initial data cleaning was conducted by [Sonia Baee](https://github.com/soniabaee)
-and [Claudia Calicho-Mamani](https://github.com/cpc4tz) for the main outcomes paper 
-([Ji et al., 2021](https://doi.org/10.1016/j.brat.2021.103864)). However, the clean
-datasets on that paper's [OSF project](https://osf.io/3b67v) contain only (a) scale-level
-data for certain measures over time and (b) item-level data for certain measures
-only at baseline. Further, the final cleaning script used for that paper was lost, 
-and the exact version of the raw dataset that was cleaned for that paper also seems 
-to have been lost.
+Initial data cleaning was conducted by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
+for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]). However, the clean datasets on 
+that paper's [OSF project][ji-et-al-2021-osf] contain only (a) scale-level data for certain 
+measures over time and (b) item-level data for certain measures only at baseline. Further, the 
+final cleaning script used for that paper was lost, and the exact version of the raw dataset that 
+was cleaned for that paper also seems to have been lost.
 
 The present repo seeks to obtain clean item-level data on key measures over time 
 for the 807 participants in the main outcomes paper's intent-to-treat (ITT) sample. 
@@ -36,8 +33,8 @@ reproducible, additional measures in the raw datasets could be added to the pipe
 For more on the initial cleaning and how it compares to the present repo, see 
 [Initial Versus Present Cleaning](#initial-versus-present-cleaning) below.
 
-For questions, please contact [Jeremy W. Eberle](https://github.com/jwe4ec) or file 
-an [issue](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues).
+For questions, please contact [Jeremy W. Eberle][jeremy] or file an 
+[issue][ma-cleaning-issues].
 
 ## TODO: Table of Contents
 
@@ -63,14 +60,30 @@ an [issue](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/
 
 ### Initial
 
-The initial data cleaning done by [Sonia Baee](https://github.com/soniabaee) and 
-[Claudia Calicho-Mamani](https://github.com/cpc4tz) for the main outcomes paper 
-([Ji et al., 2021](https://doi.org/10.1016/j.brat.2021.103864)) consists of two 
-scripts (`R34_cleaning_script.R` and `R34.ipynb`) in `Data Cleaning` folder of the
-[MT-Data-ManagingAnxietyStudy](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy)
-repo, and one script (`Script1_DataPrep.R`) on that paper's [OSF project](https://osf.io/3b67v).
+The initial data cleaning done by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
+for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two scripts 
+(`R34_cleaning_script.R` and `R34.ipynb`) in the `Data Cleaning` folder of the
+[MT-Data-ManagingAnxietyStudy][ma-github-repo] repo, and one script (`Script1_DataPrep.R`) 
+on that paper's [OSF project][ji-et-al-2021-osf].
 
-**TODO**
+- `R34_cleaning_script.R` (author: maybe Claudia Calicho-Mamani, but uploaded by Sonia Baee)
+  - Imports raw data files that are unavailable. Although the files are labeled
+  with 2/2/2019, some filenames differ from those in Sets A and B below, and some 
+  tables in Sets A and B are not imported (see [comparison][comparison])
+  - Exports files that are unavailable and some of whose names differ from those
+  in Sets A and B.
+- `R34.ipynb` (author: Sonia Baee)
+  - Imports raw data files that are unavailable. Although the files are labeled
+  with 2/2/2019, some filenames differ from those in Sets A and B, and some tables 
+  in Sets A and B are not imported.
+  - Exports `FinalData-28Feb20.csv`, but this file is unavailable and not the file
+  imported by the first script (`Script1_DataPrep.R` below) on the OSF project for 
+  the paper. Thus, `R34.ipynb` is not the final cleaning script used in the paper.
+  (Sonia stated on 11/22/2021 that the final script was lost upon switching laptops.)
+- `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji)
+  - Imports **`FinalData-28Feb20_v02.csv`** (on the OSF project) and, among other things, 
+  computes the final BBSIQ scores used in subsequent analysis scripts
+  - Exports `"R34_FinalData_New_v02.csv"`
 
 
 
@@ -98,9 +111,9 @@ repo, and one script (`Script1_DataPrep.R`) on that paper's [OSF project](https:
 
 
 Two sets of raw data ([Sets A and B](#sets-a-and-b)) from the Managing Anxiety (R34) SQL database 
-are stored in the [MindTrails Managing Anxiety Study](https://osf.io/pvd67/) project 
-on the Open Science Framework (OSF). The project has two components, with different permissions:
-a [Private Component](https://osf.io/5sn2x/) and a [Public Component](https://osf.io/2x3jq/).
+are stored in the [MindTrails Managing Anxiety Study][ma-osf] project on the Open Science Framework 
+(OSF). The project has two components, with different permissions: a [Private Component][ma-osf-private] 
+and a [Public Component][ma-osf-public].
 
 ### Sets A and B
 
@@ -125,8 +138,8 @@ Baee on 1/18/2023
 
 
 
-The [Private Component](https://osf.io/5sn2x/) has a file `private-v1.0.0.zip` with the
-full set of raw data files (with one exception) for Sets A and B. The ZIP's structure is below.
+The [Private Component][ma-osf-private] has a file `private-v1.0.0.zip` with the full set 
+of raw data files (with one exception) for Sets A and B. The ZIP's structure is below.
 
 The exception is that for Set A only the redacted version of the `GiftLog` table 
 is included (which was redacted on the first run of the scripts below).
@@ -140,21 +153,21 @@ is included (which was redacted on the first run of the scripts below).
 ```
 
 To request access to files on this component, contact Bethany Teachman 
-([bteachman@bvirginia.edu](mailto:bteachman@bvirginia.edu)).
+([bteachman@bvirginia.edu][bethany-email]).
 
 ### Public Component
 
-The [Public Component](https://osf.io/2x3jq/) has a file `public-v1.0.0.zip` with
+The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with
 a partial set of raw data files (i.e., those that did not need redaction) for Sets 
 A and B, redacted files for Sets A and B, and **TODO** intermediately clean files. 
 The ZIP's structure is below.
 
 Note: The `ImageryPrime` table (in Sets A and B) in the `raw_full` folder of the 
 [Private Component](#private-component) that is not in the `raw_partial` folder of 
-this [Public Component](https://osf.io/2x3jq/) has a column that may have identifiers,
-whereas the `GiftLog` table (in Set A) in the `raw_full` folder that is not in the
-`raw_partial` folder has already been redacted. In the [Public Component](https://osf.io/2x3jq/), 
-redacted versions of these two tables are in the `redacted` folder.
+this Public Component has a column that may have identifiers, whereas the `GiftLog` 
+table (in Set A) in the `raw_full` folder that is not in the `raw_partial` folder 
+has already been redacted. In the Public Component, redacted versions of these two 
+tables are in the `redacted` folder.
 
 ```
 .
@@ -243,8 +256,8 @@ packages may take longer to load the first time you load them with `groundhog.li
 
 **TODO: Mention item-level baseline data Julie analyzed for flexibility paper**
 
-[Ji et al., 2024](https://doi.org/10.1177/20438087241226642),
-[OSF project](https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d)
+[Ji et al., 2024][ji-et-al-2024],
+[OSF project][ji-et-al-2024-osf]
 
 
 
@@ -261,7 +274,7 @@ This is a wiki with MindTrails Project-wide and study-specific information that 
 privately stored by the study team.
 
 Researchers can request access to relevant information from the wiki by contacting 
-Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@virginia.edu)).
+Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 ### Other MindTrails Repositories
 
@@ -270,3 +283,20 @@ Bethany Teachman ([bteachman@bvirginia.edu](mailto:bteachman@virginia.edu)).
 
 
 
+
+[bethany-email]: mailto:bteachman@virginia.edu
+[claudia]: https://github.com/cpc4tz
+[comparison]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/raw_filenames_list.html
+[jeremy]: https://github.com/jwe4ec
+[ji-et-al-2021]: https://doi.org/10.1016/j.brat.2021.103864
+[ji-et-al-2021-osf]: https://osf.io/3b67v
+[ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
+[ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
+[ma-cleaning-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
+[ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
+[ma-github-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
+[ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
+[ma-osf]: https://osf.io/pvd67/
+[ma-osf-private]: https://osf.io/5sn2x/
+[ma-osf-public]: https://osf.io/2x3jq/
+[sonia]: https://github.com/soniabaee
