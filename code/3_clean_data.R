@@ -131,7 +131,7 @@ dir.create(docs_path)
 raw_filenames_list <- read.csv(paste0(docs_path, "raw_filenames_list.csv"))
 
 sink("./docs/raw_filenames_list.md")
-cat("<div style=\"font-size: 12px\">\n\n")
+cat("<div style=\"font-size: 8px\">\n\n")
 kable(raw_filenames_list)
 cat("\n\n</div>")
 sink()
