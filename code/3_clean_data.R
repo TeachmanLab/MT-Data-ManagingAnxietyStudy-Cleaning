@@ -130,11 +130,10 @@ dir.create(docs_path)
 
 raw_filenames_list <- read.csv(paste0(docs_path, "raw_filenames_list.csv"))
 
-raw_filenames_list[is.na(raw_filenames_list)] <- '<span style="color:grey; font-style:italic;">NA</span>'
+raw_filenames_list[is.na(raw_filenames_list)] <- '*NA*'
 
-sink("./docs/raw_filenames_list.html")
-kable(raw_filenames_list, format = "html", escape = FALSE,
-      table.attr = 'style="font-family: monospace;"')
+sink("./docs/raw_filenames_list.md")
+kable(raw_filenames_list, format = "markdown")
 sink()
 
 # ---------------------------------------------------------------------------- #
