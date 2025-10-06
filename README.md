@@ -238,8 +238,13 @@ packages may take longer to load the first time you load them with `groundhog.li
 
 ## TODO: Further Cleaning and Analysis Considerations
 
+
+### Additional Item-Level Data at Baseline
+
 **TODO: Mention item-level baseline data Julie analyzed for flexibility paper**
 
+[Ji et al., 2024](https://doi.org/10.1177/20438087241226642),
+[OSF project](https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d)
 
 
 
