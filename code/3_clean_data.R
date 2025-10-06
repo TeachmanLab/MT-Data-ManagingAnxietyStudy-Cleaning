@@ -59,7 +59,9 @@ source("./code/1_define_functions.R")
 
 groundhog_day <- version_control()
 
-# No packages loaded
+# Load packages
+
+groundhog.library("knitr", groundhog_day)
 
 # ---------------------------------------------------------------------------- #
 # Import clean data files from main outcomes paper ----
@@ -115,6 +117,22 @@ raw_dat_b <- raw_dat_b[sort(names(raw_dat_b))]
 # ---------------------------------------------------------------------------- #
 
 notes <- read.csv("./data/other/notes_from_sonia/notes.csv")
+
+# ---------------------------------------------------------------------------- #
+# Compare raw filenames ----
+# ---------------------------------------------------------------------------- #
+
+# Create table to compare names of raw files imported by "R34_cleaning_script.R"
+# and "R34.ipynb" versus those in Sets A and B
+
+docs_path <- "./docs/"
+dir.create(docs_path)
+
+raw_filenames_list <- read.csv(paste0(docs_path, "raw_filenames_list.csv"))
+
+sink("./docs/raw_filenames_list.md")
+kable(raw_filenames_list)
+sink()
 
 # ---------------------------------------------------------------------------- #
 # Clean "notes.csv" ----
