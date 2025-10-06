@@ -1,8 +1,7 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
-**View on GitHub Pages**: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
-
-README Author: [Jeremy W. Eberle][jeremy]
+**README Author:** [Jeremy W. Eberle][jeremy]  
+**View Live:** https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
 
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
@@ -35,7 +34,7 @@ reproducible, additional measures in the raw datasets could be added to the pipe
 For more on the initial cleaning and how it compares to the present repo, see 
 [Initial Versus Present Cleaning](#initial-versus-present-cleaning) below.
 
-For questions, please contact [Jeremy W. Eberle][jeremy] or file an 
+For questions, please contact [Jeremy Eberle][jeremy] or file an 
 [issue][ma-cleaning-issues].
 
 ## TODO: Table of Contents
@@ -83,10 +82,13 @@ on that paper's [OSF project][ji-et-al-2021-osf].
   the paper. Thus, `R34.ipynb` is not the final cleaning script used in the paper.
   (Sonia stated on 11/22/2021 that the final script was lost upon switching laptops.)
 - `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji)
-  - Imports **`FinalData-28Feb20_v02.csv`** (on the OSF project) and, among other things, 
-  computes the final BBSIQ scores used in subsequent analysis scripts
+  - Imports **`FinalData-28Feb20_v02.csv`** (on the OSF project) and, among other 
+  things, computes the final BBSIQ scores used in subsequent analysis scripts
   - Exports `"R34_FinalData_New_v02.csv"`
 
+**TODO:**  
+- Finish above  
+- Document comparison table
 
 
 
@@ -295,7 +297,6 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 [ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
 [ma-cleaning-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
-[ma-cleaning-pages]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-github-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
