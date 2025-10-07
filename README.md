@@ -229,20 +229,27 @@ will redact only `ImageryPrime`, because the `GiftLog` on the Private Component 
 but both redacted files will still be exported to `redacted/`).
 
 ```
-.                                 # Parent folder (i.e., working directory)
-├── data/                         #   Data subfolder
-|   ├── raw_full/                 #     Folder with files from Private Component
-|   |   ├── set_a/                #       26 CSV files
-|   |   └── set_b/                #       20 CSV files
-|   ├── (redacted/)               #     Folder with files will be created by "2_redact_data.R"
-|   |   ├── set_a/                #       2 CSV files
-|   |   └── set_b/                #       1 CSV file
-|   └── (raw_partial/)            #     Folder with files will be created by "2_redact_data.R"
-|       ├── set_a/                #       24 CSV files
-|       └── set_b/                #       19 CSV files
-└── code/                         #   Code subfolder
-    ├── 1_define_functions.R      #     Define functions for use by subsequent R scripts
-    └── 2_redact_data.R           #     Redact certain CSV files from "raw_full"
+.                                    # Parent folder (i.e., working directory)
+├── data/                            #   Data subfolder
+|   ├── raw_full/                    #     Folder with files from Private Component
+|   |   ├── set_a/                   #       26 CSV files
+|   |   └── set_b/                   #       20 CSV files
+|   ├── other/                       #     TODO
+|   |   ├── clean_from_main_paper/   #       TODO
+|   |   └── notes_from_sonia/        #       TODO
+|   ├── (redacted/)                  #     Folder with files will be created by "2_redact_data.R"
+|   |   ├── set_a/                   #       2 CSV files
+|   |   └── set_b/                   #       1 CSV file
+|   ├── (raw_partial/)               #     Folder with files will be created by "2_redact_data.R"
+|   |   ├── set_a/                   #       24 CSV files
+|   |   └── set_b/                   #       19 CSV files
+|   └── (intermediate_clean/)        #     TODO: Folder with files will be created by "3_clean_data.R"
+├── code/                            #   Code subfolder
+|   ├── 1_define_functions.R         #     Define functions for use by subsequent R scripts
+|   ├── 2_redact_data.R              #     Redact certain CSV files from "raw_full"
+|   └── 3_clean_data.R               #     TODO
+└── (docs/)                          #   Docs subfolder with file will be created by "3_clean_data.R"
+    └── raw_filenames_list.html      #     TODO
 ```
 
 On a Windows 11 Enterprise laptop (32 GB of RAM; Intel Core Ultra 7 165U, 1700 Mhz, 12 cores, 
