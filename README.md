@@ -1,7 +1,7 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
 **README Author:** [Jeremy W. Eberle][jeremy]  
-**View Live[^1]:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages]
+**View Live:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages][^1]
 
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
