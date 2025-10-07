@@ -132,12 +132,21 @@ dir.create(docs_path)
 
 filenames_list <- read.csv(paste0(docs_path, "filenames_list.csv"))
 
+  # Ignore mislabeled DD and DD-FU files exported by "R34_cleaning_script.R"
+  # - See https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561)
+
+filenames_list_flt <- filenames_list
+
+dd_mask <- filenames_list_flt$exported_by_R34_cleaning_script.R %in% c("DD_02_02_2019.csv", "DD_FU_02_02_2019.csv")
+
+filenames_list_flt$exported_by_R34_cleaning_script.R[dd_mask] <- NA
+
   # Create HTML table
 
-filenames_list[is.na(filenames_list)] <- '<span style="color:grey; font-style:italic;">NA</span>'
+filenames_list_flt[is.na(filenames_list_flt)] <- '<span style="color:grey; font-style:italic;">NA</span>'
 
-sink("./docs/filenames_list.html")
-kable(filenames_list, format = "html", escape = FALSE,
+sink("./docs/filenames_list_flt.html")
+kable(filenames_list_flt, format = "html", escape = FALSE,
       table.attr = 'style="font-family: monospace;"')
 sink()
 
