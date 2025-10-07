@@ -1,7 +1,7 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
 **README Author:** [Jeremy W. Eberle][jeremy]  
-**View Live:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages]
+**View Live[^1]:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages]
 
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
@@ -59,7 +59,9 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 
 ## Initial Versus Present Cleaning
 
-### Initial
+### Initial Cleaning
+
+#### Code
 
 The initial data cleaning done by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
 for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two scripts 
@@ -67,37 +69,50 @@ for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two s
 [MT-Data-ManagingAnxietyStudy][ma-repo] repo, and one script (`Script1_DataPrep.R`) 
 on that paper's [OSF project][ji-et-al-2021-osf].
 
-- `R34_cleaning_script.R` (author: maybe Claudia Calicho-Mamani, but uploaded by Sonia Baee)
-  - Imports raw data files that are unavailable. Although the files are labeled
-  with 2/2/2019, some filenames differ from those in Sets A and B below, and some 
-  tables in Sets A and B are not imported ([comparison][ma-cleaning-repo-pages-filenames_list_flt]).
-  - Exports files that are unavailable and some of whose names differ from those
-  in Sets A and B. (Some exported files are wrong [[MT-Data-ManagingAnxietyStudy][ma-repo] 
-  Issue [11][ma-repo-issue11]] and are excluded from 
-  [comparison][ma-cleaning-repo-pages-filenames_list_flt].)
-- `R34.ipynb` (author: Sonia Baee)
-  - Imports a subset of filenames imported by `R34_cleaning_script.R` 
-  ([comparison][ma-cleaning-repo-pages-filenames_list_flt]). Given that the files 
-  are unavailable, it is unclear whether those with the same names are the same.
-  - Exports `FinalData-28Feb20.csv`, but this file is unavailable and not the file
-  imported by the first script (`Script1_DataPrep.R` below) on the OSF project for 
-  the paper. Thus, `R34.ipynb` is not the final cleaning script used in the paper.
-  (Sonia stated on 11/22/2021 that the final script was lost upon switching laptops.)
-- `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji)
-  - Imports **`FinalData-28Feb20_v02.csv`** (on the OSF project) and, among other 
-  things, computes the final BBSIQ scores used in subsequent analysis scripts
-  - Exports `"R34_FinalData_New_v02.csv"`
+`R34_cleaning_script.R` and `R34.ipynb` both have issues (see
+[MT-Data-ManagingAnxietyStudy/issues][ma-repo-issues]) and seem to be separate drafts 
+(one script does not import data files exported from the other). Given that `R34.ipynb`
+exports a data file whose name (`FinalData-28Feb20.csv`) resembles that of the data file 
+(**`FinalData-28Feb20_v02.csv`**) imported by `Script1_DataPrep.R`, `R34.ipynb` seems to be 
+the later draft. But the final version of `R34.ipynb` is unavailable (Sonia indicated on 
+11/22/2021 that the final script was lost upon switching laptops).
 
-**TODO:**  
-- Finish above  
-- Document comparison table
+- `R34_cleaning_script.R` (author: maybe Claudia, but uploaded by Sonia) imports data 
+files that are unavailable. Although the filenames are dated 2/2/2019, some filenames
+differ from those in **[Sets A and B](#sets-a-and-b)** on the
+[present repo's OSF project](#data-on-open-science-framework), and some tables in Sets A and 
+B are not imported (see this [comparison][ma-cleaning-repo-pages-filenames_list_flt]).[^2] 
+The script also exports files that are unavailable and some of whose filenames differ from 
+those in Sets A and B. Note: Some exported files are wrong ([Issue 11][ma-repo-issue11]
+on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus excluded from the 
+[comparison][ma-cleaning-repo-pages-filenames_list_flt].
+- `R34.ipynb` (by Sonia) imports data whose filenames are a subset of those 
+imported by `R34_cleaning_script.R` ([comparison][ma-cleaning-repo-pages-filenames_list_flt]), 
+but the files are unavailable, so it is unclear if files with the same names are the same. 
+The script also imports some **`notes.csv`** metadata (on
+[this repo's OSF project](#data-on-open-science-framework)). The script exports 
+`FinalData-28Feb20.csv`, but this is unavailable and, again, not the name of the file 
+imported by `Script1_DataPrep.R`.
+- `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji) imports 
+**`FinalData-28Feb20_v02.csv`** (on the [main outcome paper's OSF project][ji-et-al-2021-osf])
+and, among other things, computes the final BBSIQ scores used in the later analysis scripts for 
+that paper. It exports `"R34_FinalData_New_v02.csv"`.
 
+#### "Clean" Data From Main Outcome Paper's OSF Project
 
+**`FinalData-28Feb20_v02.csv`** contains demographics data; scale-level data over
+time for the BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR; and the CBM and imagery 
+prime conditions for the 807 ITT participants in the main outcomes paper. The present
+repo refers to this file as the **"clean data from the main outcomes paper"**.
 
-### Present
+Also on the [main outcome paper's OSF project][ji-et-al-2021-osf] is **`R34_Cronbach.csv`**, 
+which contains item-level data at baseline for the BBSIQ, DASS-21-AS, OASIS, and RR for the 
+same 807 participants. The code used to create this file is unavailable. The present repo 
+refers to this file as the **"clean item-level baseline data from the main outcomes paper"**.
+
+### Present Cleaning
 
 **TODO**
-
 
 
 [Link to compare clean data with Sets A and B](./docs/compare_datasets.md)
@@ -296,8 +311,11 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 **TODO: Mention repos for the MA study website itself**
 
 
-
-
+[^1]: This is the link to the present repo's corresponding GitHub Pages site,
+which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**  
+[^2]: The HTML file for this [comparison][ma-cleaning-repo-pages-filenames_list_flt]
+was generated from `./docs/filenames_list.csv`, which Jeremy manually created, in 
+`./code/3_clean_data.R`, and the HTML file is being hosted on the GitHub Pages site.
 
 [bethany-email]: mailto:bteachman@virginia.edu
 [claudia]: https://github.com/cpc4tz
@@ -311,6 +329,7 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 [ma-cleaning-repo-pages-filenames_list_flt]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
+[ma-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues
 [ma-repo-issue11]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
 [ma-osf]: https://osf.io/pvd67/
