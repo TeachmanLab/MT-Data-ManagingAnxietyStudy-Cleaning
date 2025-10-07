@@ -98,6 +98,8 @@ on that paper's [OSF project][ji-et-al-2021-osf].
 
 
 
+[Link to compare clean data with Sets A and B](./docs/compare_datasets.md)
+
 
 ## TODO: Citation
 
