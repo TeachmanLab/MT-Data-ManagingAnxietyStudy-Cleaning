@@ -23,9 +23,8 @@
   Then computed total score and multiplied it by 2.
 - **Demographics data**
   - **TODO**
-    - See [MT-Data-ManagingAnxietyStudy](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy)
-    Issues [9](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9#issue-3457953028)
-    and [10](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10#issue-3458115537)
+    - See [MT-Data-ManagingAnxietyStudy][ma-repo] Issues [9][ma-repo-issue9] and 
+    [10][ma-repo-issue10]
 - **No credibility data**
 
 ## Set A
@@ -80,9 +79,8 @@
     - Rather than keeping most recent entry, this was done by sorting each participant's 
     OASIS entries chronologically and then recoding per the expected session order for the 
     number of entries present
-    - (e.g., [MT-Data-ManagingAnxietyStudy](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy)
-    Issues [1](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/1#issue-403285089)
-    and [2](https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/2#issue-403285690))
+    - (e.g., [MT-Data-ManagingAnxietyStudy][ma-repo] Issues [1][ma-repo-issue1] and 
+    [2][ma-repo-issue2])
   - But 111 others without multiple entries have one session skipped in OASIS table 
   (and in clean OASIS data)
     - 109 have S1 skipped, and 2 have S3 skipped
@@ -166,3 +164,13 @@
   - **TODO**
 - **Credibility table**
   - **TODO**
+
+  
+  
+
+  
+[ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
+[ma-repo-issue1]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/1#issue-403285089
+[ma-repo-issue2]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/2#issue-403285690
+[ma-repo-issue9]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9#issue-3457953028
+[ma-repo-issue10]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10#issue-3458115537
