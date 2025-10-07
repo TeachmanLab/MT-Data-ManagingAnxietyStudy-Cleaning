@@ -5,15 +5,15 @@
 
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
-trial of web-based interpretation bias training for anxious adults (ClinicalTrials.gov 
-[NCT02382003][ma-clinical-trials]).
+trial of web-based interpretation bias training for anxious adults (registration on
+ClinicalTrials.gov: [NCT02382003][ma-clinical-trials]).
 
 Initial data cleaning was conducted by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
 for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]). However, the clean datasets on 
 that paper's [OSF project][ji-et-al-2021-osf] contain only (a) scale-level data for certain 
 measures over time and (b) item-level data for certain measures only at baseline. Further, the 
 final cleaning script used for that paper was lost, and the exact version of the raw dataset that 
-was cleaned for that paper also seems to have been lost.
+was cleaned for that paper also seems lost.
 
 The present repo seeks to obtain clean item-level data on key measures over time 
 for the 807 participants in the main outcomes paper's intent-to-treat (ITT) sample. 
@@ -25,7 +25,7 @@ raw datasets (and from the baseline item-level data used in that paper).
 
 After reproducing most of the scale-level data used in the main outcomes paper,
 the present code deviates from that paper in the cleaning of the demographics data 
-(i.e., cleaning additional values for birth year and education, handling of blank 
+(i.e., cleaning additional values for birth year and education; handling of blank 
 values) and the OASIS data (i.e., recoding session values to be consecutive). The 
 present code also outputs clean data for more measures (i.e., credibility) than are 
 in the datasets used in that paper, and given that the present cleaning pipeline is 
@@ -34,7 +34,7 @@ reproducible, additional measures in the raw datasets could be added to the pipe
 For more on the initial cleaning and how it compares to the present repo, see 
 [Initial Versus Present Cleaning](#initial-versus-present-cleaning) below.
 
-For questions, please contact [Jeremy Eberle][jeremy] or file an 
+For questions, please contact [Jeremy Eberle][jeremy] or file an
 [issue][ma-cleaning-repo-issues].
 
 ## TODO: Table of Contents
@@ -70,13 +70,15 @@ on that paper's [OSF project][ji-et-al-2021-osf].
 - `R34_cleaning_script.R` (author: maybe Claudia Calicho-Mamani, but uploaded by Sonia Baee)
   - Imports raw data files that are unavailable. Although the files are labeled
   with 2/2/2019, some filenames differ from those in Sets A and B below, and some 
-  tables in Sets A and B are not imported (see [comparison][ma-cleaning-repo-pages-raw_filenames_list]).
+  tables in Sets A and B are not imported ([comparison][ma-cleaning-repo-pages-filenames_list_flt]).
   - Exports files that are unavailable and some of whose names differ from those
-  in Sets A and B.
+  in Sets A and B. (Some exported files are wrong [[MT-Data-ManagingAnxietyStudy][ma-repo] 
+  Issue [11][ma-repo-issue11]] and are excluded from 
+  [comparison][ma-cleaning-repo-pages-filenames_list_flt].)
 - `R34.ipynb` (author: Sonia Baee)
-  - Imports raw data files that are unavailable. Although the files are labeled
-  with 2/2/2019, some filenames differ from those in Sets A and B, and some tables 
-  in Sets A and B are not imported (see [comparison][ma-cleaning-repo-pages-raw_filenames_list]).
+  - Imports a subset of filenames imported by `R34_cleaning_script.R` 
+  ([comparison][ma-cleaning-repo-pages-filenames_list_flt]). Given that the files 
+  are unavailable, it is unclear whether those with the same names are the same.
   - Exports `FinalData-28Feb20.csv`, but this file is unavailable and not the file
   imported by the first script (`Script1_DataPrep.R` below) on the OSF project for 
   the paper. Thus, `R34.ipynb` is not the final cleaning script used in the paper.
@@ -249,7 +251,7 @@ but both redacted files will still be exported to `redacted/`).
 |   ├── 2_redact_data.R              #     Redact certain CSV files from "raw_full"
 |   └── 3_clean_data.R               #     TODO
 └── (docs/)                          #   Docs subfolder with file will be created by "3_clean_data.R"
-    └── raw_filenames_list.html      #     TODO
+    └── filenames_list_flt.html      #     TODO
 ```
 
 On a Windows 11 Enterprise laptop (32 GB of RAM; Intel Core Ultra 7 165U, 1700 Mhz, 12 cores, 
@@ -306,9 +308,10 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
 [ma-cleaning-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
 [ma-cleaning-repo-pages]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
-[ma-cleaning-repo-pages-raw_filenames_list]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/raw_filenames_list.html
+[ma-cleaning-repo-pages-filenames_list_flt]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
+[ma-repo-issue11]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
 [ma-osf]: https://osf.io/pvd67/
 [ma-osf-private]: https://osf.io/5sn2x/
