@@ -119,25 +119,25 @@ raw_dat_b <- raw_dat_b[sort(names(raw_dat_b))]
 notes <- read.csv("./data/other/notes_from_sonia/notes.csv")
 
 # ---------------------------------------------------------------------------- #
-# Compare raw filenames in HTML table ----
+# Compare filenames in HTML table ----
 # ---------------------------------------------------------------------------- #
 
-# Create HTML table for documentation to compare names of raw files imported by 
-# "R34_cleaning_script.R" and "R34.ipynb" versus those in Sets A and B
+# Create HTML table for documentation to compare names of files imported/exported
+# by "R34_cleaning_script.R", imported by "R34.ipynb", and in Sets A and B
 
 docs_path <- "./docs/"
 dir.create(docs_path)
 
   # Import CSV file manually created by Jeremy Eberle on 10/6/2025
 
-raw_filenames_list <- read.csv(paste0(docs_path, "raw_filenames_list.csv"))
+filenames_list <- read.csv(paste0(docs_path, "filenames_list.csv"))
 
   # Create HTML table
 
-raw_filenames_list[is.na(raw_filenames_list)] <- '<span style="color:grey; font-style:italic;">NA</span>'
+filenames_list[is.na(filenames_list)] <- '<span style="color:grey; font-style:italic;">NA</span>'
 
-sink("./docs/raw_filenames_list.html")
-kable(raw_filenames_list, format = "html", escape = FALSE,
+sink("./docs/filenames_list.html")
+kable(filenames_list, format = "html", escape = FALSE,
       table.attr = 'style="font-family: monospace;"')
 sink()
 
