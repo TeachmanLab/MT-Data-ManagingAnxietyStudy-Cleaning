@@ -124,22 +124,32 @@ BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR) with the clean datasets from the m
 outcomes paper (`FinalData-28Feb20_v02.csv`, `R34_Cronbach.csv`), with a focus on reproducing
 the demographics data and scale scores for the 807 ITT participants in the main outcomes paper.
 
-After using clues from the initial cleaning scripts (`R34_cleaning_script.R`, `R34.ipynb`) 
-and `notes.csv` to clean and score these tables for the 807 ITT participants, `3_clean_data.R` 
-compares Sets A and B with the clean data from the main outcomes paper (`FinalData-28Feb20_v02.csv`),
-starting with the demographics data and then turning to non-demographic scale scores. For notes on 
-these comparisons, see this [summary](./docs/compare_datasets.md).
+After using clues from the initial cleaning scripts (`R34_cleaning_script.R`, `R34.ipynb`,
+`Script1_DataPrep.R`) and `notes.csv` to clean and score these tables for the 807 ITT 
+participants, `3_clean_data.R` compares Sets A and B with the clean data from the main 
+outcomes paper (`FinalData-28Feb20_v02.csv`), starting with the demographics data and then 
+turning to non-demographic scale scores. For notes on these comparisons, see this 
+[summary](./docs/compare_datasets.md).
 
-These comparisons revealed that for the demographics data, **TODO (and link to separate section below)**.
+For demographics data, these comparisons revealed that the clean data from the main
+outcomes paper has some likely inadvertent `NA` values for birth year (and thus age), some 
+education values that were not cleaned, and some blank values for most items. After 
+reproducing the demographics data, `3_clean_data.R` deviates from the main outcomes paper
+and does [additional cleaning of the demographics data](#additional-demographics-cleaning).
 
-These comparisons also revealed that Set A has the most data but is missing DASS-21-AS and 
-OASIS data for some participants (e.g., due to a server error). After locating these data 
-in Set B and `R34_Cronbach.csv`, `3_clean_data.R` adds these data to Set A and then compares 
-this "Set A With Added Data" to the clean data from the main outcomes paper, finding that for
-each table the datasets have the same participants but 
+For non-demographics data, these comparisons found that Set A has more data than Set B but 
+is missing DASS-21-AS and OASIS data for some people (e.g., due to server error). After 
+finding the data in Set B and `R34_Cronbach.csv`, `3_clean_data.R` adds these data to Set A 
+and compares this "Set A With Added Data" to the clean data from the main outcomes paper. For
+each table, the datasets have the same people but 
 [different numbers of observations](#different-numbers-of-observations).
 
-**TODO (mention differences in session values for OASIS)**
+Comparisons of non-demographics data also revealed that in the clean data from the main outcomes 
+paper, the `session` label in the OASIS table seems incorrect for 111 participants. The label 
+makes it seem like these participants skipped the OASIS at one session, but `3_clean_data.R`
+investigates this issue, and it is more plausible that the session label is incorrect. After
+reproducing the OASIS data, `3_clean_data.R` 
+[corrects the session label in the OASIS table](#corrected-session-in-oasis-table).
 
 **TODO (mention scoring procedures that were confirmed and link to separate section)**
 
@@ -149,13 +159,31 @@ each table the datasets have the same participants but
 
 #### Differences From Initial Cleaning
 
-##### 1. TODO: Additional Demographics Cleaning
+##### 1. Additional Demographics Cleaning
 
+The clean demographics data exported from the present repo differs from that used in the
+main outcomes paper due to the following kinds of additional cleaning.
 
-
-
+- The clean data from the main outcomes paper has more `NA`s for birth year (and thus age). 
+These `NA`s, which correspond to weird raw birth years (i.e., those > 2222) in Set A, seem 
+inadvertent because (a) the raw values were corrected in Set B, (b) `R34_cleaning_script.R` 
+made the same corrections, and (c) `R34.ipynb` intended to make these corrections but had a 
+bug (see [Issue 9][ma-repo-issue9] on [MT-Data-ManagingAnxietyStudy][ma-repo]). The clean
+data exported from the present repo corrects these birth years (vs. recoding them as `NA`).
+- The clean data from the main outcomes paper has some weird values for education. These were 
+corrected in `R34_cleaning_script.R` but not in `R34.ipynb` (see [Issue 10][ma-repo-issue10] 
+on [MT-Data-ManagingAnxietyStudy][ma-repo]). The clean data exported from the present repo
+corrects these values.
+- The clean data from the main outcomes paper has some blank values for most items that
+correspond to raw blanks and question marks in Sets A and B, suggesting an apparent server
+issue. For clarity, the clean data exported from the present repo recodes these blanks as
+`Missing (server issue)`.
 
 ##### 2. Numbers of Observations
+
+The clean data exported from the present repo has different numbers of observations from 
+that used in the main outcomes paper (see the `set_add` vs. `clean` columns below, respectively) 
+for the following reasons.
 
   ```text
   > set_add_vs_cln_nrow
@@ -168,20 +196,44 @@ each table the datasets have the same participants but
   participant     807   807    0
   rr             1186  1185    1   # Participant 532
   ```
+  
 - In the clean data from the main outcomes paper (`FinalData-28Feb20_v02.csv`), Participant 532 
 lacks baseline scores for the BBSIQ, DASS-21-DS, and RR. `notes.csv` says that they were originally 
 thought not to have RR data at baseline but do. Their baseline BBSIQ and RR data are the same as 
 those in the clean item-level baseline data (`R34_Cronbach.csv`). Thus, these data are retained 
 in the clean data exported from the present repo.
-- **TODO (about likely additional data collected)**
+- The clean data from the main outcomes paper (`FinalData-28Feb20_v02.csv`) has 4 more rows for
+the DASS-21-AS and 19 more rows for the OASIS than the clean data exported from the present repo.
+For all participants, the additional row(s) are for session(s) that came after the participants' 
+session(s) for which the DASS-21-AS or OASIS data are available in Sets A or B. Most likely, the 
+clean data from the main outcomes paper were derived from raw data dumped from the server at some
+point after Sets A and B were dumped from the server. (Indeed, Sets A and B seem to have less data
+than the raw data imported and described in `R34.ipynb`; see [summary](./docs/compare_datasets.md).)
 
+##### 3. Corrected Session in OASIS Table
 
+The clean data exported from the present repo has different session labels in the OASIS table for 
+111 participants whose labels in the clean data from the main outcomes paper make it seem like 109 
+participants skipped the OASIS at Session 1 (e.g., Participant 431 in `cln_ex` below) and like 2 
+participants skipped the OASIS at Session 3. In the clean data exported from the present repo, these 
+labels are recoded to be consecutive (e.g., `fin_ex` below).
 
+```text
+> cln_ex
+  participant_id session_only oasis_score
+1            431          PRE          12
+2            431     SESSION2          13
+3            431     SESSION3          11
+> fin_ex
+  participant_id session_only     date_as_POSIXct oa_total
+1            431          PRE 2016-06-13 11:20:35       12
+2            431     SESSION1 2016-06-13 11:29:35       13
+3            431     SESSION2 2016-06-16 00:30:17       11
+```
 
+The consecutive session labels are more plausible for the following reasons:
 
-##### 3. TODO: Session Values in OASIS Data
-
-
+- TODO
 
 
 
@@ -410,6 +462,8 @@ excluded from the HTML file. The HTML file is hosted on the GitHub Pages site.
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
 [ma-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues
+[ma-repo-issue9]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9#issue-3457953028
+[ma-repo-issue10]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10#issue-3458115537
 [ma-repo-issue11]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
 [ma-osf]: https://osf.io/pvd67/
