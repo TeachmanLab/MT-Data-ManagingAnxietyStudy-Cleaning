@@ -64,6 +64,12 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 
 #### Code
 
+**TODO: This seems off re which clean data from main outcomes paper is on OSF. Check throughout**
+
+
+
+
+
 The initial data cleaning done by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
 for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two scripts 
 (`R34_cleaning_script.R` and `R34.ipynb`) in the `Data Cleaning` folder of the
@@ -113,6 +119,8 @@ and does further cleaning.
 
 ### Present Cleaning
 
+#### Overview
+
 Given that the raw datasets used to generate the "clean" datasets for the main outcome 
 paper are unavailable, the present repo has to use the two raw datasets that are available, 
 which the present repo calls Sets A and B and whose origins, differences, and storage on 
@@ -151,7 +159,12 @@ investigates this issue, and it is more plausible that the session label is inco
 reproducing the OASIS data, `3_clean_data.R` 
 [corrects the session label in the OASIS table](#corrected-session-in-oasis-table).
 
-**TODO (mention scoring procedures that were confirmed and link to separate section)**
+`3_clean_data.R` ultimately reproduces all of the scale scores for all of the tables and
+observations that the "Set A With Added Data" shares with the clean data used in the main 
+outcomes paper (it also confirms that the CBM and imagery prime conditions are the same).
+But after doing so, `3_clean_data.R` removes the scale scores it computed because future 
+analyses may deviate from the specific
+[scale scores used in the main outcomes paper](#removed-scale-scores-used-in-main-outcomes-paper).
 
 **TODO (mention credibility table cleaning)**
 
@@ -219,29 +232,56 @@ participants skipped the OASIS at Session 3. In the clean data exported from the
 labels are recoded to be consecutive (e.g., `fin_ex` below).
 
 ```text
-> cln_ex
+> cln_ex   # Clean data from main outcomes paper (dates are unavailable)
   participant_id session_only oasis_score
 1            431          PRE          12
 2            431     SESSION2          13
 3            431     SESSION3          11
-> fin_ex
+> fin_ex   # Clean data exported from present repo (before scores are removed)
   participant_id session_only     date_as_POSIXct oa_total
 1            431          PRE 2016-06-13 11:20:35       12
-2            431     SESSION1 2016-06-13 11:29:35       13
-3            431     SESSION2 2016-06-16 00:30:17       11
+2            431     SESSION1 2016-06-13 11:29:35       13   # Recoded session
+3            431     SESSION2 2016-06-16 00:30:17       11   # Recoded session
 ```
 
 The consecutive session labels are more plausible for the following reasons:
 
-- TODO
+- For participants whose session labels in Set A and in the clean data used in the main outcomes
+paper make it seem like they skipped the OASIS at one session, their session labels in the Set A 
+OASIS table differ from the session labels for the OASIS in the Set A task log (which are consecutive). 
+Moreover, some of these participants' session dates in the Set A OASIS table differ from their dates 
+for corresponding sessions in the Set A RR table.
+- The session labels were corrected to be consecutive in Set B.
+- For participants whose session labels in Set A and in the clean data used in the main outcomes 
+paper make it seem like they skipped the OASIS at Session 1, most of the dates in the Set A OASIS
+table are the same for baseline and Session 2. This is implausible because whereas Session 1
+could be started right after the baseline assessment was completed, Session 2 could not be started 
+until 2 days after Session 1 was completed.
 
+##### 4. Removed Scale Scores Used in Main Outcomes Paper
 
+The clean data exported from the present repo excludes all of the scale scores that 
+`3_clean_data.R` computed to reproduce those in the clean data used in the main outcomes 
+paper (`R34_FinalData_New_v02.csv`), which used the specific scoring methods below.
 
-##### 4. TODO: Scoring Procedures
-
-
-
-
+- **BBSIQ ratio scores (`bbsiq_int_ratio`, `bbsiq_ext_ratio`)**
+  - Computed by TODO
+  - Called `bbsiq_physical_score` and `bbsiq_threat_score`, respectively, in `R34_FinalData_New_v02.csv`
+  - Main outcomes paper analyzed the mean of these two ratios (see `Script1_DataPrep.R` on
+  its [OSF project][ji-et-al-2021-osf])
+- **DASS-21-AS doubled total score (`dass21_as_total_dbl`)**
+  - Computed by TODO
+  - Called `dass_as_score` in `R34_FinalData_New_v02.csv`
+- **DASS-21-DS doubled total score (`dass21_ds_total_dbl`)**
+  - Computed by TODO
+  - Called `dass_ds_score` in `R34_FinalData_New_v02.csv`
+- **OASIS total score (`oa_total`)**
+  - Computed as the sum of all items, treating "prefer not to answer" as responses of 0
+  - Called `oasis_score` in `R34_FinalData_New_v02.csv`
+- **RR average item scores (`rr_nf_mean`, `rr_ns_mean`, `rr_pf_mean`, `rr_ps_mean`)**
+  - Computed as the mean of available items
+  - Called `RR_negative_nf_score`, `RR_negative_ns_score`, `RR_positive_pf_score`, and
+  `RR_positive_ps_score`, respectively, in `R34_FinalData_New_v02.csv`
 
 ## TODO: Citation
 
