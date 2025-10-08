@@ -64,12 +64,6 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 
 #### Code
 
-**TODO: This seems off re which clean data from main outcomes paper is on OSF. Check throughout**
-
-
-
-
-
 The initial data cleaning done by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
 for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two scripts 
 (`R34_cleaning_script.R` and `R34.ipynb`) in the `Data Cleaning` folder of the
@@ -80,7 +74,7 @@ on that paper's [OSF project][ji-et-al-2021-osf].
 [MT-Data-ManagingAnxietyStudy/issues][ma-repo-issues]) and seem to be separate drafts 
 (one script does not import data files exported from the other). Given that `R34.ipynb`
 exports a data file whose name (`FinalData-28Feb20.csv`) resembles that of the data file 
-(**`FinalData-28Feb20_v02.csv`**) imported by `Script1_DataPrep.R`, `R34.ipynb` seems to be 
+(`FinalData-28Feb20_v02.csv`) imported by `Script1_DataPrep.R`, `R34.ipynb` seems to be 
 the later draft. But the final version of `R34.ipynb` is unavailable (Sonia indicated on 
 11/22/2021 that the final script was lost upon switching laptops).
 
@@ -97,14 +91,14 @@ but the files are unavailable, so it is unclear if files with the same names are
 The script also imports some **`notes.csv`** metadata (on [this repo's OSF project](#data-on-osf)).
 The script exports `FinalData-28Feb20.csv`, but this is unavailable and, again, not the name of the 
 file imported by `Script1_DataPrep.R`.
-- `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji) imports 
-**`FinalData-28Feb20_v02.csv`** (on the [main outcome paper's OSF project][ji-et-al-2021-osf])
-and, among other things, computes the final BBSIQ scores used in the later analysis scripts for 
-that paper. It exports `"R34_FinalData_New_v02.csv"`.
+- `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji) imports `FinalData-28Feb20_v02.csv`
+(also unavailable) and, among other things, computes the final BBSIQ score used in the later analysis 
+scripts for that paper. It exports **`R34_FinalData_New_v02.csv`** (which is on the 
+[main outcome paper's OSF project][ji-et-al-2021-osf]).
 
 #### "Clean" Data on Main Outcome Paper's OSF Project
 
-**`FinalData-28Feb20_v02.csv`** contains demographics data; scale-level data over
+**`R34_FinalData_New_v02.csv`** contains demographics data; scale-level data over
 time for the BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR; and the CBM and imagery 
 prime conditions for the 807 ITT participants in the main outcomes paper. The present
 repo refers to this file as the **"clean data from the main outcomes paper"**.
@@ -123,21 +117,27 @@ and does further cleaning.
 
 Given that the raw datasets used to generate the "clean" datasets for the main outcome 
 paper are unavailable, the present repo has to use the two raw datasets that are available, 
-which the present repo calls Sets A and B and whose origins, differences, and storage on 
+which the present repo calls **Sets A and B** and whose origins, differences, and storage on 
 the present repo's OSF project are described in [Data on OSF](#data-on-osf) below.
 
 Broadly, the present repo starts by redacting Sets A and B via `2_redact_data.R`. Then, 
 `3_clean_data.R` cleans and scores Sets A and B for the tables they share (demographics, 
 BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR) with the clean datasets from the main 
-outcomes paper (`FinalData-28Feb20_v02.csv`, `R34_Cronbach.csv`), with a focus on reproducing
+outcomes paper (**`R34_FinalData_New_v02.csv`**, **`R34_Cronbach.csv`**), with a focus on reproducing
 the demographics data and scale scores for the 807 ITT participants in the main outcomes paper.
 
 After using clues from the initial cleaning scripts (`R34_cleaning_script.R`, `R34.ipynb`,
-`Script1_DataPrep.R`) and `notes.csv` to clean and score these tables for the 807 ITT 
+`Script1_DataPrep.R`) and **`notes.csv`** to clean and score these tables for the 807 ITT 
 participants, `3_clean_data.R` compares Sets A and B with the clean data from the main 
-outcomes paper (`FinalData-28Feb20_v02.csv`), starting with the demographics data and then 
+outcomes paper (`R34_FinalData_New_v02.csv`), starting with the demographics data and then 
 turning to non-demographic scale scores. For notes on these comparisons, see this 
 [summary](./docs/compare_datasets.md).
+
+**TODO: Resolve TODOs in the summary `./docs/compare_datasets.md` above**
+
+
+
+
 
 For demographics data, these comparisons revealed that the clean data from the main
 outcomes paper has some likely inadvertent `NA` values for birth year (and thus age), some 
@@ -168,6 +168,10 @@ analyses may deviate from the specific
 
 **TODO (mention credibility table cleaning)**
 
+
+
+
+
 **TODO (describe outputted data)**
 
 #### Differences From Initial Cleaning
@@ -180,9 +184,9 @@ main outcomes paper due to the following kinds of additional cleaning.
 - The clean data from the main outcomes paper has more `NA`s for birth year (and thus age). 
 These `NA`s, which correspond to weird raw birth years (i.e., those > 2222) in Set A, seem 
 inadvertent because (a) the raw values were corrected in Set B, (b) `R34_cleaning_script.R` 
-made the same corrections, and (c) `R34.ipynb` intended to make these corrections but had a 
-bug (see [Issue 9][ma-repo-issue9] on [MT-Data-ManagingAnxietyStudy][ma-repo]). The clean
-data exported from the present repo corrects these birth years (vs. recoding them as `NA`).
+made the same corrections, and (c) `R34.ipynb` intended to make these corrections but didn't
+due to a bug (see [Issue 9][ma-repo-issue9] on [MT-Data-ManagingAnxietyStudy][ma-repo]). The 
+clean data exported from the present repo corrects these birth years (vs. recoding them as `NA`).
 - The clean data from the main outcomes paper has some weird values for education. These were 
 corrected in `R34_cleaning_script.R` but not in `R34.ipynb` (see [Issue 10][ma-repo-issue10] 
 on [MT-Data-ManagingAnxietyStudy][ma-repo]). The clean data exported from the present repo
@@ -195,7 +199,7 @@ issue. For clarity, the clean data exported from the present repo recodes these 
 ##### 2. Numbers of Observations
 
 The clean data exported from the present repo has different numbers of observations from 
-that used in the main outcomes paper (see the `set_add` vs. `clean` columns below, respectively) 
+that used in the main outcomes paper (see the `set_add` vs. `clean` columns below, respectively)[^3] 
 for the following reasons.
 
   ```text
@@ -210,12 +214,12 @@ for the following reasons.
   rr             1186  1185    1   # Participant 532
   ```
   
-- In the clean data from the main outcomes paper (`FinalData-28Feb20_v02.csv`), Participant 532 
+- In the clean data from the main outcomes paper (`R34_FinalData_New_v02.csv`), Participant 532 
 lacks baseline scores for the BBSIQ, DASS-21-DS, and RR. `notes.csv` says that they were originally 
 thought not to have RR data at baseline but do. Their baseline BBSIQ and RR data are the same as 
 those in the clean item-level baseline data (`R34_Cronbach.csv`). Thus, these data are retained 
 in the clean data exported from the present repo.
-- The clean data from the main outcomes paper (`FinalData-28Feb20_v02.csv`) has 4 more rows for
+- The clean data from the main outcomes paper (`R34_FinalData_New_v02.csv`) has 4 more rows for
 the DASS-21-AS and 19 more rows for the OASIS than the clean data exported from the present repo.
 For all participants, the additional row(s) are for session(s) that came after the participants' 
 session(s) for which the DASS-21-AS or OASIS data are available in Sets A or B. Most likely, the 
@@ -229,7 +233,7 @@ The clean data exported from the present repo has different session labels in th
 111 participants whose labels in the clean data from the main outcomes paper make it seem like 109 
 participants skipped the OASIS at Session 1 (e.g., Participant 431 in `cln_ex` below) and like 2 
 participants skipped the OASIS at Session 3. In the clean data exported from the present repo, these 
-labels are recoded to be consecutive (e.g., `fin_ex` below).
+labels are recoded to be consecutive (e.g., `fin_ex` below).[^4]
 
 ```text
 > cln_ex   # Clean data from main outcomes paper (dates are unavailable)
@@ -237,7 +241,7 @@ labels are recoded to be consecutive (e.g., `fin_ex` below).
 1            431          PRE          12
 2            431     SESSION2          13
 3            431     SESSION3          11
-> fin_ex   # Clean data exported from present repo (before scores are removed)
+> fin_ex   # Clean data exported from present repo (before "oa_total" is removed)
   participant_id session_only     date_as_POSIXct oa_total
 1            431          PRE 2016-06-13 11:20:35       12
 2            431     SESSION1 2016-06-13 11:29:35       13   # Recoded session
@@ -250,7 +254,8 @@ The consecutive session labels are more plausible for the following reasons:
 paper make it seem like they skipped the OASIS at one session, their session labels in the Set A 
 OASIS table differ from the session labels for the OASIS in the Set A task log (which are consecutive). 
 Moreover, some of these participants' session dates in the Set A OASIS table differ from their dates 
-for corresponding sessions in the Set A RR table.
+for corresponding sessions in the Set A RR table. (Note: The clean data used in the main outcomes
+paper lacks a task log and lacks session dates.)
 - The session labels were corrected to be consecutive in Set B.
 - For participants whose session labels in Set A and in the clean data used in the main outcomes 
 paper make it seem like they skipped the OASIS at Session 1, most of the dates in the Set A OASIS
@@ -264,24 +269,32 @@ The clean data exported from the present repo excludes all of the scale scores t
 `3_clean_data.R` computed to reproduce those in the clean data used in the main outcomes 
 paper (`R34_FinalData_New_v02.csv`), which used the specific scoring methods below.
 
-- **BBSIQ ratio scores (`bbsiq_int_ratio`, `bbsiq_ext_ratio`)**
-  - Computed by TODO
-  - Called `bbsiq_physical_score` and `bbsiq_threat_score`, respectively, in `R34_FinalData_New_v02.csv`
-  - Main outcomes paper analyzed the mean of these two ratios (see `Script1_DataPrep.R` on
-  its [OSF project][ji-et-al-2021-osf])
+- **BBSIQ mean ratio score (`bbsiq_ratio_mean`)**
+  - Computed as the mean of (a) the ratio of the mean of the 7 negative internal items to 
+  the mean of the 14 benign internal items (`bbsiq_int_ratio`) and (b) the ratio of the mean 
+  of the 7 negative external items to the mean of the 14 benign external items (`bbsiq_ext_ratio`).
+  Each mean for a set of items is the mean of the available items in that set.
+  - Called **`negativeBBSIQ`** (i.e., the mean of the two ratios `bbsiq_physical_score` and `bbsiq_threat_score`,
+  respectively) in `R34_FinalData_New_v02.csv`
 - **DASS-21-AS doubled total score (`dass21_as_total_dbl`)**
-  - Computed by TODO
-  - Called `dass_as_score` in `R34_FinalData_New_v02.csv`
+  - Computed by first imputing item-level `NA`s with the median of the item's column in long-format
+  data (i.e., across participants and time points), then computing the sum of all 7 items and multiplying
+  the sum by 2
+    - Although the imputed values were used to compute the score, the clean data from the present repo 
+    retains the original `NA`s (does not actually overwrite them with the imputed values)
+  - Called **`dass_as_score`** in `R34_FinalData_New_v02.csv`
 - **DASS-21-DS doubled total score (`dass21_ds_total_dbl`)**
-  - Computed by TODO
-  - Called `dass_ds_score` in `R34_FinalData_New_v02.csv`
+  - Computed using the DASS-21-AS method above but with the 7 DASS-21-DS items
+  - Called **`dass_ds_score`** in `R34_FinalData_New_v02.csv`
 - **OASIS total score (`oa_total`)**
-  - Computed as the sum of all items, treating "prefer not to answer" as responses of 0
-  - Called `oasis_score` in `R34_FinalData_New_v02.csv`
+  - Computed as the sum of all 5 items, treating item-level `NA`s as responses of 0
+  - Called **`oasis_score`** in `R34_FinalData_New_v02.csv`
 - **RR average item scores (`rr_nf_mean`, `rr_ns_mean`, `rr_pf_mean`, `rr_ps_mean`)**
-  - Computed as the mean of available items
-  - Called `RR_negative_nf_score`, `RR_negative_ns_score`, `RR_positive_pf_score`, and
-  `RR_positive_ps_score`, respectively, in `R34_FinalData_New_v02.csv`
+  - Computed, respectively, as (a) the mean of the 9 negative nonthreat items, (b) the mean of the 9
+  negative threat items, (c) the mean of the 9 positive nonthreat items, and (d) the mean of the 9
+  positive threat items. Each mean is the mean of the available items.
+  - Called **`RR_negative_nf_score`**, **`RR_negative_ns_score`**, **`RR_positive_pf_score`**, and
+  **`RR_positive_ps_score`**, respectively, in `R34_FinalData_New_v02.csv`
 
 ## TODO: Citation
 
@@ -488,6 +501,8 @@ was generated by `./code/3_clean_data.R` from `./docs/filenames_list.csv`, which
 Jeremy manually created. Some files exported by `R34_cleaning_script.R` are wrong 
 ([Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
 excluded from the HTML file. The HTML file is hosted on the GitHub Pages site.
+[^3]: The code to generate `set_add_vs_cln_nrow` is in `./code/3_clean_data.R`.  
+[^4]: The code to generate `cln_ex` and `fin_ex` is in `./code/3_clean_data.R`.
 
 [bethany-email]: mailto:bteachman@virginia.edu
 [claudia]: https://github.com/cpc4tz
