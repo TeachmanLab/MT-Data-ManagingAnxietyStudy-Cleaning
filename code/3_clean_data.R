@@ -2197,7 +2197,7 @@ flt_dat_b$dass21_ds$dass21_ds_total_dbl <- compute_dass_total_dbl(flt_dat_b$dass
 # cleaning Set A. For a given item, if Sets A and B are identical, only Set A is
 # cleaned and compared with clean data. If Sets A and B are not identical, then
 # Sets A and B are cleaned until they are identical, and then Set A is compared
-# with clean data. Once it is shown that Set A reproduces the clean data, is some
+# with clean data. Once it is shown that Set A reproduces the clean data, in some
 # cases additional cleaning is done that deviates from clean data (i.e., cleaning
 # additional odd birth year values vs. recoding them as NA; cleaning additional
 # odd education values; recoding blank values as missing due to a server issue).
@@ -3284,6 +3284,17 @@ flt_dat_final <- flt_dat_comp_add
 # (see sections above comparing clean data with Sets A and B)
 
 flt_dat_final$oa <- recode_oa_session_to_expected_order(flt_dat_final$oa, skipped_only_1_oa_session_set_a_pids)
+
+  # Compare to clean data for example participant for README
+
+cln_ex <- sep_dat_comp_rest$oa[sep_dat_comp_rest$oa$participant_id == 431,
+                               c("participant_id", "session_only", "oasis_score")]
+fin_ex <- flt_dat_final$oa[flt_dat_final$oa$participant_id == 431,
+                           c("participant_id", "session_only", "date_as_POSIXct", "oa_total")]
+rownames(cln_ex) <- rownames(fin_ex) <- NULL
+
+cln_ex
+fin_ex
 
 # Remove scores computed above via the methods of main outcomes paper
 
