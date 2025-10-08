@@ -43,19 +43,20 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 
 
 - [Initial Versus Present Cleaning](#initial-versus-present-cleaning)
+  - [Initial Cleaning](#initial-cleaning)
+  - [Present Cleaning](#present-cleaning)
 - [Citation](#citation)
-- [Data on Open Science Framework](#data-on-open-science-framework)
+- [Data on OSF](#data-on-osf)
+  - [Sets A and B](#sets-a-and-b)
   - [Private Component](#private-component)
   - [Public Component](#public-component)
 - [Cleaning Scripts: Setup and File Relations](#cleaning-scripts-setup-and-file-relations)
 - [Cleaning Scripts: Functionality](#cleaning-scripts-functionality)
-  - [1_define_functions.R](#1_define_functionsR)
-  - [2_redact_data.R](#2_redact_dataR)
-  - [3_clean_data.R](#3_clean_dataR)
 - [Further Cleaning and Analysis Considerations](#further-cleaning-and-analysis-considerations)
 - [Resources](#resources)
   - [Appendices and Codebooks](#appendices-and-codebooks)
   - [MindTrails Wiki](#mindtrails-wiki)
+- [Footnotes](#footnotes)
 
 ## Initial Versus Present Cleaning
 
@@ -80,23 +81,22 @@ the later draft. But the final version of `R34.ipynb` is unavailable (Sonia indi
 - `R34_cleaning_script.R` (author: maybe Claudia, but uploaded by Sonia) imports data 
 files that are unavailable. Although the filenames are dated 2/2/2019, some filenames
 differ from those in **[Sets A and B](#sets-a-and-b)** on the
-[present repo's OSF project](#data-on-open-science-framework), and some tables in Sets A and 
-B are not imported. The script also exports files that are unavailable and some of whose 
+[present repo's OSF project](#data-on-osf), and some tables in Sets A and B are not 
+imported. The script also exports files that are unavailable and some of whose 
 filenames differ from those in Sets A and B. (See this filenames 
 [comparison][ma-cleaning-repo-pages-filenames_list_flt].)[^2]
 - `R34.ipynb` (by Sonia) imports data whose filenames are a subset of those 
 imported by `R34_cleaning_script.R` ([comparison][ma-cleaning-repo-pages-filenames_list_flt]), 
 but the files are unavailable, so it is unclear if files with the same names are the same. 
-The script also imports some **`notes.csv`** metadata (on
-[this repo's OSF project](#data-on-open-science-framework)). The script exports 
-`FinalData-28Feb20.csv`, but this is unavailable and, again, not the name of the file 
-imported by `Script1_DataPrep.R`.
+The script also imports some **`notes.csv`** metadata (on [this repo's OSF project](#data-on-osf)).
+The script exports `FinalData-28Feb20.csv`, but this is unavailable and, again, not the name of the 
+file imported by `Script1_DataPrep.R`.
 - `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji) imports 
 **`FinalData-28Feb20_v02.csv`** (on the [main outcome paper's OSF project][ji-et-al-2021-osf])
 and, among other things, computes the final BBSIQ scores used in the later analysis scripts for 
 that paper. It exports `"R34_FinalData_New_v02.csv"`.
 
-#### "Clean" Data From Main Outcome Paper's OSF Project
+#### "Clean" Data on Main Outcome Paper's OSF Project
 
 **`FinalData-28Feb20_v02.csv`** contains demographics data; scale-level data over
 time for the BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR; and the CBM and imagery 
@@ -108,12 +108,87 @@ which contains item-level data at baseline for the BBSIQ, DASS-21-AS, OASIS, and
 same 807 participants. The code used to create this file is unavailable. The present repo 
 refers to this file as the **"clean item-level baseline data from the main outcomes paper"**.
 
+"Clean" is in quotes above because this repo deviates from these datasets (see below) 
+and does further cleaning.
+
 ### Present Cleaning
 
-**TODO**
+Given that the raw datasets used to generate the "clean" datasets for the main outcome 
+paper are unavailable, the present repo has to use the two raw datasets that are available, 
+which the present repo calls Sets A and B and whose origins, differences, and storage on 
+the present repo's OSF project are described in [Data on OSF](#data-on-osf) below.
+
+Broadly, the present repo starts by redacting Sets A and B via `2_redact_data.R`. Then, 
+`3_clean_data.R` cleans and scores Sets A and B for the tables they share (demographics, 
+BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR) with the clean datasets from the main 
+outcomes paper (`FinalData-28Feb20_v02.csv`, `R34_Cronbach.csv`), with a focus on reproducing
+the demographics data and scale scores for the 807 ITT participants in the main outcomes paper.
+
+After using clues from the initial cleaning scripts (`R34_cleaning_script.R`, `R34.ipynb`) 
+and `notes.csv` to clean and score these tables for the 807 ITT participants, `3_clean_data.R` 
+compares Sets A and B with the clean data from the main outcomes paper (`FinalData-28Feb20_v02.csv`),
+starting with the demographics data and then turning to non-demographic scale scores. For notes on 
+these comparisons, see this [summary](./docs/compare_datasets.md).
+
+These comparisons revealed that for the demographics data, **TODO (and link to separate section below)**.
+
+These comparisons also revealed that Set A has the most data but is missing DASS-21-AS and 
+OASIS data for some participants (e.g., due to a server error). After locating these data 
+in Set B and `R34_Cronbach.csv`, `3_clean_data.R` adds these data to Set A and then compares 
+this "Set A With Added Data" to the clean data from the main outcomes paper, finding that for
+each table the datasets have the same participants but 
+[different numbers of observations](#different-numbers-of-observations).
+
+**TODO (mention differences in session values for OASIS)**
+
+**TODO (mention scoring procedures that were confirmed and link to separate section)**
+
+**TODO (mention credibility table cleaning)**
+
+**TODO (describe outputted data)**
+
+#### Differences From Initial Cleaning
+
+##### 1. TODO: Additional Demographics Cleaning
 
 
-[Link to compare clean data with Sets A and B](./docs/compare_datasets.md)
+
+
+
+##### 2. Numbers of Observations
+
+  ```text
+  > set_add_vs_cln_nrow
+              set_add clean diff
+  bbsiq          1234  1233    1   # Participant 532
+  dass21_as       909   913   -4   # Likely additional data collected
+  dass21_ds      1175  1174    1   # Participant 532
+  demographic     807   807    0
+  oa             2662  2681  -19   # Likely additional data collected
+  participant     807   807    0
+  rr             1186  1185    1   # Participant 532
+  ```
+- In the clean data from the main outcomes paper (`FinalData-28Feb20_v02.csv`), Participant 532 
+lacks baseline scores for the BBSIQ, DASS-21-DS, and RR. `notes.csv` says that they were originally 
+thought not to have RR data at baseline but do. Their baseline BBSIQ and RR data are the same as 
+those in the clean item-level baseline data (`R34_Cronbach.csv`). Thus, these data are retained 
+in the clean data exported from the present repo.
+- **TODO (about likely additional data collected)**
+
+
+
+
+
+##### 3. TODO: Session Values in OASIS Data
+
+
+
+
+
+##### 4. TODO: Scoring Procedures
+
+
+
 
 
 ## TODO: Citation
@@ -122,7 +197,7 @@ refers to this file as the **"clean item-level baseline data from the main outco
 
 
 
-## Data on Open Science Framework
+## Data on OSF
 
 
 **TODO: Add `notes.csv` and `data/other/` files to OSF**
@@ -273,6 +348,7 @@ packages may take longer to load the first time you load them with `groundhog.li
 
 ## TODO: Cleaning Scripts: Functionality
 
+**TODO: Note some of the main decisions made (e.g., multiple entries, prefer not to answer)**
 
 
 
@@ -301,13 +377,17 @@ Appendices and codebooks for the Managing Anxiety study are on the [Public Compo
 This is a wiki with MindTrails Project-wide and study-specific information that is 
 privately stored by the study team.
 
-Researchers can request access to relevant information from the wiki by contacting 
+Researchers can request access to relevant wiki info by contacting 
 Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 ### Other MindTrails Repositories
 
 **TODO: Mention repos for the MA study website itself**
 
+
+
+
+## Footnotes
 
 [^1]: This is the link to the present repo's corresponding GitHub Pages site,
 which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**  
