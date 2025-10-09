@@ -80,8 +80,8 @@ the later draft. But the final version of `R34.ipynb` is unavailable (Sonia indi
 
 - `R34_cleaning_script.R` (author: maybe Claudia, but uploaded by Sonia) imports data 
 files that are unavailable. Although the filenames are dated 2/2/2019, some filenames
-differ from those in **[Sets A and B](#sets-a-and-b)** on the
-[present repo's OSF project](#data-on-osf), and some tables in Sets A and B are not 
+differ from those in **[Sets A and B](#sets-a-and-b)** (on the
+[present repo's OSF project](#data-on-osf)), and some tables in Sets A and B are not 
 imported. The script also exports files that are unavailable and some of whose 
 filenames differ from those in Sets A and B. (See this filenames 
 [comparison][ma-cleaning-repo-pages-filenames_list_flt].)[^2]
@@ -118,13 +118,13 @@ and does further cleaning.
 Given that the raw datasets used to generate the "clean" datasets for the main outcome 
 paper are unavailable, the present repo has to use the two raw datasets that are available, 
 which the present repo calls **Sets A and B** and whose origins, differences, and storage on 
-the present repo's OSF project are described in [Data on OSF](#data-on-osf) below.
+the present repo's OSF project are described in the section [Data on OSF](#data-on-osf) below.
 
 Broadly, the present repo starts by redacting Sets A and B via `2_redact_data.R`. Then, 
 `3_clean_data.R` cleans and scores Sets A and B for the tables they share (demographics, 
 BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR) with the clean datasets from the main 
 outcomes paper (**`R34_FinalData_New_v02.csv`**, **`R34_Cronbach.csv`**), with a focus on reproducing
-the demographics data and scale scores for the 807 ITT participants in the main outcomes paper.
+the demographics data and scale scores for the 807 ITT participants in that paper.
 
 After using clues from the initial cleaning scripts (`R34_cleaning_script.R`, `R34.ipynb`,
 `Script1_DataPrep.R`) and **`notes.csv`** to clean and score these tables for the 807 ITT 
@@ -166,13 +166,13 @@ But after doing so, `3_clean_data.R` removes the scale scores it computed becaus
 analyses may deviate from the specific
 [scale scores used in the main outcomes paper](#removed-scale-scores-used-in-main-outcomes-paper).
 
-**TODO (mention credibility table cleaning)**
+`3_clean_data.R` also [cleans the credibility data](#cleaned-credibility-data) for the 807 
+ITT participants.
 
-
-
-
-
-**TODO (describe outputted data)**
+In the end, this repo exports redacted raw CSV files for all tables in Sets A and B. It also 
+exports clean item-level data for the demographics, credibility, BBSIQ, DASS-21-AS, DASS-21-DS, 
+OASIS, RR, and participant (containing the CBM and imagery prime conditions) tables for the 807 
+ITT participants; these clean tables are saved as a list in RDS format.
 
 #### Differences From Initial Cleaning
 
@@ -295,6 +295,12 @@ paper (`R34_FinalData_New_v02.csv`), which used the specific scoring methods bel
   positive threat items. Each mean is the mean of the available items.
   - Called **`RR_negative_nf_score`**, **`RR_negative_ns_score`**, **`RR_positive_pf_score`**, and
   **`RR_positive_ps_score`**, respectively, in `R34_FinalData_New_v02.csv`
+
+##### 5. Clean Credibility Data
+
+The clean data exported from the present repo includes the credibility data. Given that these data
+are not in the clean data from the main outcomes paper, `3_clean_data.R` compares the credibility 
+data between Sets A and B and confirms that the datasets are identical.
 
 ## TODO: Citation
 
