@@ -3258,31 +3258,32 @@ identical(flt_dat$credibility[comparable_cols], flt_dat_b$credibility[comparable
 # the clean data (see section above comparing clean data and Set A). Add these tables 
 # to a final list of tables that remain filtered to these 807 participants.
 
-flt_dat_final <- flt_dat_comp_add
+flt_dat_clean <- flt_dat_comp_add
 
 # Recode OASIS sessions to be consecutive for participants whose values skip one
 # session (i.e., Session 1 or 3) because this is more plausible than the original 
 # session values in Set A and in the clean data used for the main outcomes paper 
 # (see sections above comparing clean data with Sets A and B)
 
-flt_dat_final$oa <- recode_oa_session_to_expected_order(flt_dat_final$oa, skipped_only_1_oa_session_set_a_pids)
+flt_dat_clean$oa <- recode_oa_session_to_expected_order(flt_dat_clean$oa, skipped_only_1_oa_session_set_a_pids)
 
-  # Compare to clean data for example participant for README
+  # Compare initial clean data (from main outcomes paper) to present clean data for
+  # example participant for README
 
-cln_ex <- sep_dat_comp_rest$oa[sep_dat_comp_rest$oa$participant_id == 431,
-                               c("participant_id", "session_only", "oasis_score")]
-fin_ex <- flt_dat_final$oa[flt_dat_final$oa$participant_id == 431,
-                           c("participant_id", "session_only", "date_as_POSIXct", "oa_total")]
-rownames(cln_ex) <- rownames(fin_ex) <- NULL
+initial_ex <- sep_dat_comp_rest$oa[sep_dat_comp_rest$oa$participant_id == 431,
+                                   c("participant_id", "session_only", "oasis_score")]
+present_ex <- flt_dat_clean$oa[flt_dat_clean$oa$participant_id == 431,
+                               c("participant_id", "session_only", "date_as_POSIXct", "oa_total")]
+rownames(initial_ex) <- rownames(present_ex) <- NULL
 
-cln_ex
-fin_ex
+initial_ex
+present_ex
 
 # Remove scores computed above via the methods of main outcomes paper
 
-for (i in 1:length(flt_dat_final)) {
-  df_name <- names(flt_dat_final)[i]
-  df <- flt_dat_final[[i]]
+for (i in 1:length(flt_dat_clean)) {
+  df_name <- names(flt_dat_clean)[i]
+  df <- flt_dat_clean[[i]]
   
   rm_cols <- switch(df_name,
                     "oa"        = "oa_total",
@@ -3296,13 +3297,13 @@ for (i in 1:length(flt_dat_final)) {
   
   df[rm_cols] <- NULL
   
-  flt_dat_final[[i]] <- df
+  flt_dat_clean[[i]] <- df
 }
 
 # Add credibility data from Set A, which is not in clean data used in the main outcomes 
 # paper but which was shown above to be identical between Sets A and B
 
-flt_dat_final$credibility <- flt_dat$credibility
+flt_dat_clean$credibility <- flt_dat$credibility
 
 # ---------------------------------------------------------------------------- #
 # Export item-level data and helper items list ----
@@ -3311,4 +3312,4 @@ flt_dat_final$credibility <- flt_dat$credibility
 intermediate_path <- "./data/intermediate_clean/"
 dir.create(intermediate_path)
 
-saveRDS(flt_dat_final, paste0(intermediate_path, "flt_dat_final.rds"))
+saveRDS(flt_dat_clean, paste0(intermediate_path, "flt_dat_clean.rds"))
