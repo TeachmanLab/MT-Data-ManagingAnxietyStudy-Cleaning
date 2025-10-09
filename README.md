@@ -48,7 +48,7 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
   - [Differences](#differences)
 - [Citation](#citation)
 - [Data on OSF](#data-on-osf)
-  - [Sets A and B](#sets-a-and-b)
+  - [Sets A and B](#raw-sets-a-and-b)
   - [Private Component](#private-component)
   - [Public Component](#public-component)
 - [Cleaning Scripts: Setup and File Relations](#cleaning-scripts-setup-and-file-relations)
@@ -80,8 +80,8 @@ the later draft. But the final version of `R34.ipynb` is unavailable (Sonia indi
 11/22/2021 that the final script was lost upon switching laptops).
 
 - `R34_cleaning_script.R` (author: maybe Claudia, but uploaded by Sonia) imports data 
-files that are unavailable. Although the filenames are dated 2/2/2019, some filenames
-differ from those in **[Sets A and B](#sets-a-and-b)** (on the
+files that are unavailable. Although the filenames are dated 2/2/2019, some names differ 
+from those in raw **[Sets A and B](#raw-sets-a-and-b)** (on the
 [present repo's OSF project](#data-on-osf)), and some tables in Sets A and B are not 
 imported. The script also exports files that are unavailable and some of whose 
 filenames differ from those in Sets A and B. (See this 
@@ -303,32 +303,55 @@ data in Sets A and B are identical.
 
 ## Data on OSF
 
+The data files imported into the present data cleaning pipeline--the two sets of raw data 
+(**Sets A and B**) from Sonia, the two "clean" datasets from the main outcomes paper 
+(**`R34_FinalData_New_v02.csv`**, **`R34_Cronbach.csv`**), and the **`notes.csv`** 
+from Sonia--and the clean data exported from the present repo are stored in the 
+[MindTrails Managing Anxiety Study][ma-osf] project on the Open Science Framework (OSF).
 
-**TODO: Add `notes.csv` and `data/other/` files to OSF**
+The project has two components, with different permissions: a 
+[Private Component][ma-osf-private] and a [Public Component][ma-osf-public].
 
+### Raw Sets A and B
 
+Two sets of raw data originating from the Managing Anxiety (R34) SQL database and both
+containing data up to 2/2/2019 were obtained from Sonia Baee.
 
+- **Set A** is a larger set of 26 CSV files obtained from Sonia on 9/3/2020 (who stated 
+on that date that they are the latest version of the database on the R34 server 
+and that she obtained them from Claudia Calicho-Mamani)
+- **Set B** is a partial set of 20 CSV files obtained from Sonia on 1/18/2023
 
+Sets A and B differ in several ways. For example, Set A has more tables than Set B 
+(see [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt]) and more
+data on key shared tables (see [data notes](./docs/data_notes.md)). However, Set A
+is missing data in some tables for some people--data that are in Set B
+([data notes](./docs/data_notes.md)). They also differ in their structure and values (e.g., 
+see [data notes](./docs/data_notes.md)), and some oddities in Set A (e.g., weird birth 
+years, implausible session labels for OASIS) seem to have been corrected in Set B.
 
-Two sets of raw data ([Sets A and B](#sets-a-and-b)) from the Managing Anxiety (R34) SQL database 
-are stored in the [MindTrails Managing Anxiety Study][ma-osf] project on the Open Science Framework 
-(OSF). The project has two components, with different permissions: a [Private Component][ma-osf-private] 
-and a [Public Component][ma-osf-public].
+Given that the clean data from the main outcomes paper has more rows for some
+tables (e.g., DASS-21-AS, OASIS) than the clean data exported from the present repo
+(see [Numbers of Observations](#2-numbers-of-observations) above), neither Set A nor
+Set B seems to be the exact version of the raw data cleaned for that paper, which
+might have been dumped from the server at a later date. Still, using both Sets A and 
+B, the present repo reproduces most of the scores used in that paper.
 
-### Sets A and B
+### Other Data
 
-**Set A** is a larger set of 26 CSV files with data up to 2/2/2019 obtained from Sonia 
-Baee on 9/3/2020 (who stated on that date that they represent the latest version of the 
-database on the R34 server and that she obtained them from Claudia Calicho-Mamani)
+#### Copies of "Clean" Data From Main Outcomes Paper
 
-**Set B** is a partial set of 20 CSV files with data up to 2/2/2019 obtained from Sonia 
-Baee on 1/18/2023
+Given that the present repo seeks to reproduce the scale scores in the clean data from 
+the main outcomes paper, it imports the two clean data files on 
+[that paper's OSF project][ji-et-al-2021-osf]. `R34_FinalData_New_v02.csv` 
+and `R34_Cronbach.csv`, which are [described above](#clean-data-on-main-outcome-papers-osf-project)
+and were uploaded to that OSF project on `2020-04-18 01:10 AM`, were downloaded from that OSF project
+and put in the `data/other/clean_from_main_paper/` folder of the present repo's OSF project.
 
-**TODO (Sets A and B differ in some key ways)**
+#### Notes from Sonia
 
-
-
-
+The present repo also uses `notes.csv`, which was obtained from from Sonia Baee on 11/24/2021 
+and put in the `data/other/notes_from_sonia` folder of the present repo's OSF project.
 
 ### Private Component
 
@@ -356,6 +379,12 @@ To request access to files on this component, contact Bethany Teachman
 ([bteachman@bvirginia.edu][bethany-email]).
 
 ### Public Component
+
+**TODO: Add `notes.csv` and `data/other/` files to OSF**
+
+
+
+
 
 The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with
 a partial set of raw data files (i.e., those that did not need redaction) for Sets 
