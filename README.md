@@ -45,6 +45,7 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 - [Initial Versus Present Cleaning](#initial-versus-present-cleaning)
   - [Initial Cleaning](#initial-cleaning)
   - [Present Cleaning](#present-cleaning)
+  - [Differences](#differences)
 - [Citation](#citation)
 - [Data on OSF](#data-on-osf)
   - [Sets A and B](#sets-a-and-b)
@@ -113,8 +114,6 @@ and does further cleaning.
 
 ### Present Cleaning
 
-#### Overview
-
 Given that the raw datasets used to generate the "clean" datasets for the main outcome 
 paper are unavailable, the present repo has to use the two raw datasets that are available, 
 which the present repo calls **Sets A and B** and whose origins, differences, and storage on 
@@ -166,7 +165,7 @@ But after doing so, `3_clean_data.R` removes the scale scores it computed becaus
 analyses may deviate from the specific
 [scale scores used in the main outcomes paper](#removed-scale-scores-used-in-main-outcomes-paper).
 
-`3_clean_data.R` also [cleans the credibility data](#cleaned-credibility-data) for the 807 
+`3_clean_data.R` also [cleans the credibility data](#clean-credibility-data) for the 807 
 ITT participants.
 
 In the end, this repo exports redacted raw CSV files for all tables in Sets A and B. It also 
@@ -174,9 +173,9 @@ exports clean item-level data for the demographics, credibility, BBSIQ, DASS-21-
 OASIS, RR, and participant (containing the CBM and imagery prime conditions) tables for the 807 
 ITT participants; these clean tables are saved as a list in RDS format.
 
-#### Differences From Initial Cleaning
+### Differences
 
-##### 1. Additional Demographics Cleaning
+#### 1. Additional Demographics Cleaning
 
 The clean demographics data exported from the present repo differs from that used in the
 main outcomes paper due to the following kinds of additional cleaning.
@@ -196,7 +195,7 @@ correspond to raw blanks and question marks in Sets A and B, suggesting an appar
 issue. For clarity, the clean data exported from the present repo recodes these blanks as
 `Missing (server issue)`.
 
-##### 2. Numbers of Observations
+#### 2. Numbers of Observations
 
 The clean data exported from the present repo has different numbers of observations from 
 that used in the main outcomes paper (see the `set_add` vs. `clean` columns below, respectively)[^3] 
@@ -227,7 +226,7 @@ clean data from the main outcomes paper were derived from raw data dumped from t
 point after Sets A and B were dumped from the server. (Indeed, Sets A and B seem to have less data
 than the raw data imported and described in `R34.ipynb`; see [summary](./docs/compare_datasets.md).)
 
-##### 3. Corrected Session in OASIS Table
+#### 3. Corrected Session in OASIS Table
 
 The clean data exported from the present repo has different session labels in the OASIS table for 
 111 participants whose labels in the clean data from the main outcomes paper make it seem like 109 
@@ -263,7 +262,7 @@ table are the same for baseline and Session 2. This is implausible because where
 could be started right after the baseline assessment was completed, Session 2 could not be started 
 until 2 days after Session 1 was completed.
 
-##### 4. Removed Scale Scores Used in Main Outcomes Paper
+#### 4. Removed Scale Scores Used in Main Outcomes Paper
 
 The clean data exported from the present repo excludes all of the scale scores that 
 `3_clean_data.R` computed to reproduce those in the clean data used in the main outcomes 
@@ -296,11 +295,11 @@ paper (`R34_FinalData_New_v02.csv`), which used the specific scoring methods bel
   - Called **`RR_negative_nf_score`**, **`RR_negative_ns_score`**, **`RR_positive_pf_score`**, and
   **`RR_positive_ps_score`**, respectively, in `R34_FinalData_New_v02.csv`
 
-##### 5. Clean Credibility Data
+#### 5. Clean Credibility Data
 
 The clean data exported from the present repo includes the credibility data. Given that these data
-are not in the clean data from the main outcomes paper, `3_clean_data.R` compares the credibility 
-data between Sets A and B and confirms that the datasets are identical.
+are not in the clean data from the main outcomes paper, `3_clean_data.R` confirms that the credibility
+data in Sets A and B are identical.
 
 ## TODO: Citation
 
