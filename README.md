@@ -62,7 +62,7 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 
 ### Initial Cleaning
 
-#### Code
+#### Imported Data and Code
 
 The initial data cleaning done by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
 for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two scripts 
@@ -161,10 +161,13 @@ analyses may deviate from the specific
 `3_clean_data.R` also [cleans the credibility data](#clean-credibility-data) for the 807 
 ITT participants.
 
+#### Exported Data on Present Repo's OSF Project
+
 In the end, this repo exports redacted raw CSV files for all tables in Sets A and B. It also 
 exports clean item-level data for the demographics, credibility, BBSIQ, DASS-21-AS, DASS-21-DS, 
 OASIS, RR, and participant (containing the CBM and imagery prime conditions) tables for the 807 
-ITT participants; these clean tables are saved as a list in RDS format.
+ITT participants; these clean tables are saved as a list in RDS format. These exported files, along
+with the files imported into the present pipeline, are on [this repo's OSF project](#data-on-osf).
 
 ### Differences
 
@@ -354,7 +357,7 @@ and put in the `data/other/notes_from_sonia` folder of the present repo's OSF pr
 
 ### Private Component
 
-**TODO: Update version number and upload new ZIP file to OSF**
+**TODO: Upload new ZIP files with new version number (v1.0.1) to OSF and add entry to version history**
 
 
 
@@ -379,53 +382,56 @@ To request access to files on this component, contact [Jeremy Eberle][jeremy] or
 
 ### Public Component
 
-The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with a **partial 
-set of raw data files** (i.e., those that did not need redaction) for **Sets A and B**, 
-**redacted files**, other data files needed for data cleaning (**`R34_FinalData_New_v02.csv`**, 
-**`R34_Cronbach.csv`**, **`notes.csv`**), and intermediately clean files. The ZIP's 
-structure is below.
+The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with a 
+**partial set of raw data files** (i.e., those that did not need redaction) for 
+**Sets A and B**, **redacted files** for Sets A and B, other data files needed for 
+the present data cleaning ("clean" **`R34_FinalData_New_v02.csv`** and **`R34_Cronbach.csv`** 
+files from the main outcomes paper; **`notes.csv`** from Sonia), and a list of 
+intermediately clean data tables (see 
+[exported data](#exported-data-on-present-repos-osf-project) above).
+The ZIP's structure is below.
 
 Note: The `ImageryPrime` table (in Sets A and B) in the `raw_full` folder of the 
 [Private Component](#private-component) that is not in the `raw_partial` folder of 
 this Public Component has a column that may have identifiers, whereas the `GiftLog` 
 table (in Set A) in the `raw_full` folder that is not in the `raw_partial` folder 
-has already been redacted. In the Public Component, redacted versions of these two 
-tables are in the `redacted` folder.
-
-# TODO: Continue here
-
-
-
-
+has already been redacted (no need to retain raw version of this table). In the 
+Public Component, redacted versions of these two tables are in the `redacted` folder.
 
 ```
 .
 ├── data/                    
-|   ├── raw_partial/        # Raw files that did not need redaction
-|   |   ├── set_a/          #   24 CSV files (e.g., "DASS21_AS_recovered_Feb_02_2019.csv")
-|   |   └── set_b/          #   19 CSV files (e.g., "DASS21_AS_02_02_2019.csv")
-|   ├── redacted/           # Redacted files
-|   |   ├── set_a/          #   2 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019_redacted.csv")
-|   |   └── set_b/          #   1 CSV file (e.g., "ImageryPrime_02_02_2019_redacted.csv")
-|   └── intermediate_clean/ # TODO CSV files
+|   ├── raw_partial/                 # Raw files that did not need redaction
+|   |   ├── set_a/                   #   24 CSV files (e.g., "DASS21_AS_recovered_Feb_02_2019.csv")
+|   |   └── set_b/                   #   19 CSV files (e.g., "DASS21_AS_02_02_2019.csv")
+|   ├── redacted/                    # Redacted files
+|   |   ├── set_a/                   #   2 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019_redacted.csv")
+|   |   └── set_b/                   #   1 CSV file (e.g., "ImageryPrime_02_02_2019_redacted.csv")
+|   ├── other/                       # Other files needed for data cleaning
+|   |   ├── clean_from_main_paper/   #   2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
+|   |   └── notes_from_sonia/        #   1 CSV file ("notes.csv")
+|   └── intermediate_clean/          # List of clean data tables ("flt_dat_clean.rds")
 └── materials/
-    ├── appendices/         # Appendices
-    └── codebooks/          # Codebooks
+    ├── appendices/                  # Appendices
+    └── codebooks/                   # Codebooks
 ```
 
-### Version Control
+### TODO: Version Control
 
 If a newer version of the ZIP for the Private Component or the ZIP for the Public
 Component is released, upload the new ZIP with a new version number and document 
 the changes below but **do not delete any old versions**. Analysis projects will
 import the data from specific versions (projects should reference the version
-they use).
+they use). For simplicity, if either ZIP file is updated, upload new versions of
+both ZIP files with the same version number.
 
 - `private-v1.0.0.zip` and `public-v1.0.0.zip` were uploaded by Jeremy Eberle on 9/18/2025 
 after running the redaction scripts below (as of commit `988cf1e` "Distinguish first vs. 
 later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on that date.
 
 ## TODO: Cleaning Scripts: Setup and File Relations
+
+**TODO: Move "filenames_list.csv" to "data/other/"
 
 
 
@@ -453,26 +459,27 @@ but both redacted files will still be exported to `redacted/`).
 
 ```
 .                                    # Parent folder (i.e., working directory)
-├── data/                            #   Data subfolder
-|   ├── raw_full/                    #     Folder with files from Private Component
+├── data/                            #   Data subfolder (manually create)
+|   ├── raw_full/                    #     Folder from Private Component
 |   |   ├── set_a/                   #       26 CSV files
 |   |   └── set_b/                   #       20 CSV files
-|   ├── other/                       #     TODO
-|   |   ├── clean_from_main_paper/   #       TODO
-|   |   └── notes_from_sonia/        #       TODO
-|   ├── (redacted/)                  #     Folder with files will be created by "2_redact_data.R"
-|   |   ├── set_a/                   #       2 CSV files
-|   |   └── set_b/                   #       1 CSV file
-|   ├── (raw_partial/)               #     Folder with files will be created by "2_redact_data.R"
+|   ├── (raw_partial/)               #     Folder created by "2_redact_data.R" or from Public Component
 |   |   ├── set_a/                   #       24 CSV files
 |   |   └── set_b/                   #       19 CSV files
-|   └── (intermediate_clean/)        #     TODO: Folder with files will be created by "3_clean_data.R"
-├── code/                            #   Code subfolder
+|   ├── (redacted/)                  #     Folder created by "2_redact_data.R" or from Public Component
+|   |   ├── set_a/                   #       2 CSV files
+|   |   └── set_b/                   #       1 CSV file
+|   ├── other/                       #     Folder from Public Component
+|   |   ├── clean_from_main_paper/   #       2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
+|   |   ├── notes_from_sonia/        #       1 CSV file ("notes.csv")
+|   |   └── for_README/              #       TODO: 1 CSV file ("filenames_list.csv")
+|   └── (intermediate_clean/)        #     Folder created by "3_clean_data.R"
+├── code/                            #   Code subfolder from this repo
 |   ├── 1_define_functions.R         #     Define functions for use by subsequent R scripts
-|   ├── 2_redact_data.R              #     Redact certain CSV files from "raw_full"
-|   └── 3_clean_data.R               #     TODO
-└── (docs/)                          #   Docs subfolder with file will be created by "3_clean_data.R"
-    └── filenames_list_flt.html      #     TODO
+|   ├── 2_redact_data.R              #     Redact certain CSV files from "raw_full/"
+|   └── 3_clean_data.R               #     Clean certain CSV files from "raw_partial/" and "redacted/"
+└── (docs/)                          #   Docs subfolder created by "3_clean_data.R"
+    └── (filenames_list_flt.html)    #     HTML file created by "3_clean_data.R"
 ```
 
 On a Windows 11 Enterprise laptop (32 GB of RAM; Intel Core Ultra 7 165U, 1700 Mhz, 12 cores, 
@@ -523,11 +530,11 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 [^1]: This is the link to the present repo's corresponding GitHub Pages site,
 which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**\
-[^2]: The HTML for the [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt]
-was created by `code/3_clean_data.R` from `docs/filenames_list.csv`, which 
+[^2]: The HTML file for the [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt]
+was created by `code/3_clean_data.R` from `data/other/for_README/filenames_list.csv`, which 
 Jeremy manually created. Some files exported by `R34_cleaning_script.R` are wrong 
-([Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
-excluded from the HTML file. The HTML file is hosted on the GitHub Pages site.
+([Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus excluded from 
+the HTML, which is hosted on the GitHub Pages site.\
 [^3]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.\
 [^4]: The code to generate `initial_ex` and `present_ex` is in `code/3_clean_data.R`.
 
