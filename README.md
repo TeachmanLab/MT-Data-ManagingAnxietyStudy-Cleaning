@@ -224,17 +224,17 @@ than the raw data imported and described in `R34.ipynb`; see [data notes](./docs
 
 The clean data exported from the present repo has different session labels in the OASIS table for 
 111 participants whose labels in the clean data from the main outcomes paper make it seem like 109 
-participants skipped the OASIS at Session 1 (e.g., Participant 431 in `cln_ex` below) and like 2 
+participants skipped the OASIS at Session 1 (e.g., Participant 431 in `initial_ex` below) and like 2 
 participants skipped the OASIS at Session 3. In the clean data exported from the present repo, these 
-labels are recoded to be consecutive (e.g., `fin_ex` below).[^4]
+labels are recoded to be consecutive (e.g., `present_ex` below).[^4]
 
 ```text
-> cln_ex   # Clean data from main outcomes paper (dates are unavailable)
+> initial_ex   # Clean data from main outcomes paper (dates are unavailable)
   participant_id session_only oasis_score
 1            431          PRE          12
 2            431     SESSION2          13
 3            431     SESSION3          11
-> fin_ex   # Clean data exported from present repo (before "oa_total" is removed)
+> present_ex   # Clean data exported from present repo (before "oa_total" is removed)
   participant_id session_only     date_as_POSIXct oa_total
 1            431          PRE 2016-06-13 11:20:35       12
 2            431     SESSION1 2016-06-13 11:29:35       13   # Recoded session
@@ -361,11 +361,11 @@ and put in the `data/other/notes_from_sonia` folder of the present repo's OSF pr
 
 
 
-The [Private Component][ma-osf-private] has a file `private-v1.0.0.zip` with the full set 
-of raw data files (with one exception) for Sets A and B. The ZIP's structure is below.
+The [Private Component][ma-osf-private] has a file `private-v1.0.0.zip` with the **full set 
+of raw data files** (with one exception) for **Sets A and B**. The ZIP's structure is below.
 
 The exception is that for Set A only the redacted version of the `GiftLog` table 
-is included (which was redacted on the first run of the scripts below).
+is included (which was redacted on the first run of `code/2_redact_data.R`; see below).
 
 ```
 .
@@ -375,21 +375,16 @@ is included (which was redacted on the first run of the scripts below).
         └── set_b/   #   20 CSV files (e.g., "ImageryPrime_02_02_2019.csv")
 ```
 
-To request access to files on this component, contact Bethany Teachman 
-([bteachman@bvirginia.edu][bethany-email]).
+To request access to files on this component, contact [Jeremy Eberle][jeremy] or 
+[Bethany Teachman][bethany-email].
 
 ### Public Component
 
-**TODO: Add `notes.csv` and `data/other/` files to OSF**
-
-
-
-
-
-The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with
-a partial set of raw data files (i.e., those that did not need redaction) for Sets 
-A and B, redacted files for Sets A and B, and **TODO** intermediately clean files. 
-The ZIP's structure is below.
+The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with a **partial 
+set of raw data files** (i.e., those that did not need redaction) for **Sets A and B**, 
+**redacted files**, other data files needed for data cleaning (**`R34_FinalData_New_v02.csv`**, 
+**`R34_Cronbach.csv`**, **`notes.csv`**), and intermediately clean files. The ZIP's 
+structure is below.
 
 Note: The `ImageryPrime` table (in Sets A and B) in the `raw_full` folder of the 
 [Private Component](#private-component) that is not in the `raw_partial` folder of 
@@ -397,6 +392,12 @@ this Public Component has a column that may have identifiers, whereas the `GiftL
 table (in Set A) in the `raw_full` folder that is not in the `raw_partial` folder 
 has already been redacted. In the Public Component, redacted versions of these two 
 tables are in the `redacted` folder.
+
+# TODO: Continue here
+
+
+
+
 
 ```
 .
@@ -530,7 +531,7 @@ Jeremy manually created. Some files exported by `R34_cleaning_script.R` are wron
 ([Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
 excluded from the HTML file. The HTML file is hosted on the GitHub Pages site.
 [^3]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
-[^4]: The code to generate `cln_ex` and `fin_ex` is in `code/3_clean_data.R`.
+[^4]: The code to generate `initial_ex` and `present_ex` is in `code/3_clean_data.R`.
 
 [bethany-email]: mailto:bteachman@virginia.edu
 [claudia]: https://github.com/cpc4tz
