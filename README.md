@@ -1,6 +1,6 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
-**README Author:** [Jeremy W. Eberle][jeremy]  
+**README Author:** [Jeremy W. Eberle][jeremy]\
 **View Live:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages][^1]
 
 This README describes centralized data cleaning for the MindTrails Project Managing
@@ -57,7 +57,6 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 - [Resources](#resources)
   - [Appendices and Codebooks](#appendices-and-codebooks)
   - [MindTrails Wiki](#mindtrails-wiki)
-- [Footnotes](#footnotes)
 
 ## Initial Versus Present Cleaning
 
@@ -521,16 +520,15 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 
 
-## Footnotes
 
 [^1]: This is the link to the present repo's corresponding GitHub Pages site,
-which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**  
+which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**\
 [^2]: The HTML for the [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt]
 was created by `code/3_clean_data.R` from `docs/filenames_list.csv`, which 
 Jeremy manually created. Some files exported by `R34_cleaning_script.R` are wrong 
 ([Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
 excluded from the HTML file. The HTML file is hosted on the GitHub Pages site.
-[^3]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
+[^3]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.\
 [^4]: The code to generate `initial_ex` and `present_ex` is in `code/3_clean_data.R`.
 
 [bethany-email]: mailto:bteachman@virginia.edu
