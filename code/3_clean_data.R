@@ -119,15 +119,19 @@ raw_dat_b <- raw_dat_b[sort(names(raw_dat_b))]
 notes <- read.csv("./data/other/notes_from_sonia/notes.csv")
 
 # ---------------------------------------------------------------------------- #
-# Compare filenames in HTML table ----
+# Import filenames list created by Jeremy ----
+# ---------------------------------------------------------------------------- #
+
+# Import CSV file manually created by Jeremy Eberle on 10/6/2025
+
+filenames_list <- read.csv("./data/other/for_README/filenames_list.csv")
+
+# ---------------------------------------------------------------------------- #
+# Create HTML table to compare filenames in README ----
 # ---------------------------------------------------------------------------- #
 
 # Create HTML table for documentation to compare names of files imported/exported
 # by "R34_cleaning_script.R", imported by "R34.ipynb", and in Sets A and B
-
-  # Import CSV file manually created by Jeremy Eberle on 10/6/2025
-
-filenames_list <- read.csv("./data/other/for_README/filenames_list.csv")
 
   # Ignore mislabeled DD and DD-FU files exported by "R34_cleaning_script.R"
   # - See https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561)
@@ -138,7 +142,7 @@ dd_mask <- filenames_list_flt$exported_by_R34_cleaning_script.R %in% c("DD_02_02
 
 filenames_list_flt$exported_by_R34_cleaning_script.R[dd_mask] <- NA
 
-  # Create HTML table
+  # Create and export HTML table
 
 filenames_list_flt[is.na(filenames_list_flt)] <- '<span style="color:grey; font-style:italic;">NA</span>'
 
