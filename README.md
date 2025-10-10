@@ -508,12 +508,130 @@ On a Windows 11 Enterprise laptop (32 GB of RAM; Intel Core Ultra 7 165U, 1700 M
 14 logical Processors), each script runs in < 1 min. As noted in `1_define_functions.R`, 
 packages may take longer to load the first time you load them with `groundhog.library()`.
 
-## TODO: Cleaning Scripts: Functionality
+## Cleaning Scripts: Functionality
 
-**TODO: Note some of the main decisions made (e.g., multiple entries, prefer not to answer)**
+### [1_define_functions.R](./code/1_define_functions.R)
 
+This script defines functions for use by later scripts, each of which sources this file.
 
+Version control is achieved by checking that the R version used to write the scripts 
+(`R version 4.4.3 (2025-02-28 ucrt)`) matches the user's R version and by defining dates 
+for `meta.groundhog()` and `groundhog_day`, which are used by the `groundhog` package to 
+load the package versions that were used to write the scripts. See script for details.
 
+### [2_redact_data.R](./code/2_redact_data.R)
+
+This script redacts relevant columns by replacing all of their rows with 
+`REDACTED_BY_CLEANING_SCRIPT`, retaining the structure of the raw data files.
+
+- Specify columns to retain that were considered for redaction
+- Identify and manually check character columns in Sets A and B
+- Redact `order_id` from gift log table in Set A
+- Redact `situation` from imagery prime table in Sets A and B
+- Export redacted tables to `data/redacted/` for Sets A and B
+- Copy tables that did not need redaction to `data/raw_partial/` for Sets A and B 
+
+Note: To ensure that `order_id` is not retained in the full raw data, after the first run of
+this script, the unredacted version of the gift log table was deleted from 
+`data/raw_full/set_a/` and replaced with the redacted version.
+
+By contrast, the unredacted versions of the imagery prime table are retained in 
+`data/raw_full/set_a/` and `data/raw_full/set_b/` on the Private Component because 
+these tables contain free-text responses that may *or may not* contain identifiers. 
+Notably, participants were not asked to provide identifiers in their responses.
+
+### [3_clean_data.R](./code/3_clean_data.R)
+
+After creating the HTML table to [compare filenames][ma-cleaning-repo-pages-filenames_list_flt], 
+this script does the following to clean key data tables of interest.
+
+#### Prepare Datasets for Comparison
+
+- Clean `notes.csv` and identify 36 participants affected by server error (`server_error_pids`)
+- Restructure clean data from main outcomes paper (`R34_FinalData_New_v02.csv`) and clarify session column
+  - Extract data into separate, long-format tables
+  - Compute `session_only`, as original `session` in DASS-21-AS table may conflate 
+  session label with eligibility
+- Streamline tables in Sets A and B
+  - Investigate `_FIXED` tables in Set A and exclude `CIHS_recovered_Feb_02_2019` as 
+  `CIHS_Feb_02_2019_FIXED` has more columns and the same values on shared columns
+  - Investigate other repeated tables in Sets A and B and exclude the `DD_FU` tables because 
+  the `DD` tables have more rows/columns and are the same as the `DD_FU` tables otherwise
+  - Shorten table names
+  - Restrict to tables of potential interest (initially consider the DD and QOL tables in 
+  addition to the participant, demographics, BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, RR,
+  credibility, and task log tables)
+- Clarify participant, date, and session columns in Sets A and B
+  - Identify potential columns that index participants in Sets A and B, correct weird 
+  `participantRSA` values in Set A where possible, and define `participant_id` in Sets A 
+  and B (use this to index participants)
+  - Compare numbers of participants in Sets A and B and those counted in `R34.ipynb`
+  - Identify, investigate, and recode time stamp and date columns in Sets A and B, handling
+  Set B participants with shorter dates in their DASS-21-AS and OASIS tables
+  - Compute `session_only` in Sets A and B, for same reason as above
+- Identify 807 ITT participant IDs in clean data from main outcomes paper (`cln_participant_ids`), 
+confirm that none are test accounts, and filter Sets A and B to these participants
+- Check for discrepancies between session and date-related values in Set A task log table
+and other tables in Sets A and B and in clean data from main outcomes paper
+- Check for and resolve unexpected multiple entries in Set A
+  - Resolve for OASIS table by sorting each participant's entries chronologically and then 
+  recoding the session column so that it reflects the expected session order for the number 
+  of entries present for that participant (investigation found that this approach was used 
+  for the main outcomes paper)
+  - Resolve for other tables by keeping the most recent entry (but retain all entries in 
+  task log for reference)
+- Check for unexpected multiple entries in Set B (none found)
+- Clarify participant and session columns in clean item-level baseline data from main
+paper (`R34_Cronbach.csv`)
+- Define scale items in Sets A and B and in clean baseline item-level data from main paper
+- Extract clean item-level baseline data from main paper into separate tables
+- Compute scale scores in Sets A and B and clean item-level baseline data from main paper
+  - Recode "prefer not to answer" values as `NA`
+  - Check response ranges
+  - Compute scores using approaches that investigation found were used in main outcomes paper
+  (for BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR; see 
+  [scoring approaches above](#removed-scale-scores-used-in-main-outcomes-paper))
+  
+#### Compare Datasets, Investigate Differences, Add Missing Data, and Do Additional Cleaning
+
+- Clean demographics table (with focus on Set A) and compare with clean data from main outcomes
+paper (after reproducing clean data, do [additional cleaning above](#additional-demographics-cleaning))
+- Compare Set A with clean data from main outcomes paper on non-demographic tables
+  - Compare participants and numbers of observations for shared participants
+  - Investigate [ostensibly skipped sessions in OASIS table](#corrected-session-in-oasis-table)
+    - Compare session dates between OASIS, RR, and task log tables in Set A (different)
+    - Identify 111 people with one session skipped in OASIS table in Set A and clean data (109 
+    at Session 1, `skipped_oa_S1_set_a_pids`; 2 at Session 3, `skipped_oa_S3_set_a_pids`)
+  - Compare scale scores above for shared observations (same)
+- Compare Set B with clean data from main outcomes paper on non-demographic tables
+  - Compare participants and numbers of observations for shared participants
+  - Compare scale scores above for shared observations (same except OASIS scores for people with 
+  one session skipped in OASIS table in clean data)
+  - Further investigate [ostensibly skipped sessions in OASIS table](#corrected-session-in-oasis-table)
+    - No participants have skipped sessions in Set B OASIS table
+    - Compare session labels in Set B OASIS table to those in Set A task log (same)
+    - Compare session labels in Set A OASIS table to those in Set A task log (different
+    unless session labels in Set A OASIS table are recoded to be consecutive)
+    - Compare session dates between OASIS and RR tables in Set B (consistent)
+- Look for and add non-demographic data missing for some participants in Set A
+  - For the 36 participants affected by server error (`server_error_pids`):
+    - Add data from Set B OASIS and DASS-21-AS tables
+    - Add baseline DASS-21-AS data from `R34_Cronbach.csv` for 2 more participants (data not in Set B)
+  - For another participant (1866), add baseline OASIS data from `R34_Cronbach.csv` (data not in Set B)
+- Compare "Set A With Added Data" with clean data from main outcomes paper on non-demographic tables
+  - Same participants but [different numbers of observations](#numbers-of-observations)
+  - Compare scale scores above for shared observations (same)
+  - Compare CBM and anxiety imagery prime conditions (same)
+- Compare Sets A and B on credibility table (same)
+- Do additional cleaning to finalize list of clean data to export (`flt_dat_clean`)
+  - From "Set A With Added Data", add participant, demographics, BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, 
+  and RR tables to list to export
+  - [Correct session label in OASIS table](#corrected-session-in-oasis-table) to 
+  be consecutive for people who ostensibly skipped one session
+  - [Remove scale scores](#removed-scale-scores-used-in-main-outcomes-paper) 
+  computed via scoring methods of main outcomes paper
+  - From Set A, add credibility table to list to export
+- Export list of intermediately clean data (`flt_dat_clean`)
 
 ## TODO: Further Cleaning and Analysis Considerations
 
