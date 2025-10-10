@@ -569,7 +569,7 @@ names(raw_dat_b)[names(raw_dat_b) == "SUDS_02_02_2019"]                  <- "sud
 names(raw_dat_b)[names(raw_dat_b) == "TrialDAO_02_02_2019"]              <- "trial_dao"
 
 # ---------------------------------------------------------------------------- #
-# Restrict raw data tables to those relevant to present analysis for Sets A and B ----
+# Restrict raw data tables to those of potential interest for Sets A and B ----
 # ---------------------------------------------------------------------------- #
 
 # For Set A
@@ -1084,10 +1084,6 @@ sum(short_date_pids_oa        %in% sep_dat$participant$participant_id) == 36
 
 setequal(intersect(short_date_pids_dass21_as, sep_dat$participant$participant_id), server_error_pids)
 setequal(intersect(short_date_pids_oa,        sep_dat$participant$participant_id), server_error_pids)
-
-
-
-
 
 # Except for the participants above with shorter dates in their "dass21_as" and 
 # "oa" tables, the following columns across tables are system-generated date and 
@@ -3310,7 +3306,7 @@ for (i in 1:length(flt_dat_clean)) {
 flt_dat_clean$credibility <- flt_dat$credibility
 
 # ---------------------------------------------------------------------------- #
-# Export item-level data and helper items list ----
+# Export list of intermediately clean item-level data ----
 # ---------------------------------------------------------------------------- #
 
 intermediate_path <- "./data/intermediate_clean/"
