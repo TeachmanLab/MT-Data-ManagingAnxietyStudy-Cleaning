@@ -440,8 +440,6 @@ later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on t
 
 ## TODO: Cleaning Scripts: Setup and File Relations
 
-**TODO: Move "filenames_list.csv" to "data/other/"**
-
 
 
 

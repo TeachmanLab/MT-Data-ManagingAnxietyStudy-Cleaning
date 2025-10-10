@@ -125,12 +125,9 @@ notes <- read.csv("./data/other/notes_from_sonia/notes.csv")
 # Create HTML table for documentation to compare names of files imported/exported
 # by "R34_cleaning_script.R", imported by "R34.ipynb", and in Sets A and B
 
-docs_path <- "./docs/"
-dir.create(docs_path)
-
   # Import CSV file manually created by Jeremy Eberle on 10/6/2025
 
-filenames_list <- read.csv(paste0(docs_path, "filenames_list.csv"))
+filenames_list <- read.csv("./data/other/for_README/filenames_list.csv")
 
   # Ignore mislabeled DD and DD-FU files exported by "R34_cleaning_script.R"
   # - See https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561)
@@ -145,7 +142,10 @@ filenames_list_flt$exported_by_R34_cleaning_script.R[dd_mask] <- NA
 
 filenames_list_flt[is.na(filenames_list_flt)] <- '<span style="color:grey; font-style:italic;">NA</span>'
 
-sink("./docs/filenames_list_flt.html")
+docs_path <- "./docs/"
+dir.create(docs_path)
+
+sink(paste0(docs_path, "filenames_list_flt.html"))
 kable(filenames_list_flt, format = "html", escape = FALSE,
       table.attr = 'style="font-family: monospace;"')
 sink()
