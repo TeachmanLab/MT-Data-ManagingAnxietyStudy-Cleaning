@@ -353,7 +353,15 @@ and put in the `data/other/clean_from_main_paper/` folder of the present repo's 
 #### Notes from Sonia
 
 The present repo also uses `notes.csv`, which was obtained from from Sonia Baee on 11/24/2021 
-and put in the `data/other/notes_from_sonia` folder of the present repo's OSF project.
+and put in the `data/other/notes_from_sonia/` folder of the present repo's OSF project.
+
+#### For README
+
+Additionally, the present repo uses a `filenames_list.csv` manually created by Jeremy Eberle
+in the `data/other/for_README/` folder of this repo's OSF project to generate the HTML
+for the [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt] of this README.
+`3_clean_data.R` imports this CSV file, filters out certain filenames,[^2] and creates 
+`docs/filenames_list_flt.html`, which is hosted on this repo's GitHub Pages site.
 
 ### Private Component
 
@@ -385,9 +393,9 @@ To request access to files on this component, contact [Jeremy Eberle][jeremy] or
 The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with a 
 **partial set of raw data files** (i.e., those that did not need redaction) for 
 **Sets A and B**, **redacted files** for Sets A and B, other data files needed for 
-the present data cleaning ("clean" **`R34_FinalData_New_v02.csv`** and **`R34_Cronbach.csv`** 
-files from the main outcomes paper; **`notes.csv`** from Sonia), and a list of 
-intermediately clean data tables (see 
+the present cleaning ("clean" **`R34_FinalData_New_v02.csv`** and **`R34_Cronbach.csv`** 
+files from the main outcomes paper; **`notes.csv`** from Sonia) and README 
+(`filenames_list.csv`), and a list of clean data tables (see
 [exported data](#exported-data-on-present-repos-osf-project) above).
 The ZIP's structure is below.
 
@@ -409,7 +417,8 @@ Public Component, redacted versions of these two tables are in the `redacted` fo
 |   |   └── set_b/                   #   1 CSV file (e.g., "ImageryPrime_02_02_2019_redacted.csv")
 |   ├── other/                       # Other files needed for data cleaning
 |   |   ├── clean_from_main_paper/   #   2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
-|   |   └── notes_from_sonia/        #   1 CSV file ("notes.csv")
+|   |   ├── notes_from_sonia/        #   1 CSV file ("notes.csv")
+|   |   └── for_README/              #   1 CSV file ("filenames_list.csv")
 |   └── intermediate_clean/          # List of clean data tables ("flt_dat_clean.rds")
 └── materials/
     ├── appendices/                  # Appendices
@@ -431,7 +440,7 @@ later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on t
 
 ## TODO: Cleaning Scripts: Setup and File Relations
 
-**TODO: Move "filenames_list.csv" to "data/other/"
+**TODO: Move "filenames_list.csv" to "data/other/"**
 
 
 
@@ -529,13 +538,11 @@ Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 
 [^1]: This is the link to the present repo's corresponding GitHub Pages site,
-which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**\
-[^2]: The HTML file for the [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt]
-was created by `code/3_clean_data.R` from `data/other/for_README/filenames_list.csv`, which 
-Jeremy manually created. Some files exported by `R34_cleaning_script.R` are wrong 
-([Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus excluded from 
-the HTML, which is hosted on the GitHub Pages site.\
-[^3]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.\
+which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**  
+[^2]: Some files exported by `R34_cleaning_script.R` are incorrect (see 
+[Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
+excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].  
+[^3]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
 [^4]: The code to generate `initial_ex` and `present_ex` is in `code/3_clean_data.R`.
 
 [bethany-email]: mailto:bteachman@virginia.edu
