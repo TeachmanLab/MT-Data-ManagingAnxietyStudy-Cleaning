@@ -438,31 +438,46 @@ both ZIP files with the same version number.
 after running the redaction scripts below (as of commit `988cf1e` "Distinguish first vs. 
 later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on that date.
 
-## TODO: Cleaning Scripts: Setup and File Relations
-
-
-
-
+## Cleaning Scripts: Setup and File Relations
 
 The scripts in `code/` import the full raw data files for Sets A and B, redact certain 
-files for Sets A and B, and clean the redacted and remaining raw files to yield intermediately 
-clean files. The resulting files are considered only intermediately cleaned because further 
+files for Sets A and B, and clean the redacted and remaining raw files to yield *intermediately* 
+clean files. The resulting files are considered "intermediately cleaned" because further, 
 analysis-specific cleaning will be required for any given analysis.
 
-If you have access to the full raw data (from the [Private Component](#private-component)), 
-you can reproduce the redaction. Create a parent folder (with any desired name, indicated 
-by `.` below) with two subfolders: `data` and `code`. The working directory must be set to 
-the parent folder to import/export data via relative file paths.
+Create a parent folder (with any desired name, indicated by `.` in the 
+[directory tree](#directory-tree-and-runtimes) below) with two subfolders: `data` and `code`.
+Put the code from the present repo in the `code` folder and set the working directory to the
+parent folder so that data can be imported and exported using relative file paths.
 
-Put the raw data files in subfolders of `data` called `raw_full/set_a/` and `raw_full/set_b/`.
-`2_redact_data.R` will create the `redacted` and `raw_partial` folders and files therein, and 
-the `3_clean_data.R` will create the `intermediate_clean` folder and files therein.
+### Redacting Data
+
+If you have access to the full raw data (from the [Private Component](#private-component)), you can 
+reproduce the redaction. Put the raw data files in subfolders of `data` called `raw_full/set_a/` and 
+`raw_full/set_b/`. `2_redact_data.R` will create the `redacted` and `raw_partial` folders and files therein.
 
 Note: On the first run of `2_redact_data.R`, `first_run` in that script was set to `TRUE` (which 
 redacted both the `GiftLog` and `ImageryPrime` tables). When reproducing the redaction starting 
 from the raw data already on the Private Component, `first_run` should be set to `FALSE` (which 
 will redact only `ImageryPrime`, because the `GiftLog` on the Private Component is already redacted,
 but both redacted files will still be exported to `redacted/`).
+
+### Cleaning Data
+
+`3_clean_data.R` imports raw data files that did not need redaction (from `data/raw_partial/set_a/`
+and `data/raw_partial/set_b/`) and redacted data files (from `data/redacted/set_a/` and 
+`data/redacted/set_b/`). If you reproduced the redaction following the steps above, these folders 
+and their files will be automatically created; otherwise, you can get these folders and their files 
+from the [Public Component](#public-component).
+
+`3_clean_data.R` also imports other data files needed for the present cleaning (from 
+`other/clean_from_main_paper/` and `other/notes_from_sonia/`) and README (from `other/for_README/`).
+You can get these folders and their files from the [Public Component](#public-component).
+
+`3_clean_data.R` will create the `intermediate_clean` folder and list of clean data tables therein
+(`flt_dat_clean.rds`) and the `docs` folder and HTML file therein (`filenames_list_flt.html`).
+
+### Directory Tree and Runtimes
 
 ```
 .                                    # Parent folder (i.e., working directory)
@@ -479,7 +494,7 @@ but both redacted files will still be exported to `redacted/`).
 |   ├── other/                       #     Folder from Public Component
 |   |   ├── clean_from_main_paper/   #       2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
 |   |   ├── notes_from_sonia/        #       1 CSV file ("notes.csv")
-|   |   └── for_README/              #       TODO: 1 CSV file ("filenames_list.csv")
+|   |   └── for_README/              #       1 CSV file ("filenames_list.csv")
 |   └── (intermediate_clean/)        #     Folder created by "3_clean_data.R"
 ├── code/                            #   Code subfolder from this repo
 |   ├── 1_define_functions.R         #     Define functions for use by subsequent R scripts
