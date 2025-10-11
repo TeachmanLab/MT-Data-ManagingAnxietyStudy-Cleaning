@@ -600,6 +600,8 @@ main outcomes paper
 - Compute scale scores in Sets A and B and clean item-level baseline data from 
 main outcomes paper
   - Recode "prefer not to answer" values as `NA`
+  - Recode credibility items in Sets A and B (see [Issue 12][ma-repo-issue12] in 
+  [MT-Data-ManagingAnxietyStudy][ma-repo])
   - Check response ranges
   - Compute scores using approaches from main outcomes paper (for BBSIQ, DASS-21-AS, 
   DASS-21-DS, OASIS, and RR; see 
@@ -658,23 +660,15 @@ zone (i.e., UTC - 5, all year, not `America/New York`, which switches between ES
   - Unexpected multiple entries were retained in this table for reference, including:
     - Multiple SUDS entries at Sessions 1, 3, 6, and 8 (with no `tag` for before vs. after training)
     - Multiple non-SUDS entries
-- In present study, RR response options were 0:3 (retained here), whereas in Calm Thinking study, they were 1:4
-- **TODO (correct?): All item-level `NA` values are for "prefer not to answer" responses**
-- **TODO (check for credibility): PNA and response ranges have already been checked**
-
-
-
-
-
+- Item values of `NA` in exported tables are due to "prefer not to answer" (PNA) responses
+  - Except for demographics table, where `NA`s for birth year (and thus age) are due to weird 
+  values (0 or 2222) and PNA for categorical items is its own factor level
+- Item response ranges have already been checked for exported tables
+  - Note: RR options were `0:3` in present study (retained here) but `1:4` in Calm Thinking study
+- **TODO: Mention dataset column**
 - To clean additional tables (e.g., DD, QOL), consider comparing Sets A and B (approach used 
 here for credibility table) since other tables are not in clean data from main outcomes paper
 - Further, analysis-specific cleaning will be needed for any given analysis
-
-**TODO: Correct appendix/codebook**
-
-
-
-
 
 ### Additional Item-Level Data at Baseline
 
@@ -691,6 +685,12 @@ here for credibility table) since other tables are not in clean data from main o
 ### Appendices and Codebooks
 
 Appendices and codebooks for the Managing Anxiety study are on the [Public Component](#public-component).
+
+**TODO: Correct appendix/codebook issues (https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues)**
+
+
+
+
 
 ### MindTrails Wiki
 
@@ -733,6 +733,7 @@ excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_
 [ma-repo-issue9]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9#issue-3457953028
 [ma-repo-issue10]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10#issue-3458115537
 [ma-repo-issue11]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561
+[ma-repo-issue12]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/12#issue-3506306045
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
 [ma-osf]: https://osf.io/pvd67/
 [ma-osf-private]: https://osf.io/5sn2x/
