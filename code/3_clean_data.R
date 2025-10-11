@@ -3287,6 +3287,14 @@ rownames(initial_ex) <- rownames(present_ex) <- NULL
 initial_ex
 present_ex
 
+  # Get condition breakdown in clean data from main outcomes paper for README
+
+skipped_1_oa_session_mask <- sep_dat_comp_rest$participant$participant_id %in%
+  skipped_only_1_oa_session_set_a_pids
+
+table(sep_dat_comp_rest$participant$cbmCondition[skipped_1_oa_session_mask])
+table(sep_dat_comp_rest$participant$prime[skipped_1_oa_session_mask])
+
 # Remove scores computed above via the methods of main outcomes paper
 
 for (i in 1:length(flt_dat_clean)) {
