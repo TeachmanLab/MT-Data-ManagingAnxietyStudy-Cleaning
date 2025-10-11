@@ -2269,6 +2269,15 @@ all(flt_dat$demographic$birthYear == sep_dat$demographic$demographic_birthYear, 
 sum(is.na(flt_dat$demographic$birthYear))             == 2
 sum(is.na(sep_dat$demographic$demographic_birthYear)) == 14
 
+    # Get participant IDs for inadvertent NAs for README
+
+inadvertent_na_birth_year_mask <- is.na(sep_dat$demographic$demographic_birthYear) & 
+  sep_dat$demographic$participant_id %in% odd_birth_year_pids
+
+inadvertent_na_birth_year_pids <- sep_dat$demographic$participant_id[inadvertent_na_birth_year_mask]
+
+length(inadvertent_na_birth_year_pids) == 12
+
 # Compute age in Set A
 
   # Define function to compute age from year of demographics data (per "R34.ipynb")
@@ -2323,6 +2332,15 @@ identical(flt_dat$demographic$education[flt_dat$demographic$education != "Un lyc
 flt_dat$demographic$education[flt_dat$demographic$education %in% c("", "????")] <- missing_server_issue
 flt_dat$demographic$education[flt_dat$demographic$education %in% 
                                 c("Diploma di scuola superiore", "Un lycée")]   <- "High School Graduate"
+
+  # Get participant IDs for weird values for README
+
+weird_education_values_mask <- sep_dat$demographic$demographic_education %in% 
+  c("Diploma di scuola superiore", "Un lyc̩e")
+
+weird_education_pids <- sep_dat$demographic$participant_id[weird_education_values_mask]
+
+length(weird_education_pids) == 2
 
 # For ethnicity, given that Sets A and B are identical, recode odd values in Set A
 # in ways (per "R34.ipynb" and "R34_cleaning_script.R") that match clean data
