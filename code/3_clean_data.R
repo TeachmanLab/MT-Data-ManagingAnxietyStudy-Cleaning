@@ -155,6 +155,10 @@ kable(filenames_list_flt, format = "html", escape = FALSE,
 sink()
 
 # ---------------------------------------------------------------------------- #
+# PART I. PREPARE DATASETS FOR COMPARISON ----
+# ---------------------------------------------------------------------------- #
+
+# ---------------------------------------------------------------------------- #
 # Clean "notes.csv" ----
 # ---------------------------------------------------------------------------- #
 
@@ -2169,6 +2173,10 @@ flt_dat$dass21_ds$dass21_ds_total_dbl   <- compute_dass_total_dbl(flt_dat$dass21
                                                                   dass21_ds_items, flt_dat_dass21_ds_item_medians)
 flt_dat_b$dass21_ds$dass21_ds_total_dbl <- compute_dass_total_dbl(flt_dat_b$dass21_ds, 
                                                                   dass21_ds_items, flt_dat_dass21_ds_item_medians)
+
+# ---------------------------------------------------------------------------- #
+# PART II. COMPARE DATASETS, INVESTIGATE DIFFERENCES, ADD MISSING DATA, AND DO MORE CLEANING ----
+# ---------------------------------------------------------------------------- #
 
 # ---------------------------------------------------------------------------- #
 # Clean demographic table (with focus on Set A) and compare with clean data ----
