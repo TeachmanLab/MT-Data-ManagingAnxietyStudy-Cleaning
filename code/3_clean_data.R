@@ -1956,20 +1956,29 @@ for (i in 1:length(sep_dat_bl)) {
 # Recode "prefer not to answer" values in Sets A and B and clean item-level baseline data ----
 # ---------------------------------------------------------------------------- #
 
+# No items in Set A are already NA
+
+sum(is.na(flt_dat$oa[oa_items]))                   == 0
+sum(is.na(flt_dat$rr[rr_items]))                   == 0
+sum(is.na(flt_dat$bbsiq[bbsiq_items]))             == 0
+sum(is.na(flt_dat$dass21_as[dass21_as_items]))     == 0
+sum(is.na(flt_dat$dass21_ds[dass21_ds_items]))     == 0
+sum(is.na(flt_dat$credibility[credibility_items])) == 0
+
 # "R34.ipynb" says that it recodes one user's DASS-21-AS values of -2 to -1. This
 # only occurs in Set A (for two items for participant 1644).
 
-sum(flt_dat$dass21_as[dass21_as_items] == -2)
+sum(flt_dat$dass21_as[dass21_as_items] == -2) == 2
 
 flt_dat$dass21_as[dass21_as_items][flt_dat$dass21_as[dass21_as_items] == -2]  <- -1
 
 # In Set A, recode 555 and -1 ("prefer not to answer") as NA
 
-sum(flt_dat$oa[oa_items]                   == 555)
-sum(flt_dat$rr[rr_items]                   == -1)
-sum(flt_dat$bbsiq[bbsiq_items]             == 555)
-sum(flt_dat$dass21_as[dass21_as_items]     == -1)
-sum(flt_dat$dass21_ds[dass21_ds_items]     == -1)
+sum(flt_dat$oa[oa_items]                   == 555)          == 46
+sum(flt_dat$rr[rr_items]                   == -1)           == 156
+sum(flt_dat$bbsiq[bbsiq_items]             == 555)          == 131
+sum(flt_dat$dass21_as[dass21_as_items]     == -1)           == 4
+sum(flt_dat$dass21_ds[dass21_ds_items]     == -1)           == 18
 sum(flt_dat$credibility[credibility_items] %in% c(-1, 555)) == 0 # None
 
 flt_dat$oa[oa_items][flt_dat$oa[oa_items]                             == 555] <- NA
@@ -1983,9 +1992,9 @@ flt_dat$dass21_ds[dass21_ds_items][flt_dat$dass21_ds[dass21_ds_items] == -1]  <-
 
 # In clean item-level baseline data, recode 555 and -1 as NA
 
-sum(sep_dat_bl$oa[oa_items]             == 555)
+sum(sep_dat_bl$oa[oa_items]             == 555)                        == 14
 sum(sep_dat_bl$rr[rr_items]             %in% c(-1, 555), na.rm = TRUE) == 0 # None
-sum(sep_dat_bl$bbsiq[bbsiq_items]       == 555)
+sum(sep_dat_bl$bbsiq[bbsiq_items]       == 555)                        == 21
 sum(sep_dat_bl$dass_as[dass21_as_items] %in% c(-1, 555), na.rm = TRUE) == 0 # None
 
 sep_dat_bl$oa[oa_items][sep_dat_bl$oa[oa_items]             == 555] <- NA
