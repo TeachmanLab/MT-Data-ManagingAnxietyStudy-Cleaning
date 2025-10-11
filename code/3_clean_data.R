@@ -1883,6 +1883,17 @@ length(dass21_ds_items) == 7
 all(dass21_ds_items %in% names(flt_dat$dass21_ds))
 all(dass21_ds_items %in% names(flt_dat_b$dass21_ds))
 
+# Credibility
+
+credibility_items <- c("important", "logical", "recommendable")
+
+length(credibility_items) == 3
+
+  # Data is only in Sets A and B
+
+all(credibility_items %in% names(flt_dat$credibility))
+all(credibility_items %in% names(flt_dat_b$credibility))
+
 # ---------------------------------------------------------------------------- #
 # Extract clean item-level baseline data into separate tables ----
 # ---------------------------------------------------------------------------- #
@@ -1954,11 +1965,12 @@ flt_dat$dass21_as[dass21_as_items][flt_dat$dass21_as[dass21_as_items] == -2]  <-
 
 # In Set A, recode 555 and -1 ("prefer not to answer") as NA
 
-sum(flt_dat$oa[oa_items]               == 555)
-sum(flt_dat$rr[rr_items]               == -1)
-sum(flt_dat$bbsiq[bbsiq_items]         == 555)
-sum(flt_dat$dass21_as[dass21_as_items] == -1)
-sum(flt_dat$dass21_ds[dass21_ds_items] == -1)
+sum(flt_dat$oa[oa_items]                   == 555)
+sum(flt_dat$rr[rr_items]                   == -1)
+sum(flt_dat$bbsiq[bbsiq_items]             == 555)
+sum(flt_dat$dass21_as[dass21_as_items]     == -1)
+sum(flt_dat$dass21_ds[dass21_ds_items]     == -1)
+sum(flt_dat$credibility[credibility_items] %in% c(-1, 555)) == 0 # None
 
 flt_dat$oa[oa_items][flt_dat$oa[oa_items]                             == 555] <- NA
 flt_dat$rr[rr_items][flt_dat$rr[rr_items]                             == -1]  <- NA
@@ -1966,8 +1978,8 @@ flt_dat$bbsiq[bbsiq_items][flt_dat$bbsiq[bbsiq_items]                 == 555] <-
 flt_dat$dass21_as[dass21_as_items][flt_dat$dass21_as[dass21_as_items] == -1]  <- NA
 flt_dat$dass21_ds[dass21_ds_items][flt_dat$dass21_ds[dass21_ds_items] == -1]  <- NA
 
-# In Set B, no values in "oa", "rr", "bbsiq", "dass21_as", or "dass21_ds" tables 
-# are 555 or -1 (already recoded as NA)
+# In Set B, no values in "oa", "rr", "bbsiq", "dass21_as", "dass21_ds", or "credibility"
+# tables are 555 or -1 (already recoded as NA)
 
 # In clean item-level baseline data, recode 555 and -1 as NA
 
@@ -1978,6 +1990,28 @@ sum(sep_dat_bl$dass_as[dass21_as_items] %in% c(-1, 555), na.rm = TRUE) == 0 # No
 
 sep_dat_bl$oa[oa_items][sep_dat_bl$oa[oa_items]             == 555] <- NA
 sep_dat_bl$bbsiq[bbsiq_items][sep_dat_bl$bbsiq[bbsiq_items] == 555] <- NA
+
+# ---------------------------------------------------------------------------- #
+# Recode credibility items in Sets A and B ----
+# ---------------------------------------------------------------------------- #
+
+# Credibility options were displayed as 1:5 but coded as c(0:3, 5). Recode items to 1:5.
+# - See https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/12#issue-3506306045
+
+  # Define function
+
+recode_credibility_items <- function(dat) {
+  dat$credibility[credibility_items] <- lapply(dat$credibility[credibility_items], function(item) {
+    ifelse(is.na(item), NA, ifelse(item == 5, 5, item + 1))
+  })
+  
+  return(dat)
+}
+
+  # Run function for Sets A and B
+
+flt_dat   <- recode_credibility_items(flt_dat)
+flt_dat_b <- recode_credibility_items(flt_dat_b)
 
 # ---------------------------------------------------------------------------- #
 # Check response ranges in Sets A and B and clean item-level baseline data ----
@@ -1994,19 +2028,21 @@ get_values_across_items <- function(df, items) {
 
 # For Set A
 
-all(get_values_across_items(flt_dat$oa,        oa_items)        %in% 0:4)
-all(get_values_across_items(flt_dat$rr,        rr_items)        %in% 0:3)
-all(get_values_across_items(flt_dat$bbsiq,     bbsiq_items)     %in% 0:4)
-all(get_values_across_items(flt_dat$dass21_as, dass21_as_items) %in% 0:3)
-all(get_values_across_items(flt_dat$dass21_ds, dass21_ds_items) %in% 0:3)
+all(get_values_across_items(flt_dat$oa,          oa_items)          %in% 0:4)
+all(get_values_across_items(flt_dat$rr,          rr_items)          %in% 0:3)
+all(get_values_across_items(flt_dat$bbsiq,       bbsiq_items)       %in% 0:4)
+all(get_values_across_items(flt_dat$dass21_as,   dass21_as_items)   %in% 0:3)
+all(get_values_across_items(flt_dat$dass21_ds,   dass21_ds_items)   %in% 0:3)
+all(get_values_across_items(flt_dat$credibility, credibility_items) %in% 1:5)
 
 # For Set B
 
-all(get_values_across_items(flt_dat_b$oa,        oa_items)        %in% 0:4)
-all(get_values_across_items(flt_dat_b$rr,        rr_items)        %in% 0:3)
-all(get_values_across_items(flt_dat_b$bbsiq,     bbsiq_items)     %in% 0:4)
-all(get_values_across_items(flt_dat_b$dass21_as, dass21_as_items) %in% 0:3)
-all(get_values_across_items(flt_dat_b$dass21_ds, dass21_ds_items) %in% 0:3)
+all(get_values_across_items(flt_dat_b$oa,          oa_items)          %in% 0:4)
+all(get_values_across_items(flt_dat_b$rr,          rr_items)          %in% 0:3)
+all(get_values_across_items(flt_dat_b$bbsiq,       bbsiq_items)       %in% 0:4)
+all(get_values_across_items(flt_dat_b$dass21_as,   dass21_as_items)   %in% 0:3)
+all(get_values_across_items(flt_dat_b$dass21_ds,   dass21_ds_items)   %in% 0:3)
+all(get_values_across_items(flt_dat_b$credibility, credibility_items) %in% 1:5)
 
 # For clean item-level baseline data
 
