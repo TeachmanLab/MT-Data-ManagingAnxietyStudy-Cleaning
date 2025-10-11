@@ -51,8 +51,8 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
   - [Sets A and B](#raw-sets-a-and-b)
   - [Private Component](#private-component)
   - [Public Component](#public-component)
-- [Cleaning Scripts: Setup and File Relations](#cleaning-scripts-setup-and-file-relations)
-- [Cleaning Scripts: Functionality](#cleaning-scripts-functionality)
+- [Code: Setup and File Relations](#code-setup-and-file-relations)
+- [Code: Functionality](#code-functionality)
 - [Further Cleaning and Analysis Considerations](#further-cleaning-and-analysis-considerations)
 - [Resources](#resources)
   - [Appendices and Codebooks](#appendices-and-codebooks)
@@ -174,18 +174,18 @@ with the files imported into the present pipeline, are on [this repo's OSF proje
 #### 1. Additional Demographics Cleaning
 
 The clean demographics data exported from the present repo differs from that used in the
-main outcomes paper due to the following kinds of additional cleaning.
+main outcomes paper due to the following kinds of additional cleaning.[^3]
 
-- The clean data from the main outcomes paper has more `NA`s for birth year (and thus age). 
-These `NA`s, which correspond to weird raw birth years (i.e., those > 2222) in Set A, seem 
-inadvertent because (a) the raw values were corrected in Set B, (b) `R34_cleaning_script.R` 
-made the same corrections, and (c) `R34.ipynb` intended to make these corrections but didn't
-due to a bug (see [Issue 9][ma-repo-issue9] on [MT-Data-ManagingAnxietyStudy][ma-repo]). The 
-clean data exported from the present repo corrects these birth years (vs. recoding them as `NA`).
-- The clean data from the main outcomes paper has some weird values for education. These were 
-corrected in `R34_cleaning_script.R` but not in `R34.ipynb` (see [Issue 10][ma-repo-issue10] 
-on [MT-Data-ManagingAnxietyStudy][ma-repo]). The clean data exported from the present repo
-corrects these values.
+- The clean data from the main outcomes paper has 12 more `NA`s for birth year (and thus age).
+These `NA`s (`inadvertent_na_birth_year_pids`), which correspond to weird raw birth years (i.e., 
+those > 2222) in Set A, seem inadvertent because (a) the raw values were corrected in Set B, (b) 
+`R34_cleaning_script.R` made the same corrections, and (c) `R34.ipynb` intended to make these 
+corrections but didn't due to a bug (see [Issue 9][ma-repo-issue9] on [MT-Data-ManagingAnxietyStudy][ma-repo]). 
+The clean data exported from the present repo corrects these birth years.
+- The clean data from the main outcomes paper has weird education values for 2 people
+(`weird_education_pids`). These were corrected in `R34_cleaning_script.R` but not in `R34.ipynb` 
+(see [Issue 10][ma-repo-issue10] on [MT-Data-ManagingAnxietyStudy][ma-repo]). The clean data exported 
+from the present repo corrects these values.
 - The clean data from the main outcomes paper has some blank values for most items that
 correspond to raw blanks and question marks in Sets A and B, suggesting an apparent server
 issue. For clarity, the clean data exported from the present repo recodes these blanks as
@@ -194,7 +194,7 @@ issue. For clarity, the clean data exported from the present repo recodes these 
 #### 2. Numbers of Observations
 
 The clean data exported from the present repo has different numbers of observations from 
-that used in the main outcomes paper (see the `set_add` vs. `clean` columns below, respectively)[^3] 
+that used in the main outcomes paper (see the `set_add` vs. `clean` columns below, respectively)[^4] 
 for the following reasons.
 
   ```text
@@ -228,7 +228,7 @@ The clean data exported from the present repo has different session labels in th
 111 participants whose labels in the clean data from the main outcomes paper make it seem like 109 
 participants skipped the OASIS at Session 1 (e.g., Participant 431 in `initial_ex` below) and like 2 
 participants skipped the OASIS at Session 3. In the clean data exported from the present repo, these 
-labels are recoded to be consecutive (e.g., `present_ex` below).[^4]
+labels are recoded to be consecutive (e.g., `present_ex` below).[^5]
 
 ```text
 > initial_ex   # Clean data from main outcomes paper (dates are unavailable)
@@ -241,6 +241,17 @@ labels are recoded to be consecutive (e.g., `present_ex` below).[^4]
 1            431          PRE 2016-06-13 11:20:35       12
 2            431     SESSION1 2016-06-13 11:29:35       13   # Recoded session
 3            431     SESSION2 2016-06-16 00:30:17       11   # Recoded session
+```
+
+These 111 participants are present across CBM and imagery prime conditions:
+
+```text
+> table(sep_dat_comp_rest$participant$cbmCondition[skipped_1_oa_session_mask])
+FIFTY_FIFTY     NEUTRAL    POSITIVE   # CBM conditions
+         31          51          29 
+> table(sep_dat_comp_rest$participant$prime[skipped_1_oa_session_mask])
+ANXIETY NEUTRAL                       # Imagery prime conditions
+     59      52
 ```
 
 The consecutive session labels are more plausible for the following reasons:
@@ -438,7 +449,7 @@ both ZIP files with the same version number.
 after running the redaction scripts below (as of commit `988cf1e` "Distinguish first vs. 
 later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on that date.
 
-## Cleaning Scripts: Setup and File Relations
+## Code: Setup and File Relations
 
 The scripts in `code/` import the full raw data files for Sets A and B, redact certain 
 files for Sets A and B, and clean the redacted and remaining raw files to yield *intermediately* 
@@ -508,7 +519,7 @@ On a Windows 11 Enterprise laptop (32 GB of RAM; Intel Core Ultra 7 165U, 1700 M
 14 logical Processors), each script runs in < 1 min. As noted in `1_define_functions.R`, 
 packages may take longer to load the first time you load them with `groundhog.library()`.
 
-## Cleaning Scripts: Functionality
+## Code: Functionality
 
 ### [1_define_functions.R](./code/1_define_functions.R)
 
@@ -564,7 +575,7 @@ this script does the following to clean key data tables of interest.
 - Clarify participant, date, and session columns in Sets A and B
   - Identify potential columns that index participants in Sets A and B, correct weird 
   `participantRSA` values in Set A where possible, and define `participant_id` in Sets A 
-  and B (use this to index participants)
+  and B
   - Compare numbers of participants in Sets A and B and those counted in `R34.ipynb`
   - Identify, investigate, and recode time stamp and date columns in Sets A and B, handling
   Set B participants with shorter dates in their DASS-21-AS and OASIS tables
@@ -573,26 +584,28 @@ this script does the following to clean key data tables of interest.
 confirm that none are test accounts, and filter Sets A and B to these participants
 - Check for discrepancies between session and date-related values in Set A task log table
 and other tables in Sets A and B and in clean data from main outcomes paper
-- Check for and resolve unexpected multiple entries in Set A
+- Check for and resolve unexpected multiple entries in Set A (using approaches from main
+outcomes paper)
   - Resolve for OASIS table by sorting each participant's entries chronologically and then 
   recoding the session column so that it reflects the expected session order for the number 
-  of entries present for that participant (investigation found that this approach was used 
-  for the main outcomes paper)
+  of entries present for that participant
   - Resolve for other tables by keeping the most recent entry (but retain all entries in 
   task log for reference)
 - Check for unexpected multiple entries in Set B (none found)
 - Clarify participant and session columns in clean item-level baseline data from main
 paper (`R34_Cronbach.csv`)
-- Define scale items in Sets A and B and in clean baseline item-level data from main paper
-- Extract clean item-level baseline data from main paper into separate tables
-- Compute scale scores in Sets A and B and clean item-level baseline data from main paper
+- Define scale items in Sets A and B and in clean baseline item-level data from 
+main outcomes paper
+- Extract clean item-level baseline data from main outcomes paper into separate tables
+- Compute scale scores in Sets A and B and clean item-level baseline data from 
+main outcomes paper
   - Recode "prefer not to answer" values as `NA`
   - Check response ranges
-  - Compute scores using approaches that investigation found were used in main outcomes paper
-  (for BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR; see 
+  - Compute scores using approaches from main outcomes paper (for BBSIQ, DASS-21-AS, 
+  DASS-21-DS, OASIS, and RR; see 
   [scoring approaches above](#removed-scale-scores-used-in-main-outcomes-paper))
   
-#### Compare Datasets, Investigate Differences, Add Missing Data, and Do Additional Cleaning
+#### Compare Datasets, Investigate Differences, Add Missing Data, and Do More Cleaning
 
 - Clean demographics table (with focus on Set A) and compare with clean data from main outcomes
 paper (after reproducing clean data, do [additional cleaning above](#additional-demographics-cleaning))
@@ -601,7 +614,7 @@ paper (after reproducing clean data, do [additional cleaning above](#additional-
   - Investigate [ostensibly skipped sessions in OASIS table](#corrected-session-in-oasis-table)
     - Compare session dates between OASIS, RR, and task log tables in Set A (different)
     - Identify 111 people with one session skipped in OASIS table in Set A and clean data (109 
-    at Session 1, `skipped_oa_S1_set_a_pids`; 2 at Session 3, `skipped_oa_S3_set_a_pids`)
+    at Session 1: `skipped_oa_S1_set_a_pids`; 2 at Session 3: `skipped_oa_S3_set_a_pids`)
   - Compare scale scores above for shared observations (same)
 - Compare Set B with clean data from main outcomes paper on non-demographic tables
   - Compare participants and numbers of observations for shared participants
@@ -633,7 +646,34 @@ paper (after reproducing clean data, do [additional cleaning above](#additional-
   - From Set A, add credibility table to list to export
 - Export list of intermediately clean data (`flt_dat_clean`)
 
-## TODO: Further Cleaning and Analysis Considerations
+## Further Cleaning and Analysis Considerations
+
+The following considerations may be relevant to further cleaning or to analysis.
+
+- Use `participant_id` to index participants and `session_only` to index time points
+- The `_as_POSIXct` columns assume that system-generated time stamps are in `EST` time
+zone (i.e., UTC - 5, all year, not `America/New York`, which switches between EST and EDT)
+- For task log table:
+  - Time stamp columns seem to be an hour different from other tables' time stamps
+  - Unexpected multiple entries were retained in this table for reference, including:
+    - Multiple SUDS entries at Sessions 1, 3, 6, and 8 (with no `tag` for before vs. after training)
+    - Multiple non-SUDS entries
+- In present study, RR response options were 0:3 (retained here), whereas in Calm Thinking study, they were 1:4
+- **TODO (correct?): All item-level `NA` values are for "prefer not to answer" responses**
+- **TODO (check for credibility): PNA and response ranges have already been checked**
+
+
+
+
+
+- To clean additional tables (e.g., DD, QOL), consider comparing Sets A and B (approach used 
+here for credibility table) since other tables are not in clean data from main outcomes paper
+- Further, analysis-specific cleaning will be needed for any given analysis
+
+**TODO: Correct appendix/codebook**
+
+
+
 
 
 ### Additional Item-Level Data at Baseline
@@ -673,8 +713,9 @@ which is currently being built from the `redact-and-clean-data` branch. **TODO: 
 [^2]: Some files exported by `R34_cleaning_script.R` are incorrect (see 
 [Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
 excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].  
-[^3]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
-[^4]: The code to generate `initial_ex` and `present_ex` is in `code/3_clean_data.R`.
+[^3]: The code to generate the `_pids` with demographic differences below is in `code/3_clean_data.R`.  
+[^4]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
+[^5]: The code to generate `initial_ex` and `present_ex` and the condition breakdowns is in `code/3_clean_data.R`.
 
 [bethany-email]: mailto:bteachman@virginia.edu
 [claudia]: https://github.com/cpc4tz
