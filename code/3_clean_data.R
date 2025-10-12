@@ -3385,10 +3385,44 @@ for (i in 1:length(flt_dat_clean)) {
 flt_dat_clean$credibility <- flt_dat$credibility
 
 # ---------------------------------------------------------------------------- #
-# Export list of intermediately clean item-level data ----
+# Get time zones of POSIXct columns ----
 # ---------------------------------------------------------------------------- #
 
-intermediate_path <- "./data/intermediate_clean/"
-dir.create(intermediate_path)
+# Create data frame with time zones of all tables' POSIXct columns
 
-saveRDS(flt_dat_clean, paste0(intermediate_path, "flt_dat_clean.rds"))
+POSIXct_time_zones <- data.frame()
+
+for (i in 1:length(flt_dat_clean)) {
+  df_name <- names(flt_dat_clean)[i]
+  df <- flt_dat_clean[[i]]
+  
+  for (j in 1:length(df)) {
+    col_name <- names(df)[j]
+    col <- df[[j]]
+    
+    if (inherits(col, "POSIXct")) {
+      out <- data.frame(table = df_name,
+                        col   = col_name,
+                        tzone = attr(col, "tzone"))
+      
+      POSIXct_time_zones <- rbind(POSIXct_time_zones, out)
+    }
+  }
+}
+
+# ---------------------------------------------------------------------------- #
+# Export intermediately clean item-level data ----
+# ---------------------------------------------------------------------------- #
+
+int_cln_tbls_path <- "./data/intermediate_clean/tables/"
+dir.create(int_cln_tbls_path, recursive = TRUE)
+
+# Export tables to CSV
+
+for(df_name in names(flt_dat_clean)) {
+  write.csv(flt_dat_clean[[df_name]], paste0(int_cln_tbls_path, df_name, ".csv"), row.names = FALSE)
+}
+
+# Export data frame with time zones of all tables' POSIXct columns
+
+write.csv(POSIXct_time_zones, "./data/intermediate_clean/POSIXct_time_zones.csv", row.names = FALSE)
