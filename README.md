@@ -310,6 +310,8 @@ data in Sets A and B are identical.
 
 ## TODO: Citation
 
+For more details, see [Citation](./docs/citation.md).
+
 
 
 
@@ -699,7 +701,7 @@ zone (i.e., UTC - 5, all year, not `America/New York`, which switches between ES
 - To clean additional tables (e.g., DD, QOL), consider comparing Sets A and B (approach used 
 here for credibility table) since other tables are not in clean data from main outcomes paper
 - Further, analysis-specific cleaning will be needed for any given analysis
-  - Use [`4_import_clean_data.R`](#import-clean-data-r) as a starting point for further cleaning and analysis
+  - Use [`4_import_clean_data.R`](./code/4_import_clean_data.R) as a starting point for further cleaning and analysis
 
 ### Additional Item-Level Data at Baseline
 
