@@ -164,10 +164,10 @@ ITT participants.
 #### Exported Data on Present Repo's OSF Project
 
 In the end, this repo exports redacted raw CSV files for all tables in Sets A and B. It also 
-exports clean item-level data for the demographics, credibility, BBSIQ, DASS-21-AS, DASS-21-DS, 
+exports clean item-level CSV files for the demographics, credibility, BBSIQ, DASS-21-AS, DASS-21-DS, 
 OASIS, RR, and participant (containing the CBM and imagery prime conditions) tables for the 807 
-ITT participants; these clean tables are saved as a list in RDS format. These exported files, along
-with the files imported into the present pipeline, are on [this repo's OSF project](#data-on-osf).
+ITT participants, along with a CSV file with the time zones of POSIXct columns. These exported files, 
+and the files imported into the present pipeline, are on [this repo's OSF project](#data-on-osf).
 
 ### Differences
 
@@ -406,7 +406,7 @@ The [Public Component][ma-osf-public] has a file `public-v1.0.0.zip` with a
 **Sets A and B**, **redacted files** for Sets A and B, other data files needed for 
 the present cleaning ("clean" **`R34_FinalData_New_v02.csv`** and **`R34_Cronbach.csv`** 
 files from the main outcomes paper; **`notes.csv`** from Sonia) and README 
-(`filenames_list.csv`), and a list of clean data tables (see
+(`filenames_list.csv`), and clean data files (see
 [exported data](#exported-data-on-present-repos-osf-project) above).
 The ZIP's structure is below.
 
@@ -420,20 +420,22 @@ Public Component, redacted versions of these two tables are in the `redacted` fo
 ```
 .
 ├── data/                    
-|   ├── raw_partial/                 # Raw files that did not need redaction
-|   |   ├── set_a/                   #   24 CSV files (e.g., "DASS21_AS_recovered_Feb_02_2019.csv")
-|   |   └── set_b/                   #   19 CSV files (e.g., "DASS21_AS_02_02_2019.csv")
-|   ├── redacted/                    # Redacted files
-|   |   ├── set_a/                   #   2 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019_redacted.csv")
-|   |   └── set_b/                   #   1 CSV file (e.g., "ImageryPrime_02_02_2019_redacted.csv")
-|   ├── other/                       # Other files needed for data cleaning
-|   |   ├── clean_from_main_paper/   #   2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
-|   |   ├── notes_from_sonia/        #   1 CSV file ("notes.csv")
-|   |   └── for_README/              #   1 CSV file ("filenames_list.csv")
-|   └── intermediate_clean/          # List of clean data tables ("flt_dat_clean.rds")
+|   ├── raw_partial/                   # Raw files that did not need redaction
+|   |   ├── set_a/                     #   24 CSV files (e.g., "DASS21_AS_recovered_Feb_02_2019.csv")
+|   |   └── set_b/                     #   19 CSV files (e.g., "DASS21_AS_02_02_2019.csv")
+|   ├── redacted/                      # Redacted files
+|   |   ├── set_a/                     #   2 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019_redacted.csv")
+|   |   └── set_b/                     #   1 CSV file (e.g., "ImageryPrime_02_02_2019_redacted.csv")
+|   ├── other/                         # Other files needed for data cleaning
+|   |   ├── clean_from_main_paper/     #   2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
+|   |   ├── notes_from_sonia/          #   1 CSV file ("notes.csv")
+|   |   └── for_README/                #   1 CSV file ("filenames_list.csv")
+|   └── intermediate_clean/            # Clean files
+|       ├── tables/                    #   8 CSV files (e.g., "dass21_as.csv")
+|       └── "POSIXct_time_zones.csv"   #   Time zones of tables' POSIXct columns
 └── materials/
-    ├── appendices/                  # Appendices
-    └── codebooks/                   # Codebooks
+    ├── appendices/                    # Appendices
+    └── codebooks/                     # Codebooks
 ```
 
 ### TODO: Version Control
@@ -465,13 +467,14 @@ parent folder so that data can be imported and exported using relative file path
 
 If you have access to the full raw data (from the [Private Component](#private-component)), you can 
 reproduce the redaction. Put the raw data files in subfolders of `data` called `raw_full/set_a/` and 
-`raw_full/set_b/`. `2_redact_data.R` will create the `redacted` and `raw_partial` folders and files therein.
+`raw_full/set_b/`. `2_redact_data.R` will create the `data/redacted/` and `data/raw_partial/` folders 
+and files therein.
 
 Note: On the first run of `2_redact_data.R`, `first_run` in that script was set to `TRUE` (which 
 redacted both the `GiftLog` and `ImageryPrime` tables). When reproducing the redaction starting 
 from the raw data already on the Private Component, `first_run` should be set to `FALSE` (which 
 will redact only `ImageryPrime`, because the `GiftLog` on the Private Component is already redacted,
-but both redacted files will still be exported to `redacted/`).
+but both redacted files will still be exported to `data/redacted/`).
 
 ### Cleaning Data
 
@@ -481,38 +484,46 @@ and `data/raw_partial/set_b/`) and redacted data files (from `data/redacted/set_
 and their files will be automatically created; otherwise, you can get these folders and their files 
 from the [Public Component](#public-component).
 
-`3_clean_data.R` also imports other data files needed for the present cleaning (from 
-`other/clean_from_main_paper/` and `other/notes_from_sonia/`) and README (from `other/for_README/`).
+`3_clean_data.R` also imports other files needed for the present cleaning (from 
+`data/other/clean_from_main_paper/` and `data/other/notes_from_sonia/`) and README (from `data/other/for_README/`).
 You can get these folders and their files from the [Public Component](#public-component).
 
-`3_clean_data.R` will create the `intermediate_clean` folder and list of clean data tables therein
-(`flt_dat_clean.rds`) and the `docs` folder and HTML file therein (`filenames_list_flt.html`).
+`3_clean_data.R` will create the `data/intermediate_clean/` folder containing a CSV file with the time zones
+of the clean tables' POSIXct columns (`POSIXct_time_zones.csv`) and a `tables` subfolder with the clean 
+CSV data files. It will also create the `docs` folder and HTML file therein (`filenames_list_flt.html`).
+
+`4_import_clean_data.R` imports the time zones of clean tables' POSIXct columns (from 
+`data/intermediate_clean/`) and the clean tables themselves (from `data/intermediate_clean/tables/`).
+It does not export any files but serves as a starting point for further cleaning and analysis.
 
 ### Directory Tree and Runtimes
 
 ```
-.                                    # Parent folder (i.e., working directory)
-├── data/                            #   Data subfolder (manually create)
-|   ├── raw_full/                    #     Folder from Private Component
-|   |   ├── set_a/                   #       26 CSV files
-|   |   └── set_b/                   #       20 CSV files
-|   ├── (raw_partial/)               #     Folder created by "2_redact_data.R" or from Public Component
-|   |   ├── set_a/                   #       24 CSV files
-|   |   └── set_b/                   #       19 CSV files
-|   ├── (redacted/)                  #     Folder created by "2_redact_data.R" or from Public Component
-|   |   ├── set_a/                   #       2 CSV files
-|   |   └── set_b/                   #       1 CSV file
-|   ├── other/                       #     Folder from Public Component
-|   |   ├── clean_from_main_paper/   #       2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
-|   |   ├── notes_from_sonia/        #       1 CSV file ("notes.csv")
-|   |   └── for_README/              #       1 CSV file ("filenames_list.csv")
-|   └── (intermediate_clean/)        #     Folder created by "3_clean_data.R"
-├── code/                            #   Code subfolder from this repo
-|   ├── 1_define_functions.R         #     Define functions for use by subsequent R scripts
-|   ├── 2_redact_data.R              #     Redact certain CSV files from "raw_full/"
-|   └── 3_clean_data.R               #     Clean certain CSV files from "raw_partial/" and "redacted/"
-└── (docs/)                          #   Docs subfolder created by "3_clean_data.R"
-    └── (filenames_list_flt.html)    #     HTML file created by "3_clean_data.R"
+.                                      # Parent folder (i.e., working directory)
+├── data/                              #   Data subfolder (manually create)
+|   ├── raw_full/                      #     Folder from Private Component
+|   |   ├── set_a/                     #       26 CSV files
+|   |   └── set_b/                     #       20 CSV files
+|   ├── (raw_partial/)                 #     Folder created by "2_redact_data.R" or from Public Component
+|   |   ├── set_a/                     #       24 CSV files
+|   |   └── set_b/                     #       19 CSV files
+|   ├── (redacted/)                    #     Folder created by "2_redact_data.R" or from Public Component
+|   |   ├── set_a/                     #       2 CSV files
+|   |   └── set_b/                     #       1 CSV file
+|   ├── other/                         #     Folder from Public Component
+|   |   ├── clean_from_main_paper/     #       2 CSV files ("R34_FinalData_New_v02.csv", "R34_Cronbach.csv")
+|   |   ├── notes_from_sonia/          #       1 CSV file ("notes.csv")
+|   |   └── for_README/                #       1 CSV file ("filenames_list.csv")
+|   └── (intermediate_clean/)          #     Folder created by "3_clean_data.R"
+|       ├── tables/                    #       8 CSV files
+|       └── "POSIXct_time_zones.csv"   #
+├── code/                              #   Code subfolder from this repo
+|   ├── 1_define_functions.R           #     Define functions for use by subsequent R scripts
+|   ├── 2_redact_data.R                #     Redact certain CSV files from "raw_full/"
+|   ├── 3_clean_data.R                 #     Clean certain CSV files from "raw_partial/" and "redacted/"
+|   └── 4_import_clean_data.R          #     Import clean CSV files from "intermediate_clean/"
+└── (docs/)                            #   Docs subfolder created by "3_clean_data.R"
+    └── (filenames_list_flt.html)      #     HTML file created by "3_clean_data.R"
 ```
 
 On a Windows 11 Enterprise laptop (32 GB of RAM; Intel Core Ultra 7 165U, 1700 Mhz, 12 cores, 
@@ -629,6 +640,7 @@ paper (after reproducing clean data, do [additional cleaning above](#additional-
     unless session labels in Set A OASIS table are recoded to be consecutive)
     - Compare session dates between OASIS and RR tables in Set B (consistent)
 - Look for and add non-demographic data missing for some participants in Set A
+  - Create `dataset` column in each table to label each row with its source
   - For the 36 participants affected by server error (`server_error_pids`):
     - Add data from Set B OASIS and DASS-21-AS tables
     - Add baseline DASS-21-AS data from `R34_Cronbach.csv` for 2 more participants (data not in Set B)
@@ -638,19 +650,30 @@ paper (after reproducing clean data, do [additional cleaning above](#additional-
   - Compare scale scores above for shared observations (same)
   - Compare CBM and anxiety imagery prime conditions (same)
 - Compare Sets A and B on credibility table (same)
-- Do additional cleaning to finalize list of clean data to export (`flt_dat_clean`)
+- Do additional cleaning to finalize clean data to export
   - From "Set A With Added Data", add participant, demographics, BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, 
-  and RR tables to list to export
+  and RR tables to list of tables to export
   - [Correct session label in OASIS table](#corrected-session-in-oasis-table) to 
   be consecutive for people who ostensibly skipped one session
   - [Remove scale scores](#removed-scale-scores-used-in-main-outcomes-paper) 
   computed via scoring methods of main outcomes paper
-  - From Set A, add credibility table to list to export
-- Export list of intermediately clean data (`flt_dat_clean`)
+  - From Set A, add credibility table to list of tables to export
+- Get time zones of clean tables' POSIXct columns
+- Export clean tables and the time zones of their POSIXct columns as CSV files
+
+### [4_import_clean_data.R](./code/4_import_clean_data.R)
+
+This script imports the clean data files and converts the POSIXct columns, which
+were exported as characters, back to the POSIXct data type. As such, the script 
+serves as a starting point for further cleaning and analysis.
 
 ## Further Cleaning and Analysis Considerations
 
 The following considerations may be relevant to further cleaning or to analysis.
+
+### Present Intermediately Clean Data
+
+Keep the following in mind when using the clean data exported from the present repo.
 
 - Use `participant_id` to index participants and `session_only` to index time points
 - The `_as_POSIXct` columns assume that system-generated time stamps are in `EST` time
@@ -660,15 +683,23 @@ zone (i.e., UTC - 5, all year, not `America/New York`, which switches between ES
   - Unexpected multiple entries were retained in this table for reference, including:
     - Multiple SUDS entries at Sessions 1, 3, 6, and 8 (with no `tag` for before vs. after training)
     - Multiple non-SUDS entries
-- Item values of `NA` in exported tables are due to "prefer not to answer" (PNA) responses
+- Item values of `NA` in exported tables are due to "prefer not to answer" responses
   - Except for demographics table, where `NA`s for birth year (and thus age) are due to weird 
-  values (0 or 2222) and PNA for categorical items is its own factor level
+  values (0 or 2222) and where "prefer not to answer" for categorical items is its own explicitly
+  named level
 - Item response ranges have already been checked for exported tables
-  - Note: RR options were `0:3` in present study (retained here) but `1:4` in Calm Thinking study
-- **TODO: Mention dataset column**
+  - Note: RR response options were `0:3` in present study (retained here) but `1:4` in Calm Thinking study
+  - Note: credibility response options (corrected here to `1:5`) differ from those analyzed in present
+  study's credibility paper (see [Issue 12][ma-repo-issue12] in [MT-Data-ManagingAnxietyStudy][ma-repo])
+- Each table's `dataset` column labels each row with its source, using these labels:
+  - `"raw_dat"`: from Set A
+  - `"raw_dat_b"`: from Set B
+  - `"cln_dat"`: from "clean" data from main outcomes paper (`R34_FinalData_New_v02.csv`)
+  - `"cln_dat_bl"`: from "clean" item-level baseline data from main outcomes paper (`R34_Cronbach.csv`)
 - To clean additional tables (e.g., DD, QOL), consider comparing Sets A and B (approach used 
 here for credibility table) since other tables are not in clean data from main outcomes paper
 - Further, analysis-specific cleaning will be needed for any given analysis
+  - Use [`4_import_clean_data.R`](#import-clean-data-r) as a starting point for further cleaning and analysis
 
 ### Additional Item-Level Data at Baseline
 
