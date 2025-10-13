@@ -61,7 +61,7 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 - [Code: Functionality](#code-functionality)
 - [Further Cleaning and Analysis Considerations](#further-cleaning-and-analysis-considerations)
   - [Present Clean Data](#present-clean-data)
-  - [Additional Item-Level Baseline Data](#additional-item-level-baseline-data)
+  - [Additional Participants at Baseline](#additional-participants-at-baseline)
 - [Resources](#resources)
   - [Appendices and Codebooks](#appendices-and-codebooks)
   - [MindTrails Wiki](#mindtrails-wiki)
@@ -694,6 +694,7 @@ The following considerations may be relevant to further cleaning or to analysis.
 ### Present Clean Data
 
 Keep the following in mind when using the clean data exported from the present repo.
+See [Code: Functionality](#code-functionality) and the code itself for details.
 
 - Use `participant_id` to index participants and `session_only` to index time points
 - The `_as_POSIXct` columns assume that system-generated time stamps are in `EST` time
@@ -721,15 +722,51 @@ here for credibility table) since other tables are not in clean data from main o
 - Further, analysis-specific cleaning will be needed for any given analysis
   - Use [`4_import_clean_data.R`](./code/4_import_clean_data.R) as a starting point for further cleaning and analysis
 
-### Additional Item-Level Baseline Data
+### Additional Participants at Baseline
 
-**TODO: Mention item-level baseline data Julie analyzed for flexibility paper**
+As stated above, this repo seeks to obtain clean item-level data on key measures 
+over time for the 807 participants in the main outcomes paper's ITT sample
+([Ji et al., 2021][ji-et-al-2021]).
 
-[Ji et al., 2024][ji-et-al-2024],
-[OSF project][ji-et-al-2024-osf]
+If baseline data for additional, non-ITT participants is needed, an analysis of 
+baseline data for 939 participants ([Ji et al., 2024][ji-et-al-2024]) may be a useful 
+resource. That paper analyzed baseline data for RR (*n* = 901), BBSIQ (*n* = 899), 
+DASS-21-AS (*n* = 802), OASIS (*n* = 902), DASS-21-DS (*n* = 828), and QOL (*n* = 921). 
+Data are not on the paper's [OSF project][ji-et-al-2024-osf] but could be requested 
+from Julie Ji. An initial inspection of scripts and data obtained from Julie on 
+9/10/2025 is below.
 
+#### Initial Inspection
 
+The following three scripts seem to import eight files from Set B and two other files
+(`R34_Flexibility_Claudia.csv`, `Flexibility.RR.Sample.Total.csv`). `R34_Flexibility_Claudia.csv`, 
+presumably from [Claudia Calicho-Mamani][claudia], seems to have item-level RR data and scale-level 
+OASIS, DASS-21-AS, DASS-21-DS, and QOL data for 939 participants, but its source script is not in 
+files from Julie. Nor is `Flexibility.RR.Sample.Total.csv` and its source script.
 
+The paper's analysis pipeline would need to be further inspected, but at minimum, it could be a
+source of which 939 participants were deemed valid to analyze at baseline.
+
+- `Flexibility.Paper.Analysis.Demog.Cronbach.21Jan2022.r`
+  - Imports:
+    - Some raw tables from **Set B** (`BBSIQ_02_02_2019.csv`, `OA_02_02_2019.csv`, 
+    `DASS21_AS_02_02_2019.csv`, `DASS21_DS_02_02_2019.csv`, `QOL_02_02_2019.csv`, 
+    `RR_02_02_2019.csv`, `MentalHealthHxTx_02_02_2019.csv`, `Demographics_02_02_2019.csv`)[^6]
+    - Tables of unknown origin (**`R34_Flexibility_Claudia.csv`**, **`Flexibility.RR.Sample.Total.csv`**)
+    - Table exported from script below (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`)
+  - Exports `Flexibility.FullList.Final.csv`
+- `Flexibility.Paper.Analysis.29Jun2023.R`
+  - Imports:
+    - Raw table from **Set B** (`BBSIQ_02_02_2019.csv`)
+    - Table of unknown origin (**`R34_Flexibility_Claudia.csv`**)
+    - Table exported from script above (`Flexibility.FullList.Final.csv`)
+  - Exports `Flexibility.BBSIQ.Sample.N899.17Mar2023.csv` and `Flexibility.RR.Sample.N8109.17Mar2023.csv`
+- `Interp.Flexibility.Analysis_v2.Rmd`
+  - HTML from this seems to be on the paper's [OSF project][ji-et-al-2024-osf]
+  - Imports:
+    - Raw table from **Set B** (`BBSIQ_02_02_2019.csv`)
+    - Tables exported from script above (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`, 
+    `Flexibility.RR.Sample.N8109.17Mar2023.csv`)
 
 ## Resources
 
@@ -767,6 +804,9 @@ excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_
 [^3]: The code to generate the `_pids` with demographic differences below is in `code/3_clean_data.R`.  
 [^4]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
 [^5]: The code to generate `initial_ex` and `present_ex` and the condition breakdowns is in `code/3_clean_data.R`.
+[^6]: With the exception of the demographics table, these tables are identical to those in Set B.
+The demographics table has an extra `Income.Category` column and already has cleaned values for the 
+`income` column. Otherwise, it's the same as the demographics table in Set B (sort them by `id`).
 
 [bethany-email]: mailto:bteachman@virginia.edu
 [claudia]: https://github.com/cpc4tz
