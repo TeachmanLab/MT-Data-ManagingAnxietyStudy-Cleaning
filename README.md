@@ -382,12 +382,6 @@ for the [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt] of thi
 
 ### Private Component
 
-**TODO: Upload new ZIP files with new version number (v1.0.1) to OSF and add entry to version history**
-
-
-
-
-
 The [Private Component][ma-osf-private] has a file `private-v1.0.0.zip` with the **full set 
 of raw data files** (with one exception) for **Sets A and B**. The ZIP's structure is below.
 
@@ -444,17 +438,30 @@ Public Component, redacted versions of these two tables are in the `redacted` fo
     └── codebooks/                     # Codebooks
 ```
 
-### Version Control
+### Data Version History
 
-If a newer version of the ZIP for the Private or Public Components is released, the 
-new ZIP with a new version number will be uploaded. Old versions will not be deleted 
-given that analysis projects will import data from specific versions (projects 
-should [cite](#citation) the version they use). For simplicity, if either ZIP is 
-updated, new versions of both ZIP files with the same version number will be uploaded.
+If a newer version of the ZIP file for the Private or Public Components is released, the 
+new ZIP file with a new [version number](.docs/citation.md#version-number) will be uploaded. 
+Old versions will not be deleted given that analysis projects will import data from specific 
+versions (projects should [cite](#citation) the version number and Version DOI they use). For 
+simplicity, if either of the ZIP files is updated, new versions of both ZIP files with the 
+same version number will be uploaded.
 
-- **v1.0.0**: `private-v1.0.0.zip` and `public-v1.0.0.zip` were uploaded by Jeremy Eberle on 
-9/18/2025 after running the redaction script below (as of commit `988cf1e` "Distinguish first 
-vs. later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on that date.
+For more details on version numbers, releases, and Version DOIs, see the 
+[Citation](./docs/citation.md) page.
+
+The following data versions have been uploaded to OSF:
+
+- **v1.0.0**: Jeremy Eberle uploaded `private-v1.0.0.zip` and `public-v1.0.0.zip` on 9/18/2025 after 
+redacting the data on that date (setting `first_run` in `2_redact_data.R` to `TRUE`). Besides the 
+redaction, none of the present data cleaning steps had been done. A GitHub release and Zenodo 
+record were not created for this version, but the code used can be found via the latest commit (`988cf1e` 
+"Distinguish first vs. later runs of scripts").
+- **TODO: Upload new ZIP files with new version number to OSF and add entry to version history**
+
+
+
+
 
 ## Code: Setup and File Relations
 

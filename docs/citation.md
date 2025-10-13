@@ -37,7 +37,8 @@ When the SCHEMA, CONTENT, or SCRIPT version is incremented, a new [tag][ma-clean
 When the SCHEMA or CONTENT version is incremented, a new version of the 
 [data](../README.md#data-on-osf) is uploaded to OSF alongside the old version(s), 
 with the ZIP file named based on the version number. There is no need to upload a 
-new data version when the SCRIPT version is incremented.
+new data version when the SCRIPT version is incremented. For a list of the versions
+uploaded to OSF, see [Data Version History](../README.md#data-version-history).
 
 ## GitHub Releases
 
