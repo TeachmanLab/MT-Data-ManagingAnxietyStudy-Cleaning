@@ -744,21 +744,29 @@ valid to analyze at baseline.
 
 ### Appendices and Codebooks
 
-Appendices and codebooks for the Managing Anxiety study are on the [Public Component](#public-component).
-
-**TODO: Correct appendix/codebook issues (https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues)**
-
-
-
-
+Appendices and codebooks for the Managing Anxiety study are on the 
+[Public Component](#public-component).
 
 ### MindTrails Wiki
 
 This is a wiki with MindTrails Project-wide and study-specific information that is 
-privately stored by the study team.
+privately stored by the study team. Researchers can request access to relevant wiki 
+info by contacting Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
-Researchers can request access to relevant wiki info by contacting 
-Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
+Among other things, the wiki mentions the following lists of issues that were reviewed as 
+of 10/13/2025; any relevant issues were addressed by the present repo.
+
+**TODO (confirm): Archived versions of the first two lists are on the MindTrails shared folder.**
+
+
+
+
+
+- `R34 Data Cleaning History and Process Protocol` (Google Doc owned by Henry Behan)
+- `Project-wide data collection issues since 1/1/2017` (Google Sheet owned by Dan Funk)
+- [Issues][ma-repo-issues] on [MT-Data-ManagingAnxietyStudy][ma-repo]
+  - Some of these issues apply to the initial cleaning scripts used for the main outcomes 
+  paper (`R34_cleaning_script.R` and `R34.ipynb`) and are left open for reference
 
 <!-- Footnotes -->
 
