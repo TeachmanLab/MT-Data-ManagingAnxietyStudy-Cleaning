@@ -736,9 +736,9 @@ Data are not on the paper's [OSF project][ji-et-al-2024-osf] but could be reques
 from Julie Ji.
 
 Based on this [initial inspection](./docs/initial_inspection_ji_et_al_2024.md) of 
-data and scripts obtained from Julie on 9/10/2025, the paper's analysis pipeline
-would need to be further understood but could be a source of which 939 participants 
-were deemed valid to analyze at baseline.
+data and scripts obtained from Julie on 9/10/2025, the paper's pipeline would need 
+to be further understood but could be a source of which 939 participants were deemed 
+valid to analyze at baseline.
 
 ## Resources
 
@@ -760,13 +760,7 @@ privately stored by the study team.
 Researchers can request access to relevant wiki info by contacting 
 Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
-### Other MindTrails Repositories
-
-**TODO: Mention repos for the MA study website itself**
-
-
-
-
+<!-- Footnotes -->
 
 [^1]: This is the link to the present repo's corresponding GitHub Pages site,
 which is currently being built from the `redact-and-clean-data` branch. **TODO: Update publishing source**  
@@ -779,6 +773,8 @@ excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_
 [^6]: With the exception of the demographics table, these tables are identical to those in Set B.
 The demographics table has an extra `Income.Category` column and already has cleaned values for the 
 `income` column. Otherwise, it's the same as the demographics table in Set B (sort them by `id`).
+
+<!-- Reference Links -->
 
 [bethany-email]: mailto:bteachman@virginia.edu
 [claudia]: https://github.com/cpc4tz

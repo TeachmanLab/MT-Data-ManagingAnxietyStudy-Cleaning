@@ -76,6 +76,8 @@ cite an evolving research artifact, without being specific about the version."
 We thank [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] for their 
 contributions to the initial cleaning for this study.
 
+<!-- Reference Links -->
+
 [claudia]: https://github.com/cpc4tz
 [ct-cleaning-repo]: https://github.com/TeachmanLab/MT-Data-CalmThinkingStudy
 [eberle-et-al-2022]: https://doi.org/10.5281/zenodo.6149365

@@ -29,7 +29,9 @@ files from Julie. Nor is `Flexibility.RR.Sample.Total.csv` and its source script
     - Raw table from **Set B** (`BBSIQ_02_02_2019.csv`)
     - Tables exported from script above (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`, 
     `Flexibility.RR.Sample.N8109.17Mar2023.csv`)
-   
+
+<!-- Reference Links -->
+
 [claudia]: https://github.com/cpc4tz
 [ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d

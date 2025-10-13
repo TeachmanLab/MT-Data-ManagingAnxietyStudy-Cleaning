@@ -168,6 +168,8 @@ below, these notes do not otherwise discuss comparisons with it.
   - Matches Set A
 - **No Task Log table**
 
+<!-- Reference Links -->
+
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
 [ma-repo-issue1]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/1#issue-403285089
 [ma-repo-issue2]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/2#issue-403285690
