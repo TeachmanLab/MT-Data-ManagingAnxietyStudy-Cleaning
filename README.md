@@ -733,40 +733,12 @@ baseline data for 939 participants ([Ji et al., 2024][ji-et-al-2024]) may be a u
 resource. That paper analyzed baseline data for RR (*n* = 901), BBSIQ (*n* = 899), 
 DASS-21-AS (*n* = 802), OASIS (*n* = 902), DASS-21-DS (*n* = 828), and QOL (*n* = 921). 
 Data are not on the paper's [OSF project][ji-et-al-2024-osf] but could be requested 
-from Julie Ji. An initial inspection of scripts and data obtained from Julie on 
-9/10/2025 is below.
+from Julie Ji.
 
-#### Initial Inspection
-
-The following three scripts seem to import eight files from Set B and two other files
-(`R34_Flexibility_Claudia.csv`, `Flexibility.RR.Sample.Total.csv`). `R34_Flexibility_Claudia.csv`, 
-presumably from [Claudia Calicho-Mamani][claudia], seems to have item-level RR data and scale-level 
-OASIS, DASS-21-AS, DASS-21-DS, and QOL data for 939 participants, but its source script is not in 
-files from Julie. Nor is `Flexibility.RR.Sample.Total.csv` and its source script.
-
-The paper's analysis pipeline would need to be further inspected, but at minimum, it could be a
-source of which 939 participants were deemed valid to analyze at baseline.
-
-- `Flexibility.Paper.Analysis.Demog.Cronbach.21Jan2022.r`
-  - Imports:
-    - Some raw tables from **Set B** (`BBSIQ_02_02_2019.csv`, `OA_02_02_2019.csv`, 
-    `DASS21_AS_02_02_2019.csv`, `DASS21_DS_02_02_2019.csv`, `QOL_02_02_2019.csv`, 
-    `RR_02_02_2019.csv`, `MentalHealthHxTx_02_02_2019.csv`, `Demographics_02_02_2019.csv`)[^6]
-    - Tables of unknown origin (**`R34_Flexibility_Claudia.csv`**, **`Flexibility.RR.Sample.Total.csv`**)
-    - Table exported from script below (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`)
-  - Exports `Flexibility.FullList.Final.csv`
-- `Flexibility.Paper.Analysis.29Jun2023.R`
-  - Imports:
-    - Raw table from **Set B** (`BBSIQ_02_02_2019.csv`)
-    - Table of unknown origin (**`R34_Flexibility_Claudia.csv`**)
-    - Table exported from script above (`Flexibility.FullList.Final.csv`)
-  - Exports `Flexibility.BBSIQ.Sample.N899.17Mar2023.csv` and `Flexibility.RR.Sample.N8109.17Mar2023.csv`
-- `Interp.Flexibility.Analysis_v2.Rmd`
-  - HTML from this seems to be on the paper's [OSF project][ji-et-al-2024-osf]
-  - Imports:
-    - Raw table from **Set B** (`BBSIQ_02_02_2019.csv`)
-    - Tables exported from script above (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`, 
-    `Flexibility.RR.Sample.N8109.17Mar2023.csv`)
+Based on this [initial inspection](./docs/initial_inspection.md) of scripts and data 
+obtained from Julie on 9/10/2025, the paper's analysis pipeline would need to be further
+inspected, but at minimum, it could be a source of which 939 participants were deemed 
+valid to analyze at baseline.
 
 ## Resources
 
