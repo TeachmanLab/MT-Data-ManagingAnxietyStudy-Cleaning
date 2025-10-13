@@ -33,12 +33,11 @@
 
 # 2. 26 raw data files obtained from Sonia Baee on 9/3/2020, who stated on that 
 #    date that they represent the latest version of the database on the R34 server 
-#    and that she obtained them from Claudia Calicho-Mamani. These are Set A from
-#    "public-v1.0.0.zip" on the Public Component (https://osf.io/2x3jq/) of the
-#    OSF project for the Managing Anxiety study (https://osf.io/pvd67/).
+#    and that she obtained them from Claudia Calicho-Mamani. These are called Set A 
+#    and were later redacted by Jeremy Eberle in "2_redact_data.R".
 
 # 3. A partial set of 20 raw data files obtained from Sonia Baee on 1/18/2023.
-#    These are Set B from "public-v1.0.0.zip".
+#    These are Set B and were later redacted by Jeremy Eberle in "2_redact_data.R".
 
 # It also imports "notes.csv" obtained from Sonia Baee on 11/24/2021. A "notes.csv" is
 # loaded by the "R34.ipynb" script on GitHub (whose last commit "b3c370b" was 4/16/2020).
