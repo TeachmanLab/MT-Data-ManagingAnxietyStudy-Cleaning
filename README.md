@@ -735,10 +735,10 @@ DASS-21-AS (*n* = 802), OASIS (*n* = 902), DASS-21-DS (*n* = 828), and QOL (*n* 
 Data are not on the paper's [OSF project][ji-et-al-2024-osf] but could be requested 
 from Julie Ji.
 
-Based on this [initial inspection](./docs/initial_inspection.md) of scripts and data 
-obtained from Julie on 9/10/2025, the paper's analysis pipeline would need to be further
-inspected, but at minimum, it could be a source of which 939 participants were deemed 
-valid to analyze at baseline.
+Based on this [initial inspection](./docs/initial_inspection_ji_et_al_2024.md) of 
+data and scripts obtained from Julie on 9/10/2025, the paper's analysis pipeline
+would need to be further understood but could be a source of which 939 participants 
+were deemed valid to analyze at baseline.
 
 ## Resources
 
