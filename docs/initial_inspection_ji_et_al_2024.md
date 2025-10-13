@@ -13,7 +13,7 @@ files from Julie. Nor is `Flexibility.RR.Sample.Total.csv` and its source script
   - Imports:
     - Some raw tables from **Set B** (`BBSIQ_02_02_2019.csv`, `OA_02_02_2019.csv`, 
     `DASS21_AS_02_02_2019.csv`, `DASS21_DS_02_02_2019.csv`, `QOL_02_02_2019.csv`, 
-    `RR_02_02_2019.csv`, `MentalHealthHxTx_02_02_2019.csv`, `Demographics_02_02_2019.csv`)[^6]
+    `RR_02_02_2019.csv`, `MentalHealthHxTx_02_02_2019.csv`, `Demographics_02_02_2019.csv`)[^1]
     - Tables of unknown origin (**`R34_Flexibility_Claudia.csv`**, **`Flexibility.RR.Sample.Total.csv`**)
     - Table exported from script below (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`)
   - Exports `Flexibility.FullList.Final.csv`
@@ -29,6 +29,12 @@ files from Julie. Nor is `Flexibility.RR.Sample.Total.csv` and its source script
     - Raw table from **Set B** (`BBSIQ_02_02_2019.csv`)
     - Tables exported from script above (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`, 
     `Flexibility.RR.Sample.N8109.17Mar2023.csv`)
+
+<!-- Footnotes -->
+
+[^1]: With the exception of the demographics table, these tables are identical to those in Set B.
+The demographics table has an extra `Income.Category` column and already has cleaned values for the 
+`income` column. Otherwise, it's the same as the demographics table in Set B (sort them by `id`).
 
 <!-- Reference Links -->
 

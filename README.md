@@ -770,9 +770,6 @@ excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_
 [^3]: The code to generate the `_pids` with demographic differences below is in `code/3_clean_data.R`.  
 [^4]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
 [^5]: The code to generate `initial_ex` and `present_ex` and the condition breakdowns is in `code/3_clean_data.R`.
-[^6]: With the exception of the demographics table, these tables are identical to those in Set B.
-The demographics table has an extra `Income.Category` column and already has cleaned values for the 
-`income` column. Otherwise, it's the same as the demographics table in Set B (sort them by `id`).
 
 <!-- Reference Links -->
 
