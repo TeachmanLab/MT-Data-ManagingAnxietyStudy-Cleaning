@@ -50,14 +50,25 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
   - [Differences](#differences)
 - [Data on OSF](#data-on-osf)
   - [Sets A and B](#raw-sets-a-and-b)
+  - [Other Data](#other-data)
   - [Private Component](#private-component)
   - [Public Component](#public-component)
+  - [Data Version History](#data-version-history)
 - [Code: Setup and File Relations](#code-setup-and-file-relations)
+  - [Redacting Data](#redacting-data)
+  - [Cleaning Data](#cleaning-data)
 - [Code: Functionality](#code-functionality)
+  - [1_define_functions.R](#define-functions-r)
+  - [2_redact_data.R](#redact-data-r)
+  - [3_clean_data.R](#clean-data-r)
+  - [4_import_clean_data.R](#import-clean-data-r)
 - [Further Cleaning and Analysis Considerations](#further-cleaning-and-analysis-considerations)
+  - [Present Clean Data](#present-clean-data)
+  - [Additional Item-Level Baseline Data](#additional-item-level-baseline-data)
 - [Resources](#resources)
   - [Appendices and Codebooks](#appendices-and-codebooks)
   - [MindTrails Wiki](#mindtrails-wiki)
+  - [Other MindTrails Repos](#other-mindtrails-repos)
 
 ## Citation
 
@@ -683,7 +694,7 @@ serves as a starting point for further cleaning and analysis.
 
 The following considerations may be relevant to further cleaning or to analysis.
 
-### Present Intermediately Clean Data
+### Present Clean Data
 
 Keep the following in mind when using the clean data exported from the present repo.
 
@@ -713,7 +724,7 @@ here for credibility table) since other tables are not in clean data from main o
 - Further, analysis-specific cleaning will be needed for any given analysis
   - Use [`4_import_clean_data.R`](./code/4_import_clean_data.R) as a starting point for further cleaning and analysis
 
-### Additional Item-Level Data at Baseline
+### Additional Item-Level Baseline Data
 
 **TODO: Mention item-level baseline data Julie analyzed for flexibility paper**
 
