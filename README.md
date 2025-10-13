@@ -42,11 +42,12 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 
 
 
+
+- [Citation](#citation)
 - [Initial Versus Present Cleaning](#initial-versus-present-cleaning)
   - [Initial Cleaning](#initial-cleaning)
   - [Present Cleaning](#present-cleaning)
   - [Differences](#differences)
-- [Citation](#citation)
 - [Data on OSF](#data-on-osf)
   - [Sets A and B](#raw-sets-a-and-b)
   - [Private Component](#private-component)
@@ -57,6 +58,17 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
 - [Resources](#resources)
   - [Appendices and Codebooks](#appendices-and-codebooks)
   - [MindTrails Wiki](#mindtrails-wiki)
+
+## Citation
+
+When using a given release of the cleaning code or associated [data](#data-on-osf), please 
+cite the version number and Version DOI for the release. The Version DOI for a given release 
+is in the [Release Notes][ma-cleaning-repo-releases]. **To get the full citation, click on 
+the DOI badge in the [Release Notes][ma-cleaning-repo-releases] to go to that version's 
+record on Zenodo, where the citation is in the Citation pane.**
+
+For more details about version numbers, GitHub releases, Zenodo DOIs, and acknowledgments,
+see the [Citation](./docs/citation.md) page.
 
 ## Initial Versus Present Cleaning
 
@@ -307,17 +319,6 @@ paper (`R34_FinalData_New_v02.csv`), which used the specific scoring methods bel
 The clean data exported from the present repo includes the credibility data. Given that these data
 are not in the clean data from the main outcomes paper, `3_clean_data.R` confirms that the credibility
 data in Sets A and B are identical.
-
-## Citation
-
-When using a given release of the cleaning code or associated [data](#data-on-osf), please 
-cite the version number and Version DOI for the release. The Version DOI for a given release 
-is in the [Release Notes][ma-cleaning-repo-releases]. **To get the full citation, click on 
-the DOI badge in the [Release Notes][ma-cleaning-repo-releases] to go to that version's 
-record on Zenodo, where the citation is in the Citation pane.**
-
-For more details about version numbers, GitHub releases, Zenodo DOIs, and acknowledgments,
-see the [Citation](./docs/citation.md) page.
 
 ## Data on OSF
 

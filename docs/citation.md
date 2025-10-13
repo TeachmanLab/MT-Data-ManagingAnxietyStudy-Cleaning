@@ -53,10 +53,10 @@ bulleted in the Release Notes.
 The [Zenodo integration with GitHub][zenodo-github] creates a new Version DOI each 
 time a new GitHub release is created.
 
-When using a given release of the cleaning code or associated [data](#data-on-osf), please 
-cite the version number and Version DOI for the release. The Version DOI for a given release 
-is in the [Release Notes][ma-cleaning-repo-releases]. **To get the full citation, click on 
-the DOI badge in the [Release Notes][ma-cleaning-repo-releases] to go to that version's 
+When using a given release of the cleaning code or associated [data](../README.md#data-on-osf), 
+please cite the version number and Version DOI for the release. The Version DOI for a given 
+release is in the [Release Notes][ma-cleaning-repo-releases]. **To get the full citation, click 
+on the DOI badge in the [Release Notes][ma-cleaning-repo-releases] to go to that version's 
 record on Zenodo, where the citation is in the Citation pane.**
 
 ### Concept DOI
@@ -64,7 +64,9 @@ record on Zenodo, where the citation is in the Citation pane.**
 Note: The Zenodo record for a given version will also contain a Concept DOI under 
 "Cite all versions?" in the Versions pane of the Zenodo record. The Concept DOI 
 represents all versions of the cleaning code and resulting data and will resolve 
-to the latest Version DOI. Per [Zenodo guidance][zenodo-versioning], typically you should cite the 
+to the latest Version DOI.
+
+Per [Zenodo guidance][zenodo-versioning], typically you should cite the 
 [Version DOI](#version-doi). Cite the Concept DOI only "when it is desirable to 
 cite an evolving research artifact, without being specific about the version."
 
