@@ -1,11 +1,18 @@
 # Citation
 
-## Versioning
+- [Version Numbers](#version-numbers)
+- [GitHub Releases](#github-releases)
+- [Zenodo DOIs](#zenodo-dois)
+- [Acknowledgments](#acknowledgments)
 
-This repository and associated [data](../README.md#data-on-osf) are versioned using 
-the following adaptation of [SemVer](https://semver.org/). When a given version of 
-the data are analyzed, the version of the cleaning scripts and data can be documented 
-and cited, and previous versions can be found by version number.
+## Version Numbers
+
+This repo and associated [data](../README.md#data-on-osf) are versioned using the 
+following adaptation of [SemVer](https://semver.org/). When a given version of the 
+data are analyzed, the version of the cleaning code and data can be documented and 
+cited, and prior versions can be found. This system was first used for 
+[centralized cleaning for the Calm Thinking study][ct-cleaning-repo] 
+([v1.0.1: Eberle et al., 2022][eberle-et-al-2022]).
 
 Given a version number SCHEMA.CONTENT.SCRIPT (e.g., v1.0.0), increment the:
 
@@ -24,7 +31,7 @@ Given a version number SCHEMA.CONTENT.SCRIPT (e.g., v1.0.0), increment the:
      - Ex. Add functionality (e.g., perform new checks, highlight new issues) without changing data
      - Ex. Fix bugs (e.g., correct existing checks, clarify existing issues) without changing data
 
-When the SCHEMA, CONTENT, or SCRIPT version is incremented, a new [tag][tags] 
+When the SCHEMA, CONTENT, or SCRIPT version is incremented, a new [tag][ma-cleaning-repo-tags] 
 (e.g., "v1.0.0" is added to the repo).
 
 When the SCHEMA or CONTENT version is incremented, a new version of the 
@@ -34,13 +41,10 @@ new data version when the SCRIPT version is incremented.
 
 ## GitHub Releases
 
-Releases are named based on the version of their corresponding tag. The date in the 
-[Release Notes][ma-cleaning-releases] is the date of the last committed change for 
-that tag, and all changes in the release are bulleted in the Release Notes.
-
-For example, [release 1.0.0][ma-cleaning-release-v1.0.0] is for tag v1.0.0. Although 
-the release itself was created on **TODO: YYYY-MM-DD**, the date of the last commit 
-was **TODO: YYYY-MM-DD**.
+[Releases][ma-cleaning-repo-releases] are named based on the version of their corresponding 
+[tag][ma-cleaning-repo-tags]. The date in the [Release Notes][ma-cleaning-repo-releases] is 
+the date of the last committed change for that tag, and all changes in the release are 
+bulleted in the Release Notes.
 
 ## Zenodo DOIs
 
@@ -49,24 +53,20 @@ was **TODO: YYYY-MM-DD**.
 The [Zenodo integration with GitHub][zenodo-github] creates a new Version DOI each 
 time a new GitHub release is created.
 
-When using the cleaning scripts or resulting data, please cite the Version DOI for 
-the version of the scripts and data used. The Version DOI for a given release is in 
-the [Release Notes][ma-cleaning-releases].
-
-For example, to cite [release 1.0.0][ma-cleaning-release-v1.0.0], use the citation 
-in the Share pane of the [Zenodo record for release 1.0.0][zenodo-v1.0.0].
+When using a given release of the cleaning code or associated [data](#data-on-osf), please 
+cite the version number and Version DOI for the release. The Version DOI for a given release 
+is in the [Release Notes][ma-cleaning-repo-releases]. **To get the full citation, click on 
+the DOI badge in the [Release Notes][ma-cleaning-repo-releases] to go to that version's 
+record on Zenodo, where the citation is in the Citation pane.**
 
 ### Concept DOI
 
-The following Concept DOI represents all versions of the cleaning scripts and resulting 
-datasets and will resolve to the latest Version DOI.
-
-Per **TODO: [Zenodo guidance](https://help.zenodo.org/#versioning)**, typically you should 
-cite the [Version DOI](#version-doi). Cite the Concept DOI only "when it is desirable to 
+Note: The Zenodo record for a given version will also contain a Concept DOI under 
+"Cite all versions?" in the Versions pane of the Zenodo record. The Concept DOI 
+represents all versions of the cleaning code and resulting data and will resolve 
+to the latest Version DOI. Per [Zenodo guidance][zenodo-versioning], typically you should cite the 
+[Version DOI](#version-doi). Cite the Concept DOI only "when it is desirable to 
 cite an evolving research artifact, without being specific about the version."
-
-**TODO: Update badge below**
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6149365.svg)](https://doi.org/10.5281/zenodo.6149365)
 
 ## Acknowledgments
 
@@ -74,9 +74,10 @@ We thank [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] for their
 contributions to the initial cleaning for this study.
 
 [claudia]: https://github.com/cpc4tz
-[ma-cleaning-releases]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/releases
-[ma-cleaning-release-v1.0.0]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/releases/tag/v1.0.0
+[ct-cleaning-repo]: https://github.com/TeachmanLab/MT-Data-CalmThinkingStudy
+[eberle-et-al-2022]: https://doi.org/10.5281/zenodo.6149365
+[ma-cleaning-repo-releases]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/releases
+[ma-cleaning-repo-tags]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/tags
 [sonia]: https://github.com/soniabaee
-[tags]: https://docs.github.com/en/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags
 [zenodo-github]: https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content
-[zenodo-v1.0.0]: **TODO**
+[zenodo-versioning]: https://zenodo.org/help/versioning

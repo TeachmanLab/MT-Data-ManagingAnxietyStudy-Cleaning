@@ -308,13 +308,16 @@ The clean data exported from the present repo includes the credibility data. Giv
 are not in the clean data from the main outcomes paper, `3_clean_data.R` confirms that the credibility
 data in Sets A and B are identical.
 
-## TODO: Citation
+## Citation
 
-For more details, see [Citation](./docs/citation.md).
+When using a given release of the cleaning code or associated [data](#data-on-osf), please 
+cite the version number and Version DOI for the release. The Version DOI for a given release 
+is in the [Release Notes][ma-cleaning-repo-releases]. **To get the full citation, click on 
+the DOI badge in the [Release Notes][ma-cleaning-repo-releases] to go to that version's 
+record on Zenodo, where the citation is in the Citation pane.**
 
-
-
-
+For more details about version numbers, GitHub releases, Zenodo DOIs, and acknowledgments,
+see the [Citation](./docs/citation.md) page.
 
 ## Data on OSF
 
@@ -440,18 +443,17 @@ Public Component, redacted versions of these two tables are in the `redacted` fo
     └── codebooks/                     # Codebooks
 ```
 
-### TODO: Version Control
+### Version Control
 
-If a newer version of the ZIP for the Private Component or the ZIP for the Public
-Component is released, upload the new ZIP with a new version number and document 
-the changes below but **do not delete any old versions**. Analysis projects will
-import the data from specific versions (projects should reference the version
-they use). For simplicity, if either ZIP file is updated, upload new versions of
-both ZIP files with the same version number.
+If a newer version of the ZIP for the Private or Public Components is released, the 
+new ZIP with a new version number will be uploaded. Old versions will not be deleted 
+given that analysis projects will import data from specific versions (projects 
+should [cite](#citation) the version they use). For simplicity, if either ZIP is 
+updated, new versions of both ZIP files with the same version number will be uploaded.
 
-- `private-v1.0.0.zip` and `public-v1.0.0.zip` were uploaded by Jeremy Eberle on 9/18/2025 
-after running the redaction scripts below (as of commit `988cf1e` "Distinguish first vs. 
-later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on that date.
+- **v1.0.0**: `private-v1.0.0.zip` and `public-v1.0.0.zip` were uploaded by Jeremy Eberle on 
+9/18/2025 after running the redaction script below (as of commit `988cf1e` "Distinguish first 
+vs. later runs of scripts"; setting `first_run` in `2_redact_data.R` to `TRUE`) on that date.
 
 ## Code: Setup and File Relations
 
@@ -760,6 +762,7 @@ excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_
 [ma-cleaning-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
 [ma-cleaning-repo-pages]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
 [ma-cleaning-repo-pages-filenames_list_flt]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
+[ma-cleaning-repo-releases]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/releases
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
 [ma-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues
