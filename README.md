@@ -1,7 +1,7 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
 **README Author:** [Jeremy W. Eberle][jeremy]\
-**View Live:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages][^1]
+**View Live:** [http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages][^1]
 
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
@@ -774,13 +774,13 @@ This is a wiki with MindTrails Project-wide and study-specific information that 
 privately stored by the study team. Researchers can request access to relevant wiki 
 info by contacting Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
-<!-- Footnotes -->
+<!-- Horizontal rule for GitHub Pages -->
+---
 
-[^1]: This is the link to the present repo's corresponding GitHub Pages site,
-which is currently being built from the `main` branch.
-[^2]: Some files exported by `R34_cleaning_script.R` are incorrect (see 
-[Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
-excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].  
+<!-- Footnotes (Note: Each must be on one line to render correctly on GitHub Pages) -->
+
+[^1]: This is the link to the present repo's corresponding GitHub Pages site, which is currently being built from the `main` branch.  
+[^2]: Some files exported by `R34_cleaning_script.R` are incorrect (see [Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].  
 [^3]: The code to generate the `_pids` with demographic differences below is in `code/3_clean_data.R`.  
 [^4]: The code to generate `set_add_vs_cln_nrow` is in `code/3_clean_data.R`.  
 [^5]: The code to generate `initial_ex` and `present_ex` and the condition breakdowns is in `code/3_clean_data.R`.
@@ -795,8 +795,8 @@ excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_
 [ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
 [ma-cleaning-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
-[ma-cleaning-repo-pages]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
-[ma-cleaning-repo-pages-filenames_list_flt]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
+[ma-cleaning-repo-pages]: http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/
+[ma-cleaning-repo-pages-filenames_list_flt]: http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
 [ma-cleaning-repo-releases]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/releases
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
