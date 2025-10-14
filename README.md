@@ -62,7 +62,6 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
   - [Issues](#issues)
   - [Appendix and Codebook](#appendix-and-codebook)
   - [MindTrails Wiki](#mindtrails-wiki)
-  - [Other MindTrails Repos](#other-mindtrails-repos)
 
 ## Citation
 
