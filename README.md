@@ -467,11 +467,8 @@ redacting the data on that date (setting `first_run` in `2_redact_data.R` to `TR
 redaction, none of the present data cleaning steps had been done. A GitHub release and Zenodo 
 record were not created for this version, but the code used can be found via the latest commit (`988cf1e` 
 "Distinguish first vs. later runs of scripts").
-- **TODO: Upload new ZIP files with new version number to OSF and add entry to version history**
-
-
-
-
+- **v2.0.0**: Jeremy Eberle uploaded `private-v2.0.0.zip` and `public-v2.0.0.zip` on 10/14/2025 after 
+cleaning the data. Note: `first_run` in `2_redact_data.R` is now set to `FALSE`.
 
 ## Code: Setup and File Relations
 
