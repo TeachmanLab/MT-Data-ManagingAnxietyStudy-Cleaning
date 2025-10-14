@@ -777,6 +777,8 @@ info by contacting Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 <!-- Footnotes (Note: Each must be on one line to render correctly on GitHub Pages) -->
 
+---
+
 [^1]: This is the link to the present repo's corresponding GitHub Pages site, which is currently being built from the `main` branch.  
 [^2]: Some files exported by `R34_cleaning_script.R` are incorrect (see [Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].  
 [^3]: The code to generate the `_pids` with demographic differences below is in `code/3_clean_data.R`.  
