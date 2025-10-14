@@ -63,7 +63,8 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
   - [Present Clean Data](#present-clean-data)
   - [Additional Participants at Baseline](#additional-participants-at-baseline)
 - [Resources](#resources)
-  - [Appendices and Codebooks](#appendices-and-codebooks)
+  - [Issues](#issues)
+  - [Appendix and Codebook](#appendix-and-codebook)
   - [MindTrails Wiki](#mindtrails-wiki)
   - [Other MindTrails Repos](#other-mindtrails-repos)
 
@@ -391,17 +392,23 @@ for the [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt] of thi
 ### Private Component
 
 The [Private Component][ma-osf-private] has a file `private-v1.0.0.zip` with the **full set 
-of raw data files** (with one exception) for **Sets A and B**. The ZIP's structure is below.
+of raw data files** (with one exception) for **Sets A and B**. The exception is that for Set 
+A only the redacted version of the `GiftLog` table is included (which was redacted on the first 
+run of `code/2_redact_data.R`; see below).
 
-The exception is that for Set A only the redacted version of the `GiftLog` table 
-is included (which was redacted on the first run of `code/2_redact_data.R`; see below).
+The ZIP also has archived PDFs (as of 10/14/2025) of two of the three lists of [issues](#issues) 
+that were reviewed for the present cleaning. The ZIP's structure is below.
 
 ```
 .
-└── data/
-    └── raw_full/    # All raw files (but see exception for Set A above)
-        ├── set_a/   #   26 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019.csv")
-        └── set_b/   #   20 CSV files (e.g., "ImageryPrime_02_02_2019.csv")
+├── data/
+|   └── raw_full/          # All raw files (but see exception for Set A above)
+|       ├── set_a/         #   26 CSV files (e.g., "ImageryPrime_recovered_Feb_02_2019.csv")
+|       └── set_b/         #   20 CSV files (e.g., "ImageryPrime_02_02_2019.csv")
+└── materials/
+    └── issues_reviewed/   # Archived PDFs of 2 lists of issues reviewed
+                               ("2025.10.14 Archive of Project-wide data collection issues since 1_1_2017.pdf",
+                               "2025.10.14 Archive of R34 Data Cleaning History and Process Protocol.pdf")
 ```
 
 To request access to files on this component, contact [Jeremy Eberle][jeremy] or 
@@ -442,8 +449,8 @@ Public Component, redacted versions of these two tables are in the `redacted` fo
 |       ├── tables/                    #   8 CSV files (e.g., "dass21_as.csv")
 |       └── "POSIXct_time_zones.csv"   #   Time zones of tables' POSIXct columns
 └── materials/
-    ├── appendices/                    # Appendices
-    └── codebooks/                     # Codebooks
+    ├── appendix/                      # Appendix ("2025.10.13 Master MindTrails Appendix NO GIFT CARDS - Clean.pdf")
+    └── codebook/                      # Codebook ("2025.10.13 MT Managing Anxiety Codebook - Clean.pdf")
 ```
 
 ### Data Version History
@@ -742,9 +749,31 @@ valid to analyze at baseline.
 
 ## Resources
 
-### Appendices and Codebooks
+### Issues
 
-Appendices and codebooks for the Managing Anxiety study are on the 
+The following lists of issues were reviewed as of 10/14/2025, and any relevant issues
+were addressed by this repo.
+
+- [Issues][ma-repo-issues] on [MT-Data-ManagingAnxietyStudy][ma-repo]
+  - Some of these issues apply to the initial cleaning scripts used for the main outcomes 
+  paper (`R34_cleaning_script.R` and `R34.ipynb`) and are left open for reference
+- `R34 Data Cleaning History and Process Protocol`
+  - For an archived PDF (as of 10/14/2025) of this Google Sheet owned by Henry Behan,
+  see [Private Component](#private-component)
+  - The present cleaning deviated from the solutions that this list proposed for these issues:
+    - For issue "Coding error for credibility (all IDs)", the present cleaning recodes 
+    values to 1-5 (i.e., did not recode 5 to 4 as proposed) because 1-5 were displayed 
+    ([Issue 12][ma-repo-issue12] of [MT-Data-ManagingAnxietyStudy][ma-repo])
+    - The present cleaning ignores issues with Participants 1220 and 1338 because these participants 
+    were deemed test accounts in the initial data cleaning for the main outcomes paper (see 
+    [`notes.csv`](#notes-from-sonia))
+- `Project-wide data collection issues since 1/1/2017`
+  - For an archived PDF (as of 10/14/2025) of this Google Doc owned by Dan Funk, see
+  [Private Component](#private-component)
+
+### Appendix and Codebook
+
+The appendix and codebook for the Managing Anxiety study are on the 
 [Public Component](#public-component).
 
 ### MindTrails Wiki
@@ -752,21 +781,6 @@ Appendices and codebooks for the Managing Anxiety study are on the
 This is a wiki with MindTrails Project-wide and study-specific information that is 
 privately stored by the study team. Researchers can request access to relevant wiki 
 info by contacting Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
-
-Among other things, the wiki mentions the following lists of issues that were reviewed as 
-of 10/13/2025; any relevant issues were addressed by the present repo.
-
-**TODO (confirm): Archived versions of the first two lists are on the MindTrails shared folder.**
-
-
-
-
-
-- `R34 Data Cleaning History and Process Protocol` (Google Doc owned by Henry Behan)
-- `Project-wide data collection issues since 1/1/2017` (Google Sheet owned by Dan Funk)
-- [Issues][ma-repo-issues] on [MT-Data-ManagingAnxietyStudy][ma-repo]
-  - Some of these issues apply to the initial cleaning scripts used for the main outcomes 
-  paper (`R34_cleaning_script.R` and `R34.ipynb`) and are left open for reference
 
 <!-- Footnotes -->
 
