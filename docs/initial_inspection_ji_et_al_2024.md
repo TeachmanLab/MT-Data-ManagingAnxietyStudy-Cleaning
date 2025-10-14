@@ -30,7 +30,9 @@ files from Julie. Nor is `Flexibility.RR.Sample.Total.csv` and its source script
     - Tables exported from script above (`Flexibility.BBSIQ.Sample.N899.17Mar2023.csv`, 
     `Flexibility.RR.Sample.N8109.17Mar2023.csv`)
 
-<!-- Footnotes -->
+<!-- Footnotes (Note: Each must be on one line to render correctly on GitHub Pages) -->
+
+--- <!-- Horizontal rule for GitHub Pages -->
 
 [^1]: With the exception of the demographics table, these tables are identical to those in Set B.
 The demographics table has an extra `Income.Category` column and already has cleaned values for the 
