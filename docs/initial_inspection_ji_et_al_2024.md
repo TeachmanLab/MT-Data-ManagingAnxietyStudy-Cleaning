@@ -35,9 +35,7 @@ files from Julie. Nor is `Flexibility.RR.Sample.Total.csv` and its source script
 
 <!-- Footnotes (Note: Each must be on one line to render correctly on GitHub Pages) -->
 
-[^1]: With the exception of the demographics table, these tables are identical to those in Set B.
-The demographics table has an extra `Income.Category` column and already has cleaned values for the 
-`income` column. Otherwise, it's the same as the demographics table in Set B (sort them by `id`).
+[^1]: With the exception of the demographics table, these tables are identical to those in Set B. The demographics table has an extra `Income.Category` column and already has cleaned values for the `income` column. Otherwise, it's the same as the demographics table in Set B (sort them by `id`).
 
 <!-- Reference Links -->
 
