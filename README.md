@@ -37,11 +37,7 @@ For more on the initial cleaning and how it compares to the present repo, see
 For questions, please contact [Jeremy Eberle][jeremy] or file an
 [issue][ma-cleaning-repo-issues].
 
-## TODO: Table of Contents
-
-
-
-
+## Table of Contents
 
 - [Citation](#citation)
 - [Initial Versus Present Cleaning](#initial-versus-present-cleaning)
@@ -49,7 +45,7 @@ For questions, please contact [Jeremy Eberle][jeremy] or file an
   - [Present Cleaning](#present-cleaning)
   - [Differences](#differences)
 - [Data on OSF](#data-on-osf)
-  - [Sets A and B](#raw-sets-a-and-b)
+  - [Raw Sets A and B](#raw-sets-a-and-b)
   - [Other Data](#other-data)
   - [Private Component](#private-component)
   - [Public Component](#public-component)
