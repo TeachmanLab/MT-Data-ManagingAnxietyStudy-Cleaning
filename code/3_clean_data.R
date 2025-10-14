@@ -204,7 +204,7 @@ cln_dat <- cln_dat[setdiff(names(cln_dat), c(renamed_cols, computed_cols, dummy_
 
 # Remove dropout-related columns, which seem to have been created in some version
 # of "R34.ipynb", which, albeit outdated, is in the Data Cleaning folder on GitHub
-# (https://github.com/jwe4ec/MT-Data-ManagingAnxietyStudy/tree/master/Data%20Cleaning)
+# (https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/tree/master/Data%20Cleaning)
 
 dropout_cols <- names(cln_dat)[grep("_dropout", names(cln_dat))]
 
