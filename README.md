@@ -1,7 +1,8 @@
 # MT-Data-ManagingAnxietyStudy-Cleaning
 
 **README Author:** [Jeremy W. Eberle][jeremy]\
-**View Live:** [https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages][^1]
+**View Live:** [http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/][ma-cleaning-repo-pages][^1]
+**TODO: View Live (Development)**: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
 
 This README describes centralized data cleaning for the MindTrails Project Managing
 Anxiety Study, an NIMH-funded ([R34MH106770][ma-nih-reporter]) randomized controlled 
@@ -776,8 +777,7 @@ info by contacting Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 
 <!-- Footnotes -->
 
-[^1]: This is the link to the present repo's corresponding GitHub Pages site,
-which is currently being built from the `main` branch.
+[^1]: This is the link to the present repo's corresponding GitHub Pages site, which is currently being built from the `main` branch.  
 [^2]: Some files exported by `R34_cleaning_script.R` are incorrect (see 
 [Issue 11][ma-repo-issue11] on [MT-Data-ManagingAnxietyStudy][ma-repo]) and thus 
 excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].  
@@ -795,8 +795,8 @@ excluded from this [filenames comparison][ma-cleaning-repo-pages-filenames_list_
 [ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
 [ma-cleaning-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
-[ma-cleaning-repo-pages]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/
-[ma-cleaning-repo-pages-filenames_list_flt]: https://jwe4ec.github.io/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
+[ma-cleaning-repo-pages]: http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/
+[ma-cleaning-repo-pages-filenames_list_flt]: http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
 [ma-cleaning-repo-releases]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/releases
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
