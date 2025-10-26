@@ -130,7 +130,9 @@ filenames_list <- read.csv("./data/other/for_README/filenames_list.csv")
 # ---------------------------------------------------------------------------- #
 
 # Create HTML table for documentation to compare names of files imported/exported
-# by "R34_cleaning_script.R", imported by "R34.ipynb", and in Sets A and B
+# by "R34_cleaning_script.R" (likely from Claudia) and "Claudia - cleaning script.R"
+# (likely Sonia's revised draft of "R34_cleaning_script.R"), imported by "R34.ipynb", 
+# and in Sets A and B
 
   # Ignore mislabeled DD and DD-FU files exported by "R34_cleaning_script.R"
   # - See https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561)
@@ -671,7 +673,7 @@ sum(table(c(oa_participantRSA_chars,
 # Correct selected "participantRSA" values in Set A ----
 # ---------------------------------------------------------------------------- #
 
-# Sonia Baee's code "R34_cleaning_script.R" corrects "participantRSA" for certain
+# "R34_cleaning_script.R" corrects "participantRSA" for certain
 # row numbers in some tables. Namely, it corrects "participantRSA" to 532 in Row 
 # 68 of "bbsiq", "dass_ds", and "rr" tables and in Row 50 of "dd" table. It also
 # corrects "participantRSA" to 534, 535, and 536 for Rows 81, 88, and 99 of "qol"
@@ -744,8 +746,8 @@ sel_dat$qol$participantRSA[sel_dat$qol$participantRSA             == qol_row81_p
 sel_dat$qol$participantRSA[sel_dat$qol$participantRSA             == qol_row88_participantRSA]       <- 535
 sel_dat$qol$participantRSA[sel_dat$qol$participantRSA             == qol_row89_participantRSA]       <- 536
 
-# Correct other "participantRSA" values that are explicitly named in Sonia Baee's 
-# code "R34_cleaning_script.R" for "demographic" table
+# Correct other "participantRSA" values that are explicitly named in 
+# "R34_cleaning_script.R" for "demographic" table
 
 demographic_participantRSA_NvorEv <-
   paste0("NvorEV/x1Rn9FC1yuqkfDjcDlSRj9b8Y3ji78LPNHI8vzrvOJdQjRTpAY+Mn/C8pToWmJ",
@@ -2239,6 +2241,7 @@ flt_dat_b$dass21_ds$dass21_ds_total_dbl <- compute_dass_total_dbl(flt_dat_b$dass
 # Other demographics cleaning and analysis scripts for reference:
 # - On GitHub (https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/tree/master/Data%20Cleaning)
 #   - "R34_cleaning_script.R"
+#   - "Claudia - cleaning script.R"
 #   - "R34.ipynb"
 # - On MA main outcomes paper OSF project
 #   - "Script0_Demographics.R" (https://osf.io/uv5jm)
