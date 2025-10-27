@@ -171,7 +171,7 @@ below, these notes do not otherwise discuss comparisons with it.
 <!-- Reference Links -->
 
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
-[ma-repo-issue1]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/1#issue-403285089
-[ma-repo-issue2]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/2#issue-403285690
-[ma-repo-issue9]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9#issue-3457953028
-[ma-repo-issue10]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10#issue-3458115537
+[ma-repo-issue1]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/1
+[ma-repo-issue2]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/2
+[ma-repo-issue9]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9
+[ma-repo-issue10]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10
