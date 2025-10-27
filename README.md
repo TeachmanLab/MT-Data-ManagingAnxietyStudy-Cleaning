@@ -102,7 +102,7 @@ imported. The script also exports files that are unavailable and some of whose
 filenames differ from those in Sets A and B. (See this 
 [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].)[^2]
 - `Claudia - cleaning script.R` (by Sonia) is likely Sonia's revision of `R34_cleaning_script.R`.
-The script imports data whose filnenames are a subset of those imported by `R34_cleaning_script.R` ([comparison][ma-cleaning-repo-pages-filenames_list_flt]), but the files are unavailable, so it 
+The script imports data whose filenames are a subset of those imported by `R34_cleaning_script.R` ([comparison][ma-cleaning-repo-pages-filenames_list_flt]), but the files are unavailable, so it 
 is unclear if files with the same names are the same. It also imports `10FebParticipants.csv` (also 
 unavailable). The script exports unavailable data files whose names differ from 
 those in Set A; although most of the filenames are a subset of those in Set B, two (participant 
