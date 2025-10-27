@@ -81,32 +81,36 @@ see the [Citation](./docs/citation.md) page.
 #### Imported Data and Code
 
 The initial data cleaning done by [Sonia Baee][sonia] and [Claudia Calicho-Mamani][claudia] 
-for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of two scripts 
-(`R34_cleaning_script.R` and `R34.ipynb`) in the `Data Cleaning` folder of the
-[MT-Data-ManagingAnxietyStudy][ma-repo] repo, and one script (`Script1_DataPrep.R`) 
+for the main outcomes paper ([Ji et al., 2021][ji-et-al-2021]) consists of three scripts 
+(`R34_cleaning_script.R`, `Claudia - cleaning script.R`, and `R34.ipynb`) in `Data Cleaning/` 
+on the [MT-Data-ManagingAnxietyStudy][ma-repo] repo, and one (`Script1_DataPrep.R`) 
 on that paper's [OSF project][ji-et-al-2021-osf].
 
-`R34_cleaning_script.R` and `R34.ipynb` both have issues (see
-[MT-Data-ManagingAnxietyStudy/issues][ma-repo-issues]) and seem to be separate drafts 
-(one script does not import data files exported from the other). Given that `R34.ipynb`
-exports a data file whose name (`FinalData-28Feb20.csv`) resembles that of the data file 
+The scripts in `Data Cleaning/` on [MT-Data-ManagingAnxietyStudy][ma-repo] have issues 
+([listed][ma-repo-issues] on that repo) and seem to be separate drafts (except for `notes.csv`, 
+one script does not import files exported from another). Given that `R34.ipynb`
+exports a file whose name (`FinalData-28Feb20.csv`) resembles that of the file 
 (`FinalData-28Feb20_v02.csv`) imported by `Script1_DataPrep.R`, `R34.ipynb` seems to be 
-the later draft. But the final version of `R34.ipynb` is unavailable (Sonia indicated on 
+the latest draft. But the final version of `R34.ipynb` is unavailable (Sonia indicated on 
 11/22/2021 that the final script was lost upon switching laptops).
 
-- `R34_cleaning_script.R` (author: maybe Claudia, but uploaded by Sonia) imports data 
+- `R34_cleaning_script.R` (author: likely Claudia, but uploaded by Sonia) imports data 
 files that are unavailable. Although the filenames are dated 2/2/2019, some names differ 
 from those in raw **[Sets A and B](#raw-sets-a-and-b)** (on the
 [present repo's OSF project](#data-on-osf)), and some tables in Sets A and B are not 
 imported. The script also exports files that are unavailable and some of whose 
 filenames differ from those in Sets A and B. (See this 
 [filenames comparison][ma-cleaning-repo-pages-filenames_list_flt].)[^2]
-- `R34.ipynb` (by Sonia) imports data whose filenames are a subset of those 
-imported by `R34_cleaning_script.R` ([comparison][ma-cleaning-repo-pages-filenames_list_flt]), 
-but the files are unavailable, so it is unclear if files with the same names are the same. 
-The script also imports some **`notes.csv`** metadata (on [this repo's OSF project](#data-on-osf)).
-The script exports `FinalData-28Feb20.csv`, but this is unavailable and, again, not the name of the 
-file imported by `Script1_DataPrep.R`.
+- `Claudia - cleaning script.R` (by Sonia) is likely Sonia's revision of `R34_cleaning_script.R`.
+The script imports data whose filnenames are a subset of those imported by `R34_cleaning_script.R` ([comparison][ma-cleaning-repo-pages-filenames_list_flt]), but the files are unavailable, so it 
+is unclear if files with the same names are the same. It also imports `10FebParticipants.csv` (also 
+unavailable). The script exports unavailable data files whose names differ from 
+those in Set A; although most of the filenames are a subset of those in Set B, two (participant 
+and task log tables) are not in Set B. The script also exports some **`notes.csv`** metadata (on 
+[this repo's OSF project](#data-on-osf)).
+- `R34.ipynb` (by Sonia) imports data whose filenames are the same as those imported by 
+`Claudia - cleaning script.R` ([comparison][ma-cleaning-repo-pages-filenames_list_flt]). The script 
+also imports the **`notes.csv`** exported by `Claudia - cleaning script.R`. The script exports `FinalData-28Feb20.csv`, but this is unavailable and not the file imported by `Script1_DataPrep.R`.
 - `Script1_DataPrep.R` (author: unknown but uploaded by Julie Ji) imports `FinalData-28Feb20_v02.csv`
 (also unavailable) and, among other things, computes the final BBSIQ score used in the later analysis 
 scripts for that paper. It exports **`R34_FinalData_New_v02.csv`** (which is on the 
@@ -140,11 +144,11 @@ BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, and RR) with the clean datasets from the m
 outcomes paper (**`R34_FinalData_New_v02.csv`**, **`R34_Cronbach.csv`**), with a focus on reproducing
 the demographics data and scale scores for the 807 ITT participants in that paper.
 
-After using clues from the initial cleaning scripts (`R34_cleaning_script.R`, `R34.ipynb`,
-`Script1_DataPrep.R`) and **`notes.csv`** to clean and score these tables for the 807 ITT 
-participants, `3_clean_data.R` compares Sets A and B with the clean data from the main 
-outcomes paper (`R34_FinalData_New_v02.csv`), starting with the demographics data and then 
-turning to non-demographic scale scores. For notes on these comparisons, see these 
+After using clues from the initial cleaning scripts (esp. `R34_cleaning_script.R`, 
+`R34.ipynb`, and `Script1_DataPrep.R`) and **`notes.csv`** to clean and score these tables 
+for the 807 ITT participants, `3_clean_data.R` compares Sets A and B with the clean data from 
+the main outcomes paper (`R34_FinalData_New_v02.csv`), starting with the demographics data and 
+then turning to non-demographic scale scores. For notes on these comparisons, see these 
 [data notes](./docs/data_notes.md).
 
 For demographics data, these comparisons revealed that the clean data from the main
@@ -374,7 +378,11 @@ and put in the `data/other/clean_from_main_paper/` folder of the present repo's 
 #### Notes from Sonia
 
 The present repo also uses `notes.csv`, which was obtained from from Sonia Baee on 11/24/2021 
-and put in the `data/other/notes_from_sonia/` folder of the present repo's OSF project.
+and put in the `data/other/notes_from_sonia/` folder of the present repo's OSF project. The
+file seems to have been exported by one of Sonia's initial cleaning scripts 
+(`Claudia - cleaning script.R`) and is identical to the `notes.csv` that is alongside that 
+script on Sonia's fork of the `MT-Data-ManagingAnxietyStudy` repo (see 
+[Issue 4][ma-cleaning-repo-issue4]).
 
 #### For README
 
@@ -468,7 +476,13 @@ redaction, none of the present data cleaning steps had been done. A GitHub relea
 record were not created for this version, but the code used can be found via the latest commit (`988cf1e` 
 "Distinguish first vs. later runs of scripts").
 - **v2.0.0**: Jeremy Eberle uploaded `private-v2.0.0.zip` and `public-v2.0.0.zip` on 10/14/2025 after 
-cleaning the data. Note: `first_run` in `2_redact_data.R` is now set to `FALSE`.
+cleaning the data. Note: `first_run` in `2_redact_data.R` is now set to `FALSE`. A GitHub release and 
+Zenodo record were not created for this version as planned, but for the code used see the latest commit 
+(`339a9a8` "Update README").
+- **v2.0.1**: Jeremy Eberle uploaded `private-v2.0.1.zip` and `public-v2.0.1.zip` on 10/27/2025 after 
+updating `data/other/for_README/filenames_list.csv` on the Public Component to include files 
+imported/exported by another [initial cleaning script](#initial-cleaning) 
+(`Claudia - cleaning script.R`) that is now described in the present README.
 
 ## Code: Setup and File Relations
 
@@ -748,7 +762,7 @@ were addressed by this repo.
 
 - [Issues][ma-repo-issues] on [MT-Data-ManagingAnxietyStudy][ma-repo]
   - Some of these issues apply to the initial cleaning scripts used for the main outcomes 
-  paper (`R34_cleaning_script.R` and `R34.ipynb`) and are left open for reference
+  paper (especially `R34_cleaning_script.R` and `R34.ipynb`) and are left open for reference
 - `R34 Data Cleaning History and Process Protocol`
   - For an archived PDF (as of 10/14/2025) of this Google Sheet owned by Henry Behan,
   see [Private Component](#private-component)
@@ -795,16 +809,17 @@ info by contacting Bethany Teachman ([bteachman@bvirginia.edu][bethany-email]).
 [ji-et-al-2024]: https://doi.org/10.1177/20438087241226642
 [ji-et-al-2024-osf]: https://osf.io/tq3p7/?view_only=33c0ace49fe04688bf37afa556fd072d
 [ma-cleaning-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues
+[ma-cleaning-repo-issue4]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/issues/4
 [ma-cleaning-repo-pages]: http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/
 [ma-cleaning-repo-pages-filenames_list_flt]: http://teachman.org/MT-Data-ManagingAnxietyStudy-Cleaning/docs/filenames_list_flt.html
 [ma-cleaning-repo-releases]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy-Cleaning/releases
 [ma-clinical-trials]: https://clinicaltrials.gov/study/NCT02382003
 [ma-repo]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy
 [ma-repo-issues]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues
-[ma-repo-issue9]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9#issue-3457953028
-[ma-repo-issue10]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10#issue-3458115537
-[ma-repo-issue11]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11#issue-3491960561
-[ma-repo-issue12]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/12#issue-3506306045
+[ma-repo-issue9]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/9
+[ma-repo-issue10]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/10
+[ma-repo-issue11]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/11
+[ma-repo-issue12]: https://github.com/TeachmanLab/MT-Data-ManagingAnxietyStudy/issues/12
 [ma-nih-reporter]: https://reporter.nih.gov/search/ijY8QOUKrkCEZw244HN_zQ/project-details/9025584
 [ma-osf]: https://osf.io/pvd67/
 [ma-osf-private]: https://osf.io/5sn2x/
