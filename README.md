@@ -155,30 +155,30 @@ For demographics data, these comparisons revealed that the clean data from the m
 outcomes paper has some likely inadvertent `NA` values for birth year (and thus age), some 
 education values that were not cleaned, and some blank values for most items. After 
 reproducing the demographics data, `3_clean_data.R` deviates from the main outcomes paper
-and does [additional cleaning of the demographics data](#additional-demographics-cleaning).
+and does [additional cleaning of the demographics data](#1-additional-demographics-cleaning).
 
 For non-demographics data, these comparisons found that Set A has more data than Set B but 
 is missing DASS-21-AS and OASIS data for some people (e.g., due to server error). After 
 finding the data in Set B and `R34_Cronbach.csv`, `3_clean_data.R` adds these data to Set A 
 and compares this "Set A With Added Data" to the clean data from the main outcomes paper. For
 each table, the datasets have the same people but 
-[different numbers of observations](#different-numbers-of-observations).
+[different numbers of observations](#2-numbers-of-observations).
 
 Comparisons of non-demographics data also revealed that in the clean data from the main outcomes 
 paper, the `session` label in the OASIS table seems incorrect for 111 participants. The label 
 makes it seem like these participants skipped the OASIS at one session, but `3_clean_data.R`
 investigates this issue, and it is more plausible that the session label is incorrect. After
 reproducing the OASIS data, `3_clean_data.R` 
-[corrects the session label in the OASIS table](#corrected-session-in-oasis-table).
+[corrects the session label in the OASIS table](#3-corrected-session-in-oasis-table).
 
 `3_clean_data.R` ultimately reproduces all of the scale scores for all of the tables and
 observations that the "Set A With Added Data" shares with the clean data used in the main 
 outcomes paper (it also confirms that the CBM and imagery prime conditions are the same).
 But after doing so, `3_clean_data.R` removes the scale scores it computed because future 
 analyses may deviate from the specific
-[scale scores used in the main outcomes paper](#removed-scale-scores-used-in-main-outcomes-paper).
+[scale scores used in the main outcomes paper](#4-removed-scale-scores-used-in-main-outcomes-paper).
 
-`3_clean_data.R` also [cleans the credibility data](#clean-credibility-data) for the 807 
+`3_clean_data.R` also [cleans the credibility data](#5-clean-credibility-data) for the 807 
 ITT participants.
 
 #### Exported Data on Present Repo's OSF Project
@@ -459,7 +459,7 @@ Public Component, redacted versions of these two tables are in the `redacted` fo
 ### Data Version History
 
 If a newer version of the ZIP file for the Private or Public Components is released, the 
-new ZIP file with a new [version number](.docs/citation.md#version-number) will be uploaded. 
+new ZIP file with a new [version number](./docs/citation.md#version-numbers) will be uploaded. 
 Old versions will not be deleted given that analysis projects will import data from specific 
 versions (projects should [cite](#citation) the version number and Version DOI they use). For 
 simplicity, if either of the ZIP files is updated, new versions of both ZIP files with the 
@@ -649,15 +649,15 @@ main outcomes paper
   - Check response ranges
   - Compute scores using approaches from main outcomes paper (for BBSIQ, DASS-21-AS, 
   DASS-21-DS, OASIS, and RR; see 
-  [scoring approaches above](#removed-scale-scores-used-in-main-outcomes-paper))
+  [scoring approaches above](#4-removed-scale-scores-used-in-main-outcomes-paper))
   
 #### Compare Datasets, Investigate Differences, Add Missing Data, and Do More Cleaning
 
 - Clean demographics table (with focus on Set A) and compare with clean data from main outcomes
-paper (after reproducing clean data, do [additional cleaning above](#additional-demographics-cleaning))
+paper (after reproducing clean data, do [additional cleaning above](#1-additional-demographics-cleaning))
 - Compare Set A with clean data from main outcomes paper on non-demographic tables
   - Compare participants and numbers of observations for shared participants
-  - Investigate [ostensibly skipped sessions in OASIS table](#corrected-session-in-oasis-table)
+  - Investigate [ostensibly skipped sessions in OASIS table](#3-corrected-session-in-oasis-table)
     - Compare session dates between OASIS, RR, and task log tables in Set A (different)
     - Identify 111 people with one session skipped in OASIS table in Set A and clean data (109 
     at Session 1: `skipped_oa_S1_set_a_pids`; 2 at Session 3: `skipped_oa_S3_set_a_pids`)
@@ -666,7 +666,7 @@ paper (after reproducing clean data, do [additional cleaning above](#additional-
   - Compare participants and numbers of observations for shared participants
   - Compare scale scores above for shared observations (same except OASIS scores for people with 
   one session skipped in OASIS table in clean data)
-  - Further investigate [ostensibly skipped sessions in OASIS table](#corrected-session-in-oasis-table)
+  - Further investigate [ostensibly skipped sessions in OASIS table](#3-corrected-session-in-oasis-table)
     - No participants have skipped sessions in Set B OASIS table
     - Compare session labels in Set B OASIS table to those in Set A task log (same)
     - Compare session labels in Set A OASIS table to those in Set A task log (different
@@ -679,16 +679,16 @@ paper (after reproducing clean data, do [additional cleaning above](#additional-
     - Add baseline DASS-21-AS data from `R34_Cronbach.csv` for 2 more participants (data not in Set B)
   - For another participant (1866), add baseline OASIS data from `R34_Cronbach.csv` (data not in Set B)
 - Compare "Set A With Added Data" with clean data from main outcomes paper on non-demographic tables
-  - Same participants but [different numbers of observations](#numbers-of-observations)
+  - Same participants but [different numbers of observations](#2-numbers-of-observations)
   - Compare scale scores above for shared observations (same)
   - Compare CBM and anxiety imagery prime conditions (same)
 - Compare Sets A and B on credibility table (same)
 - Do additional cleaning to finalize clean data to export
   - From "Set A With Added Data", add participant, demographics, BBSIQ, DASS-21-AS, DASS-21-DS, OASIS, 
   and RR tables to list of tables to export
-  - [Correct session label in OASIS table](#corrected-session-in-oasis-table) to 
+  - [Correct session label in OASIS table](#3-corrected-session-in-oasis-table) to 
   be consecutive for people who ostensibly skipped one session
-  - [Remove scale scores](#removed-scale-scores-used-in-main-outcomes-paper) 
+  - [Remove scale scores](#4-removed-scale-scores-used-in-main-outcomes-paper) 
   computed via scoring methods of main outcomes paper
   - From Set A, add credibility table to list of tables to export
 - Get time zones of clean tables' POSIXct columns
