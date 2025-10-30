@@ -459,7 +459,7 @@ Public Component, redacted versions of these two tables are in the `redacted` fo
 ### Data Version History
 
 If a newer version of the ZIP file for the Private or Public Components is released, the 
-new ZIP file with a new [version number](.docs/citation.md#version-numbers) will be uploaded. 
+new ZIP file with a new [version number](./docs/citation.md#version-numbers) will be uploaded. 
 Old versions will not be deleted given that analysis projects will import data from specific 
 versions (projects should [cite](#citation) the version number and Version DOI they use). For 
 simplicity, if either of the ZIP files is updated, new versions of both ZIP files with the 
